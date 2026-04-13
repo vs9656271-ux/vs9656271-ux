@@ -295,14 +295,14 @@
       display: inline-block;
     }
 
-    .doubt-section details {
+    .doubt-section details, .tutorial-section details {
       border: 1px solid #3a4f45;
       background: rgba(10, 14, 12, 0.7);
       backdrop-filter: blur(4px);
       margin-bottom: 12px;
       border-radius: 2px;
     }
-    .doubt-section summary {
+    .doubt-section summary, .tutorial-section summary {
       padding: 14px 20px;
       font-family: 'Cinzel Decorative', serif;
       font-size: 1.5rem;
@@ -316,20 +316,25 @@
       border-bottom: 1px solid transparent;
       transition: all 0.2s;
     }
-    .doubt-section summary::-webkit-details-marker { display: none; }
-    .doubt-section summary::before {
+    .doubt-section summary::-webkit-details-marker,
+    .tutorial-section summary::-webkit-details-marker { display: none; }
+    .doubt-section summary::before,
+    .tutorial-section summary::before {
       content: 'ᛉ';
       font-size: 1.8rem;
       color: #6e2a2a;
       margin-right: 8px;
       transition: transform 0.2s;
     }
-    .doubt-section details[open] summary::before {
+    .doubt-section details[open] summary::before,
+    .tutorial-section details[open] summary::before {
       content: 'ᛦ';
       transform: rotate(180deg);
     }
-    .doubt-section details[open] summary { border-bottom: 1px solid #3a4f45; }
-    .doubt-section .details-content {
+    .doubt-section details[open] summary,
+    .tutorial-section details[open] summary { border-bottom: 1px solid #3a4f45; }
+    .doubt-section .details-content,
+    .tutorial-section .details-content {
       padding: 18px 24px;
       background: #0c1310;
       color: #d6d2c4;
@@ -349,53 +354,97 @@
       user-select: all;
     }
 
-    /* Estilos para la carta de tarot (simulación de imagen) */
+    /* Estilos para la carta de tarot rediseñada */
     .tarot-card-visual {
-      width: 180px;
-      height: 280px;
+      width: 200px;
+      height: 300px;
       margin: 0 auto 20px;
-      background: linear-gradient(145deg, #1a1210 0%, #0c0908 100%);
-      border: 3px solid #8a6e4b;
-      border-radius: 12px;
-      box-shadow: 0 20px 30px -5px #000000, inset 0 0 40px rgba(0,0,0,0.9), 0 0 0 1px #b89a6a;
+      background: linear-gradient(145deg, #140e0c 0%, #0a0706 100%);
+      border: 3px solid #b89a6a;
+      border-radius: 16px;
+      box-shadow: 0 25px 35px -8px #000000, inset 0 0 50px rgba(0,0,0,0.9), 0 0 0 2px #5a3e2e;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 16px;
+      padding: 16px 10px;
       position: relative;
       overflow: hidden;
+      transition: transform 0.3s;
     }
+    .tarot-card-visual:hover {
+      transform: scale(1.02);
+      box-shadow: 0 30px 45px -5px #000, inset 0 0 60px #1a0a0a, 0 0 0 2px #c9aa7b;
+    }
+    /* Marco interior */
     .tarot-card-visual::before {
       content: '';
       position: absolute;
-      inset: 6px;
-      border: 1px solid rgba(180, 150, 100, 0.4);
-      border-radius: 8px;
+      inset: 8px;
+      border: 1px solid rgba(180, 150, 100, 0.5);
+      border-radius: 12px;
       pointer-events: none;
     }
+    /* Runas en esquinas */
+    .tarot-card-visual .corner-runes {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .tarot-card-visual .corner-runes span {
+      position: absolute;
+      font-size: 22px;
+      color: #8a6e4b;
+      opacity: 0.5;
+      text-shadow: 0 0 8px #b89a6a;
+    }
+    .tarot-card-visual .corner-runes span:nth-child(1) { top: 5px; left: 8px; }
+    .tarot-card-visual .corner-runes span:nth-child(2) { top: 5px; right: 8px; }
+    .tarot-card-visual .corner-runes span:nth-child(3) { bottom: 5px; left: 8px; }
+    .tarot-card-visual .corner-runes span:nth-child(4) { bottom: 5px; right: 8px; }
+    
     .tarot-card-visual .card-symbol {
-      font-size: 64px;
+      font-size: 70px;
       line-height: 1;
-      margin-bottom: 15px;
-      filter: drop-shadow(0 0 15px #b89a6a);
-      opacity: 0.9;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 0 20px #c9aa7b);
+      opacity: 0.95;
+      position: relative;
+      z-index: 2;
     }
     .tarot-card-visual .card-name {
       font-family: 'Cinzel Decorative', serif;
-      font-size: 22px;
+      font-size: 20px;
       text-align: center;
-      color: #e0d4b7;
-      text-shadow: 0 0 12px #1e2a1e;
-      letter-spacing: 2px;
-      border-top: 1px solid #8a6e4b;
-      padding-top: 12px;
+      color: #f0e6d2;
+      text-shadow: 0 0 15px #2a1a1a, 0 0 5px #000;
+      letter-spacing: 3px;
+      border-top: 2px solid #8a6e4b;
+      padding-top: 14px;
       width: 100%;
+      position: relative;
+      z-index: 2;
+      font-weight: 700;
     }
     .tarot-card-visual .card-ornament {
       margin-top: 8px;
-      font-size: 18px;
-      color: #a67c52;
+      font-size: 20px;
+      color: #b89a6a;
+      letter-spacing: 8px;
+      opacity: 0.8;
+    }
+    /* Círculo decorativo central */
+    .tarot-card-visual .astral-circle {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border: 1px dashed #8a6e4b;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.2;
+      z-index: 1;
     }
   </style>
 </head>
@@ -479,6 +528,7 @@
       </div>
     </div>
    
+    <!-- SECCIÓN VALENTINA S. AMPLIADA -->
     <div class="max-w-4xl mt-20 card-grimoire p-8 md:p-10 rounded-xl text-left relative overflow-hidden">
       <div class="absolute -top-3 -left-3 text-7xl text-blood/20 rotate-12">ᛉ</div>
       <div class="absolute -bottom-3 -right-3 text-7xl text-blood/15 -rotate-12">ᚨ</div>
@@ -489,6 +539,15 @@
         <p><span class="text-moss text-xl mr-2">🌿</span>Me enamoran las plantas, las flores, lo espiritual, lo esotérico, lo nuevo, los animales y la música. Y por supuesto, el mundo onírico y oscuro de ciertas historias que tanto me inspiran. Cuido de mi gente y, sobre todo, de mí misma.</p>
         <p><span class="text-blood text-xl mr-2">🜄</span>Cada lectura es directa, sin juicios y llena de esa energía que solo el tarot puede traer. Estoy a tu servicio.</p>
       </div>
+      
+      <!-- Nuevos párrafos con información adicional -->
+      <div class="mt-8 pt-6 border-t border-blood/20 space-y-4 text-lg leading-relaxed text-bone/90">
+        <p><span class="text-blood text-xl mr-2">🜍</span><span class="font-display text-blood">Experiencia comprobada:</span> He realizado <span class="text-bone font-semibold">más de 100 lecturas</span> en este tiempo, atendiendo a personas desde los 16 hasta más de 60 años. Cada consulta es un universo único y me adapto a la energía de quien me busca.</p>
+        <p><span class="text-blood text-xl mr-2">🜍</span><span class="font-display text-blood">Contra la charlatanería:</span> Me molesta profundamente la charlatanería. <span class="italic">No voy a decirte cosas que no vea o que no estén claras en la tirada.</span> Si algo no aparece, te lo diré con honestidad. Prefiero un silencio sincero a una mentira bonita.</p>
+        <p><span class="text-blood text-xl mr-2">🜍</span><span class="font-display text-blood">Aprendizaje constante:</span> Actualmente estoy estudiando <span class="text-bone font-semibold">osteomancia</span> (lectura de huesos), porque el conocimiento es infinito y siempre hay nuevas formas de conectar con lo sutil.</p>
+        <p><span class="text-blood text-xl mr-2">🜍</span><span class="font-display text-blood">Transparencia:</span> Convengo como experiencia porque sin temor te explicaré cómo funciona el tarot o el servicio por el que me contraten. <span class="text-bone">Sé que no soy una farsa</span> y quiero que tú también lo sientas. Pregunta sin miedo.</p>
+      </div>
+      
       <div class="absolute -bottom-8 -right-8 w-36 h-36 opacity-20 rotate-12 pointer-events-none">
         <svg viewBox="0 0 100 100" fill="none">
           <path d="M10 90 Q30 60 50 70 T90 20" stroke="#1e3a2a" stroke-width="4" fill="none"/>
@@ -498,8 +557,26 @@
       </div>
     </div>
 
-    <!-- SECCIÓN DE DUDAS -->
-    <div class="max-w-4xl w-full mt-16 doubt-section">
+    <!-- TUTORIAL DE USO (NUEVA SECCIÓN) -->
+    <div class="max-w-4xl w-full mt-12 tutorial-section">
+      <details class="card-grimoire" style="padding:0; overflow:hidden;">
+        <summary class="text-3xl">🜁 GUÍA DE USO · TUTORIAL</summary>
+        <div class="details-content">
+          <p class="text-xl mb-4 text-bone">Bienvenida/o a este espacio. Aquí te explico cómo moverte:</p>
+          <ul class="list-disc list-inside space-y-3 text-lg ml-4">
+            <li><span class="text-blood">✧</span> <span class="font-semibold">Agendar una lectura:</span> Usa los botones "AGENDAR" de cada servicio. Serás redirigida/o a Calendly, donde eliges día y hora.</li>
+            <li><span class="text-blood">✧</span> <span class="font-semibold">Después de agendar:</span> Revisa tu correo (a veces va a spam). Yo te confirmaré personalmente y te daré los datos de pago si es transferencia.</li>
+            <li><span class="text-blood">✧</span> <span class="font-semibold">Sección de Dudas:</span> Justo abajo de esta guía encuentras el proceso detallado y la CLABE para transferencias.</li>
+            <li><span class="text-blood">✧</span> <span class="font-semibold">Consejo diario de los Arcanos:</span> Más abajo hay una sección donde puedes recibir <span class="italic">un consejo aleatorio por día</span>. Presiona "Revelar carta" y aparecerá un arcano mayor con un mensaje para ti.</li>
+            <li><span class="text-blood">✧</span> <span class="font-semibold">Contacto:</span> Cualquier situación escríbeme a <a href="mailto:vs9656271@gmail.com" class="email-link">vs9656271@gmail.com</a>. Respondo en un plazo de 24 horas.</li>
+          </ul>
+          <p class="mt-4 text-whisper italic">ᛉ La página está diseñada para ser intuitiva, pero si algo falla, avísame y lo resolvemos.</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- SECCIÓN DE DUDAS (PROCESO DE CITA) -->
+    <div class="max-w-4xl w-full mt-6 doubt-section">
       <details class="card-grimoire" style="padding:0; overflow:hidden;">
         <summary class="text-3xl">🜁 DUDAS FRECUENTES · PROCESO DE CITA</summary>
         <div class="details-content">
@@ -543,14 +620,14 @@
       </div>
     </div>
 
-    <!-- SECCIÓN CONSEJO DE ARCANOS MAYORES (IMAGEN DE CARTA + LÍMITE DIARIO) -->
+    <!-- SECCIÓN CONSEJO DE ARCANOS MAYORES (REDISEÑADA) -->
     <div class="max-w-3xl w-full mt-20 card-grimoire p-8 rounded-xl text-center">
       <h2 class="font-display text-4xl mb-2 flex items-center justify-center gap-3">
         <span>🜂</span> Consejo del Tarot <span>🜄</span>
       </h2>
       <p class="text-whisper italic mb-6">Los Arcanos Mayores susurran... ¿quieres escuchar?</p>
       
-      <div id="tarot-advice-container" class="min-h-[360px] flex flex-col items-center justify-center">
+      <div id="tarot-advice-container" class="min-h-[380px] flex flex-col items-center justify-center">
         <button id="draw-card-btn" class="btn-void px-10 py-4 text-xl rounded-sm">
           ᚠ Revelar carta ᚠ
         </button>
@@ -730,7 +807,7 @@
         subtitle.innerHTML = '✦ La noche envuelve los misterios ✦';
       }
 
-      // ========== ARCANOS MAYORES (IMÁGENES + MÚLTIPLES MENSAJES + LÍMITE DIARIO) ==========
+      // ========== ARCANOS MAYORES (REDISEÑO DE CARTA VISUAL) ==========
       const arcanoMayor = [
         { nombre: "El Loco", simbolo: "🃏", mensajes: [
           "Da el salto sin mirar atrás. La inocencia es tu mayor fortaleza ahora.",
@@ -870,13 +947,16 @@
         const carta = arcanoMayor[indice];
         const mensajeAleatorio = carta.mensajes[Math.floor(Math.random() * carta.mensajes.length)];
 
-        // Guardar fecha en localStorage
         localStorage.setItem('ultimoConsejoFecha', getTodayString());
 
-        // Mostrar carta visual (imagen simulada) + mensaje
+        // Carta visual rediseñada
         displayDiv.innerHTML = `
           <div class="flex flex-col items-center">
             <div class="tarot-card-visual">
+              <div class="corner-runes">
+                <span>ᚨ</span><span>ᚱ</span><span>ᚦ</span><span>ᚢ</span>
+              </div>
+              <div class="astral-circle"></div>
               <div class="card-symbol">${carta.simbolo}</div>
               <div class="card-name">${carta.nombre}</div>
               <div class="card-ornament">⚶ ⚵ ⚴</div>
