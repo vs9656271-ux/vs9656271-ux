@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Valentina S. · Cartas del Vacío</title>
+  <title>Valentina S. · Tarot y Carta Astral</title>
  
   <!-- Fuentes & Tailwind -->
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
@@ -37,7 +37,7 @@
   </script>
  
   <style>
-    /* ===== ESTILOS DISHONORED · VACÍO & CORRUPCIÓN (MÁS PROFUNDO) ===== */
+    /* ===== ESTILOS · ESTÉTICA SOMBRÍA & CORRUPCIÓN (SIN TEXTO DISHONORED) ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
    
     body {
@@ -49,7 +49,7 @@
       overflow-x: hidden;
     }
    
-    /* textura de corrupción — papel envejecido, polvo, manchas de sangre */
+    /* textura de corrupción — papel envejecido, polvo, manchas */
     body::before {
       content: '';
       position: fixed;
@@ -64,7 +64,7 @@
       z-index: 0;
     }
    
-    /* viñeta catastrófica (oscuridad en bordes) */
+    /* viñeta oscura en bordes */
     body::after {
       content: '';
       position: fixed;
@@ -74,7 +74,7 @@
       z-index: 2;
     }
    
-    /* --- RUNAS DEL VACÍO (más grandes y espectrales) --- */
+    /* --- RUNAS FLOTANTES (solo estética) --- */
     .rune {
       position: fixed;
       font-family: 'Cinzel Decorative', serif;
@@ -92,7 +92,7 @@
       50% { transform: translateY(-45px) rotate(5deg); opacity: 0.3; }
     }
    
-    /* --- MARCA DEL FORASTERO (más visible, sin bloquear clics) --- */
+    /* --- MARCA SIMBÓLICA (sin texto) --- */
     .void-mark {
       position: fixed;
       bottom: 20px;
@@ -105,10 +105,9 @@
       background-repeat: no-repeat;
       z-index: 5;
       filter: drop-shadow(0 0 15px #2a1a1a);
-      pointer-events: none;  /* ¡IMPORTANTE! Para que no bloquee clics */
     }
    
-    /* --- ENREDADERAS ESTILO DELILAH (más tupidas) --- */
+    /* --- ENREDADERAS TUPIDAS --- */
     .vines-container {
       position: fixed;
       inset: 0;
@@ -182,7 +181,7 @@
       border-bottom: 3px solid #3a5a45;
     }
    
-    /* --- PARTÍCULAS / CENIZA + POLVO DEL VACÍO --- */
+    /* --- PARTÍCULAS DE CENIZA --- */
     .ash-particle {
       position: fixed;
       width: 3px;
@@ -199,8 +198,38 @@
       50% { transform: translateY(-80px) translateX(30px); opacity: 0.35; }
       100% { transform: translateY(-160px) translateX(-20px); opacity: 0.0; }
     }
+
+    /* 🌹 PÉTALOS MARCHITOS CAYENDO (NUEVO EFECTO) */
+    #petals-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 10;
+      overflow: hidden;
+    }
+    .petal {
+      position: absolute;
+      top: -10%;
+      color: rgba(110, 42, 42, 0.35);
+      font-size: 24px;
+      user-select: none;
+      text-shadow: 0 0 8px #2a0f0f;
+      animation: fallPetal linear infinite;
+      transform: rotate(0deg);
+      opacity: 0.7;
+    }
+    @keyframes fallPetal {
+      0% {
+        transform: translateY(0) rotate(0deg) translateX(0);
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(120vh) rotate(360deg) translateX(40px);
+        opacity: 0;
+      }
+    }
    
-    /* --- TARJETAS / GRIMORIO (más siniestras) --- */
+    /* --- TARJETAS / GRIMORIO --- */
     .card-grimoire {
       background: linear-gradient(145deg, #0c1310 0%, #060a08 100%);
       border: 1px solid rgba(110,42,42,0.35);
@@ -228,7 +257,7 @@
       font-family: 'Cinzel Decorative';
     }
    
-    /* botones del vacío */
+    /* botones */
     .btn-void {
       background: linear-gradient(135deg, #15201a, #0a100d);
       border: 1px solid #3a4f45;
@@ -242,7 +271,6 @@
       z-index: 20;
       display: inline-block;
       text-decoration: none;
-      cursor: pointer;
     }
     .btn-void:hover {
       background: linear-gradient(135deg, #1e2e25, #121c16);
@@ -293,61 +321,20 @@
     ::-webkit-scrollbar-track { background: #050807; }
     ::-webkit-scrollbar-thumb { background: #1e2e25; border-radius: 0; border: 1px solid #3a4f45; }
 
-    /* Reproductor de audio estilo Dishonored */
-    .audio-player {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      z-index: 100;
-      background: rgba(10, 14, 12, 0.7);
-      backdrop-filter: blur(5px);
-      border: 1px solid #3a4f45;
-      border-radius: 30px;
-      padding: 5px 15px 5px 10px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 0 20px #000000, inset 0 0 5px #1a2a1e;
-      color: #d6d2c4;
-    }
-    .audio-player audio {
-      width: 180px;
-      height: 30px;
-      filter: sepia(0.8) hue-rotate(70deg) brightness(0.8);
-      opacity: 0.9;
-    }
-    .audio-player audio::-webkit-media-controls-panel {
-      background-color: #1e2e25;
-    }
-    .audio-player span {
+    /* Texto de correo como dato (sin botón) */
+    .correo-dato {
       font-family: 'Cinzel Decorative', serif;
-      font-size: 14px;
-      color: #b84a4a;
-    }
-
-    /* Mensaje de error de audio (oculto por defecto) */
-    .audio-error {
-      display: none;
-      font-size: 12px;
-      color: #b84a4a;
-      margin-left: 5px;
+      text-shadow: 0 0 10px #1e2a1e;
+      letter-spacing: 2px;
+      border-bottom: 1px solid rgba(110,42,42,0.5);
+      padding-bottom: 6px;
+      display: inline-block;
     }
   </style>
 </head>
 <body class="font-body antialiased">
 
-  <!-- Reproductor de audio: Honor for All (enlace fiable de Internet Archive) -->
-  <div class="audio-player">
-    <span>♪ Honor for All</span>
-    <audio id="bg-music" controls loop>
-      <!-- Fuente estable de Internet Archive -->
-      <source src="https://archive.org/download/dishonored-2-ost/01%20Honor%20for%20All.mp3" type="audio/mpeg">
-      Tu navegador no soporta el elemento de audio.
-    </audio>
-    <span class="audio-error" id="audio-error-msg">⚠️ No se pudo cargar el audio</span>
-  </div>
-
-  <!-- ========== RUNAS DEL VACÍO ========= -->
+  <!-- ========== RUNAS FLOTANTES ========= -->
   <div class="rune" style="top:5%; left:8%;">ᚠ</div>
   <div class="rune" style="top:18%; left:92%; animation-duration:22s;">ᚢ</div>
   <div class="rune" style="top:72%; left:82%; animation-duration:19s;">ᚦ</div>
@@ -358,10 +345,10 @@
   <div class="rune" style="top:92%; left:88%;">ᛉ</div>
   <div class="rune" style="top:38%; left:78%; opacity:0.1;">ᛗ</div>
  
-  <!-- Marca del Forastero (sin interferir en clics) -->
+  <!-- Marca simbólica -->
   <div class="void-mark"></div>
  
-  <!-- ========== ENREDADERAS ESTILO DELILAH ========= -->
+  <!-- ========== ENREDADERAS ========= -->
   <div class="vines-container">
     <div class="vine-delilah" style="left: 2%; height: 0;" id="vine1"><div class="thorn"></div></div>
     <div class="vine-delilah" style="left: 14%; height: 0;" id="vine2"></div>
@@ -379,6 +366,9 @@
  
   <!-- ========== PARTÍCULAS DE CENIZA ========= -->
   <div id="ash-storm" style="position:fixed; inset:0; pointer-events:none; z-index:2;"></div>
+
+  <!-- 🌹 CONTENEDOR DE PÉTALOS MARCHITOS (NUEVO) -->
+  <div id="petals-container"></div>
 
   <!-- ========== CONTENIDO PRINCIPAL ========= -->
   <div class="content-wrapper relative flex flex-col items-center justify-center min-h-screen px-5 py-16 text-center">
@@ -436,7 +426,7 @@
         <p class="text-4xl font-display text-bone mt-2">$400 <span class="text-base font-body">MXN</span></p>
        
         <div class="mt-5 p-4 bg-void/60 border-l-2 border-blood/60 text-sm">
-          <p class="text-whisper"><span class="text-blood font-bold">🜍 Requisitos del Vacío:</span> Al agendar, <span class="text-bone">coloca tu fecha, hora exacta y lugar de nacimiento</span>. En la misma página de cita indica <span class="text-bone">cuál modalidad prefieres</span> (presencial o en línea).</p>
+          <p class="text-whisper"><span class="text-blood font-bold">🜍 Requisitos importantes:</span> Al agendar, <span class="text-bone">coloca tu fecha, hora exacta y lugar de nacimiento</span>. En la misma página de cita indica <span class="text-bone">cuál modalidad prefieres</span> (presencial o en línea).</p>
         </div>
        
         <a href="https://calendly.com/vs9656271/carta-astral" target="_blank" class="btn-void px-7 py-3 rounded-sm inline-block mt-7 text-lg font-medium">
@@ -449,7 +439,7 @@
       </div>
     </div>
    
-    <!-- SECCIÓN: VALENTINA S. -->
+    <!-- SECCIÓN: VALENTINA S. (texto sin referencias) -->
     <div class="max-w-4xl mt-20 card-grimoire p-8 md:p-10 rounded-xl text-left relative overflow-hidden">
       <div class="absolute -top-3 -left-3 text-7xl text-blood/20 rotate-12">ᛉ</div>
       <div class="absolute -bottom-3 -right-3 text-7xl text-blood/15 -rotate-12">ᚨ</div>
@@ -470,9 +460,8 @@
         <p>
           <span class="text-moss text-xl mr-2">🌿</span>
           Me enamoran las plantas, las flores, lo espiritual, lo esotérico, lo nuevo,
-          los animales y la música. Y por supuesto, el mundo catastrófico y bello de
-          <span class="text-blood/90 font-medium">Dishonored</span>.
-          Cuido de mi gente y, sobre todo, de mí misma.
+          los animales y la música. Y por supuesto, el mundo onírico y oscuro de ciertas
+          historias que tanto me inspiran. Cuido de mi gente y, sobre todo, de mí misma.
         </p>
         <p>
           <span class="text-blood text-xl mr-2">🜄</span>
@@ -490,7 +479,7 @@
       </div>
     </div>
    
-    <!-- MÉTODOS DE PAGO + CONTACTO (botón email 100% funcional) -->
+    <!-- MÉTODOS DE PAGO + CONTACTO (CORREO COMO DATO, NO BOTÓN) -->
     <div class="mt-14 w-full max-w-3xl">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
         <div class="bg-rot/50 p-6 border border-moss/40 rounded-sm backdrop-blur-sm">
@@ -500,28 +489,25 @@
         <div class="bg-rot/50 p-6 border border-moss/40 rounded-sm backdrop-blur-sm">
           <h3 class="font-display text-2xl mb-3 flex items-center gap-2"><span>🜁</span> Contacto</h3>
           <p class="text-bone/90">
-            <!-- Enlace mailto estándar -->
+            <!-- Enlace de correo normal, pero no como botón grande -->
             <a href="mailto:vs9656271@gmail.com" class="email-link text-lg hover:text-blood transition">vs9656271@gmail.com</a><br>
             <span class="text-sm text-ash">Disponible ante cualquier duda o situación.</span>
           </p>
         </div>
       </div>
      
-      <!-- BOTÓN CORREO GRANDE (con funcionalidad mejorada) -->
+      <!-- CORREO MOSTRADO COMO DATO (NO BOTÓN) -->
       <div class="mt-10 text-center">
-        <a href="mailto:vs9656271@gmail.com" id="email-button" class="btn-void px-12 py-5 rounded-sm inline-block text-2xl tracking-widest cursor-pointer">
-          vs9656271@gmail.com ᛫ ESCRIBIR AL VACÍO
-        </a>
-        <p id="copy-message" class="mt-3 text-sm text-ash opacity-0 transition-opacity duration-300">📋 Dirección copiada al portapapeles</p>
-        <p class="mt-6 text-ash text-sm tracking-[6px]">
-          ᚨ ᚱ ᚢ ᚾ ᚨ ᛋ · EL FORASTERO OBSERVA · ᚦ ᛟ ᚷ ᚲ ᛉ
+        <p class="text-4xl md:text-5xl font-display text-bone tracking-widest correo-dato">vs9656271@gmail.com</p>
+        <p class="mt-4 text-ash text-sm tracking-[6px]">
+          ᚨ ᚱ ᚢ ᚾ ᚨ ᛋ · CORREO DE CONTACTO · ᚦ ᛟ ᚷ ᚲ ᛉ
         </p>
       </div>
     </div>
    
-    <!-- footer -->
+    <!-- footer sin referencias a Dishonored -->
     <div class="mt-24 text-ash/30 text-xs font-body border-t border-blood/10 pt-8 w-full max-w-3xl">
-      <p>Valentina S. · Lecturas de tarot & carta astral · Estética Dishonored · Todos los presagios son bienvenidos</p>
+      <p>Valentina S. · Lecturas de tarot & carta astral · Ambiente místico · Todos los presagios son bienvenidos</p>
     </div>
    
   </div>
@@ -542,6 +528,23 @@
         p.style.width = (2 + Math.random() * 6) + 'px';
         p.style.height = p.style.width;
         ashContainer.appendChild(p);
+      }
+
+      // 🌹 PÉTALOS MARCHITOS CAYENDO (NUEVO EFECTO)
+      const petalsContainer = document.getElementById('petals-container');
+      const petalSymbols = ['🌹', '🥀', '🍂', '🍁', '🌸', '💮']; // algunos tonos marchitos
+      for (let i = 0; i < 40; i++) {
+        let petal = document.createElement('div');
+        petal.className = 'petal';
+        // elegir símbolo aleatorio
+        petal.textContent = petalSymbols[Math.floor(Math.random() * petalSymbols.length)];
+        petal.style.left = Math.random() * 100 + '%';
+        petal.style.animationDelay = (Math.random() * 20) + 's';
+        petal.style.animationDuration = (12 + Math.random() * 20) + 's';
+        petal.style.fontSize = (18 + Math.random() * 30) + 'px';
+        petal.style.opacity = 0.3 + Math.random() * 0.5;
+        petal.style.filter = 'blur(0.4px) grayscale(0.6)';
+        petalsContainer.appendChild(petal);
       }
      
       // ENREDADERAS SCROLL
@@ -582,68 +585,18 @@
       window.addEventListener('resize', updateVinesHeight);
       updateVinesHeight();
      
-      // Ajuste nocturno
+      // ajuste nocturno sutil
       const hour = new Date().getHours();
       const subtitle = document.querySelector('p.italic.text-ash');
       if (subtitle && (hour < 6 || hour > 22)) {
-        subtitle.innerHTML = '✦ La noche pertenece al Vacío ✦';
+        subtitle.innerHTML = '✦ NADA ES DEFINITIVO ✦';
       }
 
-      // --- MÚSICA: Intento de autoplay con volumen bajo y manejo de error ---
-      const audio = document.getElementById('bg-music');
-      const errorMsg = document.getElementById('audio-error-msg');
-      if (audio) {
-        audio.volume = 0.35;
-        // Intentar reproducción automática
-        const playPromise = audio.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(() => {
-            // Autoplay bloqueado, mostrar mensaje sutil
-            console.log('Autoplay bloqueado. El usuario debe iniciar la reproducción.');
-          });
-        }
-        // Mostrar mensaje si el archivo no carga (error de red)
-        audio.addEventListener('error', () => {
-          errorMsg.style.display = 'inline';
-        });
-      }
-
-      // --- BOTÓN DE CORREO MEJORADO (mailto + copiado automático como fallback) ---
-      const emailBtn = document.getElementById('email-button');
-      const copyMsg = document.getElementById('copy-message');
-      
-      emailBtn.addEventListener('click', function(e) {
-        // Intentamos abrir mailto normalmente
-        // Pero si después de 1 segundo la página sigue aquí (no se abrió cliente), copiamos
-        const mailtoLink = this.href;
-        let mailOpened = false;
-        
-        // Intentar abrir
-        window.location.href = mailtoLink;
-        
-        // Truco: si después de un breve lapso no se ha navegado, asumimos que no hay cliente
-        setTimeout(() => {
-          // Si la página sigue visible, copiamos al portapapeles
-          if (!document.hidden) {
-            navigator.clipboard?.writeText('vs9656271@gmail.com').then(() => {
-              copyMsg.style.opacity = '1';
-              setTimeout(() => copyMsg.style.opacity = '0', 2500);
-            }).catch(() => {
-              // Fallback manual si clipboard falla
-              alert('Dirección de correo: vs9656271@gmail.com');
-            });
-          }
-        }, 300);
-        
-        // Evitamos comportamiento por defecto solo si no es mailto válido (pero sí lo es)
-        // No prevenimos para que mailto funcione
-      });
-
-      // Pequeño retoque para que el botón de copia también funcione con clic derecho
+      // Se eliminó por completo el reproductor de audio y toda referencia a música.
     })();
   </script>
  
-  <!-- SVG runa adicional (decorativo) -->
+  <!-- SVG runa adicional decorativa -->
   <div style="position:fixed; bottom:15px; left:15px; opacity:0.06; z-index:1; pointer-events:none; width:150px; height:150px;">
     <svg viewBox="0 0 200 200" fill="none">
       <path d="M100 20 L130 70 L180 60 L150 100 L190 140 L140 150 L130 190 L90 160 L60 190 L70 140 L20 130 L50 90 L30 50 L80 60 L100 20Z" stroke="#6e2a2a" stroke-width="4" fill="none"/>
