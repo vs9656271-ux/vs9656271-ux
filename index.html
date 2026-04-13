@@ -92,7 +92,7 @@
       50% { transform: translateY(-45px) rotate(5deg); opacity: 0.3; }
     }
    
-    /* --- MARCA DEL FORASTERO (más visible) --- */
+    /* --- MARCA DEL FORASTERO (más visible, sin bloquear clics) --- */
     .void-mark {
       position: fixed;
       bottom: 20px;
@@ -105,6 +105,7 @@
       background-repeat: no-repeat;
       z-index: 5;
       filter: drop-shadow(0 0 15px #2a1a1a);
+      pointer-events: none;  /* ¡IMPORTANTE! Para que no bloquee clics */
     }
    
     /* --- ENREDADERAS ESTILO DELILAH (más tupidas) --- */
@@ -241,6 +242,7 @@
       z-index: 20;
       display: inline-block;
       text-decoration: none;
+      cursor: pointer;
     }
     .btn-void:hover {
       background: linear-gradient(135deg, #1e2e25, #121c16);
@@ -290,6 +292,7 @@
     ::-webkit-scrollbar { width: 10px; }
     ::-webkit-scrollbar-track { background: #050807; }
     ::-webkit-scrollbar-thumb { background: #1e2e25; border-radius: 0; border: 1px solid #3a4f45; }
+
     /* Reproductor de audio estilo Dishonored */
     .audio-player {
       position: fixed;
@@ -321,20 +324,29 @@
       font-size: 14px;
       color: #b84a4a;
     }
+
+    /* Mensaje de error de audio (oculto por defecto) */
+    .audio-error {
+      display: none;
+      font-size: 12px;
+      color: #b84a4a;
+      margin-left: 5px;
+    }
   </style>
 </head>
 <body class="font-body antialiased">
-  <!-- Reproductor de audio: Honor for All (enlace fiable) -->
+
+  <!-- Reproductor de audio: Honor for All (enlace fiable de Internet Archive) -->
   <div class="audio-player">
     <span>♪ Honor for All</span>
-    <audio controls loop autoplay>
-      <!-- Fuente estable: archivo alojado en servidor de confianza -->
-      <source src="https://dl.dropboxusercontent.com/scl/fi/7w3q0w0z9z0z0z0z0z0z0/Honor-for-All-Dishonored.mp3?rlkey=0&dl=1" type="audio/mpeg">
-      <!-- Respaldo alternativo (si el primero falla, usa este enlace de Internet Archive) -->
+    <audio id="bg-music" controls loop>
+      <!-- Fuente estable de Internet Archive -->
       <source src="https://archive.org/download/dishonored-2-ost/01%20Honor%20for%20All.mp3" type="audio/mpeg">
       Tu navegador no soporta el elemento de audio.
     </audio>
+    <span class="audio-error" id="audio-error-msg">⚠️ No se pudo cargar el audio</span>
   </div>
+
   <!-- ========== RUNAS DEL VACÍO ========= -->
   <div class="rune" style="top:5%; left:8%;">ᚠ</div>
   <div class="rune" style="top:18%; left:92%; animation-duration:22s;">ᚢ</div>
@@ -346,7 +358,7 @@
   <div class="rune" style="top:92%; left:88%;">ᛉ</div>
   <div class="rune" style="top:38%; left:78%; opacity:0.1;">ᛗ</div>
  
-  <!-- Marca del Forastero -->
+  <!-- Marca del Forastero (sin interferir en clics) -->
   <div class="void-mark"></div>
  
   <!-- ========== ENREDADERAS ESTILO DELILAH ========= -->
@@ -367,6 +379,7 @@
  
   <!-- ========== PARTÍCULAS DE CENIZA ========= -->
   <div id="ash-storm" style="position:fixed; inset:0; pointer-events:none; z-index:2;"></div>
+
   <!-- ========== CONTENIDO PRINCIPAL ========= -->
   <div class="content-wrapper relative flex flex-col items-center justify-center min-h-screen px-5 py-16 text-center">
    
@@ -487,18 +500,19 @@
         <div class="bg-rot/50 p-6 border border-moss/40 rounded-sm backdrop-blur-sm">
           <h3 class="font-display text-2xl mb-3 flex items-center gap-2"><span>🜁</span> Contacto</h3>
           <p class="text-bone/90">
-            <!-- Enlace mailto estándar (siempre funciona) -->
+            <!-- Enlace mailto estándar -->
             <a href="mailto:vs9656271@gmail.com" class="email-link text-lg hover:text-blood transition">vs9656271@gmail.com</a><br>
             <span class="text-sm text-ash">Disponible ante cualquier duda o situación.</span>
           </p>
         </div>
       </div>
      
-      <!-- BOTÓN CORREO GRANDE (ahora es un enlace <a> real) -->
+      <!-- BOTÓN CORREO GRANDE (con funcionalidad mejorada) -->
       <div class="mt-10 text-center">
-        <a href="mailto:vs9656271@gmail.com" class="btn-void px-12 py-5 rounded-sm inline-block text-2xl tracking-widest cursor-pointer">
+        <a href="mailto:vs9656271@gmail.com" id="email-button" class="btn-void px-12 py-5 rounded-sm inline-block text-2xl tracking-widest cursor-pointer">
           vs9656271@gmail.com ᛫ ESCRIBIR AL VACÍO
         </a>
+        <p id="copy-message" class="mt-3 text-sm text-ash opacity-0 transition-opacity duration-300">📋 Dirección copiada al portapapeles</p>
         <p class="mt-6 text-ash text-sm tracking-[6px]">
           ᚨ ᚱ ᚢ ᚾ ᚨ ᛋ · EL FORASTERO OBSERVA · ᚦ ᛟ ᚷ ᚲ ᛉ
         </p>
@@ -575,19 +589,61 @@
         subtitle.innerHTML = '✦ La noche pertenece al Vacío ✦';
       }
 
-      // Música: intentar autoplay silencioso (el navegador puede bloquearlo, pero el usuario tiene el control)
-      const audio = document.querySelector('audio');
+      // --- MÚSICA: Intento de autoplay con volumen bajo y manejo de error ---
+      const audio = document.getElementById('bg-music');
+      const errorMsg = document.getElementById('audio-error-msg');
       if (audio) {
-        audio.volume = 0.4;
-        audio.play().catch(() => {
-          // El autoplay fue bloqueado; el usuario deberá hacer clic en play.
-          console.log('Autoplay bloqueado. Usa el control de audio.');
+        audio.volume = 0.35;
+        // Intentar reproducción automática
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // Autoplay bloqueado, mostrar mensaje sutil
+            console.log('Autoplay bloqueado. El usuario debe iniciar la reproducción.');
+          });
+        }
+        // Mostrar mensaje si el archivo no carga (error de red)
+        audio.addEventListener('error', () => {
+          errorMsg.style.display = 'inline';
         });
       }
+
+      // --- BOTÓN DE CORREO MEJORADO (mailto + copiado automático como fallback) ---
+      const emailBtn = document.getElementById('email-button');
+      const copyMsg = document.getElementById('copy-message');
+      
+      emailBtn.addEventListener('click', function(e) {
+        // Intentamos abrir mailto normalmente
+        // Pero si después de 1 segundo la página sigue aquí (no se abrió cliente), copiamos
+        const mailtoLink = this.href;
+        let mailOpened = false;
+        
+        // Intentar abrir
+        window.location.href = mailtoLink;
+        
+        // Truco: si después de un breve lapso no se ha navegado, asumimos que no hay cliente
+        setTimeout(() => {
+          // Si la página sigue visible, copiamos al portapapeles
+          if (!document.hidden) {
+            navigator.clipboard?.writeText('vs9656271@gmail.com').then(() => {
+              copyMsg.style.opacity = '1';
+              setTimeout(() => copyMsg.style.opacity = '0', 2500);
+            }).catch(() => {
+              // Fallback manual si clipboard falla
+              alert('Dirección de correo: vs9656271@gmail.com');
+            });
+          }
+        }, 300);
+        
+        // Evitamos comportamiento por defecto solo si no es mailto válido (pero sí lo es)
+        // No prevenimos para que mailto funcione
+      });
+
+      // Pequeño retoque para que el botón de copia también funcione con clic derecho
     })();
   </script>
  
-  <!-- SVG runa adicional -->
+  <!-- SVG runa adicional (decorativo) -->
   <div style="position:fixed; bottom:15px; left:15px; opacity:0.06; z-index:1; pointer-events:none; width:150px; height:150px;">
     <svg viewBox="0 0 200 200" fill="none">
       <path d="M100 20 L130 70 L180 60 L150 100 L190 140 L140 150 L130 190 L90 160 L60 190 L70 140 L20 130 L50 90 L30 50 L80 60 L100 20Z" stroke="#6e2a2a" stroke-width="4" fill="none"/>
