@@ -288,9 +288,51 @@
     ::-webkit-scrollbar { width: 10px; }
     ::-webkit-scrollbar-track { background: #050807; }
     ::-webkit-scrollbar-thumb { background: #1e2e25; border-radius: 0; border: 1px solid #3a4f45; }
+
+    /* Reproductor de audio estilo Dishonored */
+    .audio-player {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 100;
+      background: rgba(10, 14, 12, 0.7);
+      backdrop-filter: blur(5px);
+      border: 1px solid #3a4f45;
+      border-radius: 30px;
+      padding: 5px 15px 5px 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 0 20px #000000, inset 0 0 5px #1a2a1e;
+      color: #d6d2c4;
+    }
+    .audio-player audio {
+      width: 180px;
+      height: 30px;
+      filter: sepia(0.8) hue-rotate(70deg) brightness(0.8);
+      opacity: 0.9;
+    }
+    .audio-player audio::-webkit-media-controls-panel {
+      background-color: #1e2e25;
+    }
+    .audio-player span {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 14px;
+      color: #b84a4a;
+    }
   </style>
 </head>
 <body class="font-body antialiased">
+
+  <!-- Reproductor de audio: Honor for All (Daniel Licht) -->
+  <div class="audio-player">
+    <span>♪ Honor for All</span>
+    <audio controls loop autoplay>
+      <!-- Enlace directo a un archivo de audio de muestra (puedes reemplazar por tu propia URL si lo deseas) -->
+      <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Daniel_Licht/Dishonored_2_Original_Game_Soundtrack/Daniel_Licht_-_01_-_Honor_for_All.mp3" type="audio/mpeg">
+      Tu navegador no soporta el elemento de audio.
+    </audio>
+  </div>
 
   <!-- ========== RUNAS DEL VACÍO (más cantidad y variedad) ========= -->
   <div class="rune" style="top:5%; left:8%;">ᚠ</div>
@@ -439,7 +481,7 @@
       </div>
     </div>
     
-    <!-- MÉTODOS DE PAGO + CONTACTO (botón email funcional) -->
+    <!-- MÉTODOS DE PAGO + CONTACTO (botón email funcional asegurado) -->
     <div class="mt-14 w-full max-w-3xl">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
         <div class="bg-rot/50 p-6 border border-moss/40 rounded-sm backdrop-blur-sm">
@@ -449,17 +491,18 @@
         <div class="bg-rot/50 p-6 border border-moss/40 rounded-sm backdrop-blur-sm">
           <h3 class="font-display text-2xl mb-3 flex items-center gap-2"><span>🜁</span> Contacto</h3>
           <p class="text-bone/90">
-            <a href="mailto:vs9656271@gmail.com" class="email-link text-lg hover:text-blood transition">vs9656271@gmail.com</a><br>
+            <!-- Enlace mailto clásico + respaldo con JavaScript -->
+            <a href="mailto:vs9656271@gmail.com" id="email-link-main" class="email-link text-lg hover:text-blood transition">vs9656271@gmail.com</a><br>
             <span class="text-sm text-ash">Disponible ante cualquier duda o situación.</span>
           </p>
         </div>
       </div>
       
-      <!-- BOTÓN CORREO GRANDE Y FUNCIONAL -->
+      <!-- BOTÓN CORREO GRANDE (con doble seguro) -->
       <div class="mt-10 text-center">
-        <a href="mailto:vs9656271@gmail.com" class="btn-void px-12 py-5 rounded-sm inline-block text-2xl tracking-widest">
+        <button id="email-button-large" class="btn-void px-12 py-5 rounded-sm inline-block text-2xl tracking-widest cursor-pointer">
           vs9656271@gmail.com  ᛫  
-        </a>
+        </button>
         <p class="mt-6 text-ash text-sm tracking-[6px]">
           ᚨ ᚱ ᚢ ᚾ ᚨ ᛋ  ·  EL DESTINO NO ES DEFINITIVO  ·  ᚦ ᛟ ᚷ ᚲ ᛉ
         </p>
@@ -468,7 +511,7 @@
     
     <!-- footer sutil -->
     <div class="mt-24 text-ash/30 text-xs font-body border-t border-blood/10 pt-8 w-full max-w-3xl">
-      <p>Valentina S. · Lecturas de tarot & carta astral</p>
+      <p>Valentina S. · Lecturas de tarot & carta astral ·</p>
     </div>
     
   </div><!-- fin content-wrapper -->
@@ -477,7 +520,7 @@
     (function(){
       if (typeof lucide !== 'undefined') lucide.createIcons();
       
-      // PARTÍCULAS DE CENIZA (más densas)
+      // PARTÍCULAS DE CENIZA
       const ashContainer = document.getElementById('ash-storm');
       for (let i = 0; i < 65; i++) {
         let p = document.createElement('div');
@@ -491,7 +534,7 @@
         ashContainer.appendChild(p);
       }
       
-      // ENREDADERAS QUE CRECEN CON SCROLL (más variedad)
+      // ENREDADERAS SCROLL
       const vines = [
         document.getElementById('vine1'),
         document.getElementById('vine2'),
@@ -529,16 +572,56 @@
       window.addEventListener('resize', updateVinesHeight);
       updateVinesHeight();
       
-      // Ajuste nocturno (detalle Dishonored)
+      // Ajuste nocturno
       const hour = new Date().getHours();
       const subtitle = document.querySelector('p.italic.text-ash');
       if (subtitle && (hour < 6 || hour > 22)) {
-        subtitle.innerHTML = '✦ :) ✦';
+        subtitle.innerHTML = '✦ La noche pertenece al Vacío ✦';
+      }
+
+      // --- ASEGURAR FUNCIONAMIENTO DEL CORREO ---
+      const email = 'vs9656271@gmail.com';
+      
+      function openMailClient() {
+        // Intenta abrir el cliente de correo
+        window.location.href = 'mailto:' + email;
+        // Si falla, mostramos un pequeño aviso (opcional)
+        setTimeout(() => {
+          alert('Si el cliente de correo no se abrió, copia manualmente: ' + email);
+        }, 300);
+      }
+      
+      // Enlace pequeño
+      const emailLink = document.getElementById('email-link-main');
+      if (emailLink) {
+        emailLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          openMailClient();
+        });
+      }
+      
+      // Botón grande
+      const emailBtn = document.getElementById('email-button-large');
+      if (emailBtn) {
+        emailBtn.addEventListener('click', openMailClient);
+      }
+      
+      // También el href por si acaso
+      if (emailLink) emailLink.href = 'mailto:' + email;
+      
+      // Autoplay de audio (intento suave)
+      const audio = document.querySelector('audio');
+      if (audio) {
+        audio.volume = 0.4;
+        // Algunos navegadores bloquean autoplay, pero con controls el usuario puede iniciarlo.
+        audio.play().catch(() => {
+          // Silencioso, el usuario puede darle play manualmente.
+        });
       }
     })();
   </script>
   
-  <!-- SVG adicional: runa del forastero en fondo -->
+  <!-- SVG runa adicional en fondo -->
   <div style="position:fixed; bottom:15px; left:15px; opacity:0.06; z-index:1; pointer-events:none; width:150px; height:150px;">
     <svg viewBox="0 0 200 200" fill="none">
       <path d="M100 20 L130 70 L180 60 L150 100 L190 140 L140 150 L130 190 L90 160 L60 190 L70 140 L20 130 L50 90 L30 50 L80 60 L100 20Z" stroke="#6e2a2a" stroke-width="4" fill="none"/>
