@@ -37,7 +37,7 @@
   </script>
  
   <style>
-    /* ===== ESTILOS · ESTÉTICA SOMBRÍA & CORRUPCIÓN (SIN TEXTO REFERENCIAL) ===== */
+    /* ===== ESTILOS · ESTÉTICA SOMBRÍA & CORRUPCIÓN ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
    
     body {
@@ -49,7 +49,6 @@
       overflow-x: hidden;
     }
    
-    /* textura de corrupción — papel envejecido, polvo, manchas */
     body::before {
       content: '';
       position: fixed;
@@ -64,7 +63,6 @@
       z-index: 0;
     }
    
-    /* viñeta oscura en bordes */
     body::after {
       content: '';
       position: fixed;
@@ -74,7 +72,6 @@
       z-index: 2;
     }
    
-    /* --- RUNAS FLOTANTES (solo estética) --- */
     .rune {
       position: fixed;
       font-family: 'Cinzel Decorative', serif;
@@ -92,7 +89,6 @@
       50% { transform: translateY(-45px) rotate(5deg); opacity: 0.3; }
     }
    
-    /* --- MARCA SIMBÓLICA (sin texto) --- */
     .void-mark {
       position: fixed;
       bottom: 20px;
@@ -107,7 +103,6 @@
       filter: drop-shadow(0 0 15px #2a1a1a);
     }
    
-    /* --- ENREDADERAS TUPIDAS --- */
     .vines-container {
       position: fixed;
       inset: 0;
@@ -125,7 +120,6 @@
       transition: height 0.08s ease-out;
       transform-origin: bottom;
     }
-   
     .vine-delilah::before,
     .vine-delilah::after {
       content: '';
@@ -146,7 +140,6 @@
       right: -14px;
       background: #1a2a1e;
     }
-   
     .vine-delilah .thorn {
       position: absolute;
       width: 16px;
@@ -158,7 +151,6 @@
       transform: rotate(-20deg);
       box-shadow: 0 0 10px #3a1a1a;
     }
-   
     .vine-top {
       position: absolute;
       top: 0;
@@ -181,7 +173,6 @@
       border-bottom: 3px solid #3a5a45;
     }
    
-    /* --- PARTÍCULAS DE CENIZA --- */
     .ash-particle {
       position: fixed;
       width: 3px;
@@ -199,7 +190,6 @@
       100% { transform: translateY(-160px) translateX(-20px); opacity: 0.0; }
     }
 
-    /* CANVAS PARA PÉTALOS MARCHITOS (reemplaza emojis) */
     #petals-canvas {
       position: fixed;
       top: 0;
@@ -207,11 +197,10 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: 8; /* por encima de texturas pero detrás del contenido interactivo */
+      z-index: 8;
       opacity: 0.9;
     }
    
-    /* --- TARJETAS / GRIMORIO --- */
     .card-grimoire {
       background: linear-gradient(145deg, #0c1310 0%, #060a08 100%);
       border: 1px solid rgba(110,42,42,0.35);
@@ -226,7 +215,6 @@
       border-color: rgba(110,42,42,0.7);
       transform: translateY(-4px);
     }
-   
     .card-grimoire::after {
       content: 'ᛉ ᚨ ᛟ ᚱ';
       position: absolute;
@@ -239,7 +227,6 @@
       font-family: 'Cinzel Decorative';
     }
    
-    /* botones */
     .btn-void {
       background: linear-gradient(135deg, #15201a, #0a100d);
       border: 1px solid #3a4f45;
@@ -294,16 +281,11 @@
     }
     .email-link:hover { color: #b84a4a; }
    
-    ::selection {
-      background: #6e2a2a;
-      color: #f0e9db;
-    }
-   
+    ::selection { background: #6e2a2a; color: #f0e9db; }
     ::-webkit-scrollbar { width: 10px; }
     ::-webkit-scrollbar-track { background: #050807; }
     ::-webkit-scrollbar-thumb { background: #1e2e25; border-radius: 0; border: 1px solid #3a4f45; }
 
-    /* Texto de correo como dato (sin botón) */
     .correo-dato {
       font-family: 'Cinzel Decorative', serif;
       text-shadow: 0 0 10px #1e2a1e;
@@ -313,7 +295,6 @@
       display: inline-block;
     }
 
-    /* Estilos para details (dudas) */
     .doubt-section details {
       border: 1px solid #3a4f45;
       background: rgba(10, 14, 12, 0.7);
@@ -335,9 +316,7 @@
       border-bottom: 1px solid transparent;
       transition: all 0.2s;
     }
-    .doubt-section summary::-webkit-details-marker {
-      display: none;
-    }
+    .doubt-section summary::-webkit-details-marker { display: none; }
     .doubt-section summary::before {
       content: 'ᛉ';
       font-size: 1.8rem;
@@ -349,9 +328,7 @@
       content: 'ᛦ';
       transform: rotate(180deg);
     }
-    .doubt-section details[open] summary {
-      border-bottom: 1px solid #3a4f45;
-    }
+    .doubt-section details[open] summary { border-bottom: 1px solid #3a4f45; }
     .doubt-section .details-content {
       padding: 18px 24px;
       background: #0c1310;
@@ -371,14 +348,61 @@
       border: 1px solid #5a2a2a;
       user-select: all;
     }
+
+    /* Estilos para la carta de tarot (simulación de imagen) */
+    .tarot-card-visual {
+      width: 180px;
+      height: 280px;
+      margin: 0 auto 20px;
+      background: linear-gradient(145deg, #1a1210 0%, #0c0908 100%);
+      border: 3px solid #8a6e4b;
+      border-radius: 12px;
+      box-shadow: 0 20px 30px -5px #000000, inset 0 0 40px rgba(0,0,0,0.9), 0 0 0 1px #b89a6a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .tarot-card-visual::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border: 1px solid rgba(180, 150, 100, 0.4);
+      border-radius: 8px;
+      pointer-events: none;
+    }
+    .tarot-card-visual .card-symbol {
+      font-size: 64px;
+      line-height: 1;
+      margin-bottom: 15px;
+      filter: drop-shadow(0 0 15px #b89a6a);
+      opacity: 0.9;
+    }
+    .tarot-card-visual .card-name {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 22px;
+      text-align: center;
+      color: #e0d4b7;
+      text-shadow: 0 0 12px #1e2a1e;
+      letter-spacing: 2px;
+      border-top: 1px solid #8a6e4b;
+      padding-top: 12px;
+      width: 100%;
+    }
+    .tarot-card-visual .card-ornament {
+      margin-top: 8px;
+      font-size: 18px;
+      color: #a67c52;
+    }
   </style>
 </head>
 <body class="font-body antialiased">
 
-  <!-- CANVAS PARA PÉTALOS (REEMPLAZA EMOJIS) -->
   <canvas id="petals-canvas"></canvas>
 
-  <!-- ========== RUNAS FLOTANTES ========= -->
   <div class="rune" style="top:5%; left:8%;">ᚠ</div>
   <div class="rune" style="top:18%; left:92%; animation-duration:22s;">ᚢ</div>
   <div class="rune" style="top:72%; left:82%; animation-duration:19s;">ᚦ</div>
@@ -389,10 +413,8 @@
   <div class="rune" style="top:92%; left:88%;">ᛉ</div>
   <div class="rune" style="top:38%; left:78%; opacity:0.1;">ᛗ</div>
  
-  <!-- Marca simbólica -->
   <div class="void-mark"></div>
  
-  <!-- ========== ENREDADERAS ========= -->
   <div class="vines-container">
     <div class="vine-delilah" style="left: 2%; height: 0;" id="vine1"><div class="thorn"></div></div>
     <div class="vine-delilah" style="left: 14%; height: 0;" id="vine2"></div>
@@ -400,7 +422,6 @@
     <div class="vine-delilah" style="left: 97%; height: 0;" id="vine4"></div>
     <div class="vine-delilah" style="left: 42%; height: 0; opacity:0.6;" id="vine5"></div>
     <div class="vine-delilah" style="left: 70%; height: 0; opacity:0.4;" id="vine6"></div>
-   
     <div class="vine-top" style="left: 5%;"></div>
     <div class="vine-top" style="left: 94%; transform: scaleX(-1);"></div>
     <div class="vine-top" style="left: 18%; height: 90px; opacity:0.7;"></div>
@@ -408,13 +429,10 @@
     <div class="vine-top" style="left: 55%; height: 60px; opacity:0.5;"></div>
   </div>
  
-  <!-- ========== PARTÍCULAS DE CENIZA ========= -->
   <div id="ash-storm" style="position:fixed; inset:0; pointer-events:none; z-index:2;"></div>
 
-  <!-- ========== CONTENIDO PRINCIPAL ========= -->
   <div class="content-wrapper relative flex flex-col items-center justify-center min-h-screen px-5 py-16 text-center">
    
-    <!-- ENCABEZADO RÚNICO -->
     <div class="mb-6 opacity-70 flex gap-8 text-4xl text-blood/40">
       <span>ᛟ</span><span>ᚨ</span><span>ᚱ</span><span>ᚢ</span>
     </div>
@@ -431,10 +449,7 @@
       « Todo sucede por algo, tú confía :) »
     </p>
    
-    <!-- SERVICIOS (dos columnas) -->
     <div class="grid md:grid-cols-2 gap-8 max-w-5xl w-full">
-     
-      <!-- LECTURA DE TAROT -->
       <div class="card-grimoire p-8 rounded-xl text-left">
         <div class="flex items-center gap-3 mb-2">
           <span class="text-4xl text-blood/60">🜁</span>
@@ -442,22 +457,13 @@
         </div>
         <p class="text-lg text-bone/80 mb-1">60 minutos · Sin límite de preguntas</p>
         <p class="text-4xl font-display text-bone mt-2">$70 <span class="text-base font-body">MXN</span></p>
-       
         <div class="mt-5 p-4 bg-void/60 border-l-2 border-blood/60 text-sm italic">
           <p class="text-whisper"><span class="text-blood font-bold">🜍 Para iniciados:</span> Si estás comenzando, recomiendo una <span class="text-bone">lectura general</span> — abarca amor, estado emocional, salud, dinero y trabajo/carrera.</p>
           <p class="mt-2 text-whisper">¿Tienes una pregunta fija? Entre más específica, más profundo llega el oráculo.</p>
         </div>
-       
-        <a href="https://calendly.com/vs9656271/30min" target="_blank" class="btn-void px-7 py-3 rounded-sm inline-block mt-7 text-lg font-medium">
-          AGENDAR · ᚱ
-        </a>
-       
-        <p class="mt-5 text-sm italic text-whisper border-t border-blood/20 pt-4">
-          Efectivo o transferencia — confirma por correo.
-        </p>
+        <a href="https://calendly.com/vs9656271/30min" target="_blank" class="btn-void px-7 py-3 rounded-sm inline-block mt-7 text-lg font-medium">AGENDAR · ᚱ</a>
+        <p class="mt-5 text-sm italic text-whisper border-t border-blood/20 pt-4">Efectivo o transferencia — confirma por correo.</p>
       </div>
-     
-      <!-- CARTA ASTRAL -->
       <div class="card-grimoire p-8 rounded-xl text-left">
         <div class="flex items-center gap-3 mb-2">
           <span class="text-4xl text-blood/60">🜂</span>
@@ -465,52 +471,24 @@
         </div>
         <p class="text-lg text-bone/80 mb-1">90 minutos · Presencial o en línea</p>
         <p class="text-4xl font-display text-bone mt-2">$400 <span class="text-base font-body">MXN</span></p>
-       
         <div class="mt-5 p-4 bg-void/60 border-l-2 border-blood/60 text-sm">
           <p class="text-whisper"><span class="text-blood font-bold">🜍 Requisitos importantes:</span> Al agendar, <span class="text-bone">coloca tu fecha, hora exacta y lugar de nacimiento</span>. En la misma página de cita indica <span class="text-bone">cuál modalidad prefieres</span> (presencial o en línea).</p>
         </div>
-       
-        <a href="https://calendly.com/vs9656271/carta-astral" target="_blank" class="btn-void px-7 py-3 rounded-sm inline-block mt-7 text-lg font-medium">
-          AGENDAR · ᚦ
-        </a>
-       
-        <p class="mt-5 text-sm italic text-whisper border-t border-blood/20 pt-4">
-          Transferencia o efectivo — datos por correo.
-        </p>
+        <a href="https://calendly.com/vs9656271/carta-astral" target="_blank" class="btn-void px-7 py-3 rounded-sm inline-block mt-7 text-lg font-medium">AGENDAR · ᚦ</a>
+        <p class="mt-5 text-sm italic text-whisper border-t border-blood/20 pt-4">Transferencia o efectivo — datos por correo.</p>
       </div>
     </div>
    
-    <!-- SECCIÓN: VALENTINA S. (texto sin referencias) -->
     <div class="max-w-4xl mt-20 card-grimoire p-8 md:p-10 rounded-xl text-left relative overflow-hidden">
       <div class="absolute -top-3 -left-3 text-7xl text-blood/20 rotate-12">ᛉ</div>
       <div class="absolute -bottom-3 -right-3 text-7xl text-blood/15 -rotate-12">ᚨ</div>
-     
       <h2 class="text-4xl md:text-5xl font-display mb-2 tracking-wide">Valentina S.</h2>
-     
-      <p class="text-3xl md:text-4xl italic text-blood/90 mb-6 font-light border-b border-blood/20 pb-4">
-        “Quien no vive para servir, no sirve para vivir.”
-      </p>
-     
+      <p class="text-3xl md:text-4xl italic text-blood/90 mb-6 font-light border-b border-blood/20 pb-4">“Quien no vive para servir, no sirve para vivir.”</p>
       <div class="space-y-4 text-lg leading-relaxed text-bone/90">
-        <p>
-          <span class="text-blood text-xl mr-2">🜍</span>
-          Estudiante y lectora de cartas por pasión. Lo que comenzó como una forma de ayudar
-          a otros hoy también me permite solventar mis gastos. Cuatro años de experiencia
-          escuchando, interpretando y creando un espacio seguro.
-        </p>
-        <p>
-          <span class="text-moss text-xl mr-2">🌿</span>
-          Me enamoran las plantas, las flores, lo espiritual, lo esotérico, lo nuevo,
-          los animales y la música. Y por supuesto, el mundo onírico y oscuro de ciertas
-          historias que tanto me inspiran. Cuido de mi gente y, sobre todo, de mí misma.
-        </p>
-        <p>
-          <span class="text-blood text-xl mr-2">🜄</span>
-          Cada lectura es directa, sin juicios y llena de esa energía que solo el tarot
-          puede traer. Estoy a tu servicio.
-        </p>
+        <p><span class="text-blood text-xl mr-2">🜍</span>Estudiante y lectora de cartas por pasión. Lo que comenzó como una forma de ayudar a otros hoy también me permite solventar mis gastos. Cuatro años de experiencia escuchando, interpretando y creando un espacio seguro.</p>
+        <p><span class="text-moss text-xl mr-2">🌿</span>Me enamoran las plantas, las flores, lo espiritual, lo esotérico, lo nuevo, los animales y la música. Y por supuesto, el mundo onírico y oscuro de ciertas historias que tanto me inspiran. Cuido de mi gente y, sobre todo, de mí misma.</p>
+        <p><span class="text-blood text-xl mr-2">🜄</span>Cada lectura es directa, sin juicios y llena de esa energía que solo el tarot puede traer. Estoy a tu servicio.</p>
       </div>
-     
       <div class="absolute -bottom-8 -right-8 w-36 h-36 opacity-20 rotate-12 pointer-events-none">
         <svg viewBox="0 0 100 100" fill="none">
           <path d="M10 90 Q30 60 50 70 T90 20" stroke="#1e3a2a" stroke-width="4" fill="none"/>
@@ -520,7 +498,7 @@
       </div>
     </div>
 
-    <!-- ========== SECCIÓN DE DUDAS (MEDIO OCULTA) ========= -->
+    <!-- SECCIÓN DE DUDAS -->
     <div class="max-w-4xl w-full mt-16 doubt-section">
       <details class="card-grimoire" style="padding:0; overflow:hidden;">
         <summary class="text-3xl">🜁 DUDAS FRECUENTES · PROCESO DE CITA</summary>
@@ -535,8 +513,6 @@
             </li>
             <li><span class="text-blood">✧</span> Finalmente acordamos cualquier situación específica (temas a tratar, preparación, etc.)</li>
           </ol>
-          
-          <!-- SUB-SECCIÓN OCULTA: PROBLEMAS CON EL PAGO -->
           <details class="inner-details mt-6">
             <summary class="text-2xl font-display cursor-pointer list-none flex items-center gap-2 text-blood/80 hover:text-blood">
               <span>ᛉ</span> Problemas con el pago
@@ -550,7 +526,6 @@
       </details>
     </div>
    
-    <!-- MÉTODOS DE PAGO + CONTACTO (CORREO COMO DATO) -->
     <div class="mt-14 w-full max-w-3xl">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
         <div class="bg-rot/50 p-6 border border-moss/40 rounded-sm backdrop-blur-sm">
@@ -559,51 +534,40 @@
         </div>
         <div class="bg-rot/50 p-6 border border-moss/40 rounded-sm backdrop-blur-sm">
           <h3 class="font-display text-2xl mb-3 flex items-center gap-2"><span>🜁</span> Contacto</h3>
-          <p class="text-bone/90">
-            <a href="mailto:vs9656271@gmail.com" class="email-link text-lg hover:text-blood transition">vs9656271@gmail.com</a><br>
-            <span class="text-sm text-ash">Disponible ante cualquier duda o situación.</span>
-          </p>
+          <p class="text-bone/90"><a href="mailto:vs9656271@gmail.com" class="email-link text-lg hover:text-blood transition">vs9656271@gmail.com</a><br><span class="text-sm text-ash">Disponible ante cualquier duda o situación.</span></p>
         </div>
       </div>
-     
-      <!-- CORREO MOSTRADO COMO DATO (NO BOTÓN) -->
       <div class="mt-10 text-center">
         <p class="text-4xl md:text-5xl font-display text-bone tracking-widest correo-dato">vs9656271@gmail.com</p>
-        <p class="mt-4 text-ash text-sm tracking-[6px]">
-          ᚨ ᚱ ᚢ ᚾ ᚨ ᛋ · CORREO DE CONTACTO · ᚦ ᛟ ᚷ ᚲ ᛉ
-        </p>
+        <p class="mt-4 text-ash text-sm tracking-[6px]">ᚨ ᚱ ᚢ ᚾ ᚨ ᛋ · CORREO DE CONTACTO · ᚦ ᛟ ᚷ ᚲ ᛉ</p>
       </div>
     </div>
 
-    <!-- ========== SECCIÓN: CONSEJO DE LOS ARCANOS MAYORES (ALEATORIO) ========= -->
+    <!-- SECCIÓN CONSEJO DE ARCANOS MAYORES (IMAGEN DE CARTA + LÍMITE DIARIO) -->
     <div class="max-w-3xl w-full mt-20 card-grimoire p-8 rounded-xl text-center">
       <h2 class="font-display text-4xl mb-2 flex items-center justify-center gap-3">
         <span>🜂</span> Consejo del Tarot <span>🜄</span>
       </h2>
       <p class="text-whisper italic mb-6">Los Arcanos Mayores susurran... ¿quieres escuchar?</p>
       
-      <div id="tarot-advice-container" class="min-h-[160px] flex flex-col items-center justify-center">
+      <div id="tarot-advice-container" class="min-h-[360px] flex flex-col items-center justify-center">
         <button id="draw-card-btn" class="btn-void px-10 py-4 text-xl rounded-sm">
           ᚠ Revelar carta ᚠ
         </button>
-        <div id="advice-display" class="mt-8 w-full">
-          <!-- Aquí se mostrará la carta y el consejo -->
-        </div>
+        <div id="advice-display" class="mt-8 w-full"></div>
+        <p id="limit-message" class="text-blood/80 italic mt-4"></p>
       </div>
     </div>
    
-    <!-- footer sin referencias -->
     <div class="mt-24 text-ash/30 text-xs font-body border-t border-blood/10 pt-8 w-full max-w-3xl">
       <p>Valentina S. · Lecturas de tarot & carta astral · Ambiente místico · Todos los presagios son bienvenidos</p>
     </div>
-   
   </div>
 
   <script>
     (function(){
       if (typeof lucide !== 'undefined') lucide.createIcons();
      
-      // PARTÍCULAS DE CENIZA
       const ashContainer = document.getElementById('ash-storm');
       for (let i = 0; i < 65; i++) {
         let p = document.createElement('div');
@@ -617,17 +581,12 @@
         ashContainer.appendChild(p);
       }
 
-      // ========== CANVAS: PÉTALOS MARCHITOS ==========
       const canvas = document.getElementById('petals-canvas');
       const ctx = canvas.getContext('2d');
-      
       let width, height;
       let petals = [];
       const PETAL_COUNT = 38;
-
-      const petalColors = [
-        '#6e2a2a', '#5a3e2e', '#7a4a3a', '#4f2a2f', '#3e2a2a', '#8b5a4b', '#6d4c41', '#4a2c2c'
-      ];
+      const petalColors = ['#6e2a2a', '#5a3e2e', '#7a4a3a', '#4f2a2f', '#3e2a2a', '#8b5a4b', '#6d4c41', '#4a2c2c'];
 
       function resizeCanvas() {
         width = window.innerWidth;
@@ -736,21 +695,14 @@
         });
       });
      
-      // ENREDADERAS SCROLL
       const vines = [
-        document.getElementById('vine1'),
-        document.getElementById('vine2'),
-        document.getElementById('vine3'),
-        document.getElementById('vine4'),
-        document.getElementById('vine5'),
-        document.getElementById('vine6')
+        document.getElementById('vine1'), document.getElementById('vine2'), document.getElementById('vine3'),
+        document.getElementById('vine4'), document.getElementById('vine5'), document.getElementById('vine6')
       ];
-     
       function updateVinesHeight() {
         const scrollY = window.scrollY;
         const maxScroll = document.body.scrollHeight - window.innerHeight;
         const progress = Math.min(scrollY / maxScroll, 1);
-       
         vines.forEach((vine, index) => {
           if (!vine) return;
           let maxHeight = 200 + (index * 35);
@@ -758,7 +710,6 @@
           if (index === 5) maxHeight = 90;
           let height = Math.min(progress * maxHeight * 1.6, maxHeight);
           vine.style.height = height + 'px';
-         
           if ((index === 0 || index === 3) && height > 70) {
             if (!vine.querySelector('.extra-thorn')) {
               let thorn = document.createElement('div');
@@ -769,7 +720,6 @@
           }
         });
       }
-     
       window.addEventListener('scroll', updateVinesHeight);
       window.addEventListener('resize', updateVinesHeight);
       updateVinesHeight();
@@ -780,62 +730,172 @@
         subtitle.innerHTML = '✦ La noche envuelve los misterios ✦';
       }
 
-      // ========== LÓGICA CONSEJO ARCANOS MAYORES ==========
+      // ========== ARCANOS MAYORES (IMÁGENES + MÚLTIPLES MENSAJES + LÍMITE DIARIO) ==========
       const arcanoMayor = [
-        { nombre: "El Loco", consejo: "Da el salto sin mirar atrás. La inocencia es tu mayor fortaleza ahora." },
-        { nombre: "El Mago", consejo: "Tienes todas las herramientas. Es momento de manifestar tu voluntad." },
-        { nombre: "La Sacerdotisa", consejo: "Escucha tu intuición. El silencio guarda respuestas que la mente ignora." },
-        { nombre: "La Emperatriz", consejo: "Nutre tus proyectos. La abundancia llega cuando honras tu creatividad." },
-        { nombre: "El Emperador", consejo: "Establece límites y estructura. La disciplina te dará libertad." },
-        { nombre: "El Sumo Sacerdote", consejo: "Busca sabiduría en la tradición, pero confía en tu propia brújula moral." },
-        { nombre: "Los Enamorados", consejo: "Elige desde el corazón, no desde el miedo. La unión sagrada empieza contigo." },
-        { nombre: "El Carro", consejo: "Avanza con determinación. Controla las riendas de tu destino." },
-        { nombre: "La Fuerza", consejo: "La paciencia y la compasión vencen cualquier obstáculo. Domina tu impulso." },
-        { nombre: "El Ermitaño", consejo: "Retírate un momento. La soledad te mostrará la luz interior." },
-        { nombre: "La Rueda de la Fortuna", consejo: "Todo cambia. Acepta el ciclo y fluye con las vueltas del destino." },
-        { nombre: "La Justicia", consejo: "Actúa con equidad. Cosecharás lo que siembras; ajusta tus cuentas." },
-        { nombre: "El Colgado", consejo: "Ríndete a la pausa. Ver las cosas desde otro ángulo traerá revelación." },
-        { nombre: "La Muerte", consejo: "Suelta lo que ya no vive. La transformación es inevitable y necesaria." },
-        { nombre: "La Templanza", consejo: "Busca el equilibrio. Mezcla los opuestos con arte y paciencia." },
-        { nombre: "El Diablo", consejo: "Reconoce tus ataduras. Solo así podrás liberarte de lo que te esclaviza." },
-        { nombre: "La Torre", consejo: "Lo que se derrumba era frágil. Reconstruye sobre cimientos verdaderos." },
-        { nombre: "La Estrella", consejo: "Mantén la esperanza. El universo conspira a tu favor, confía." },
-        { nombre: "La Luna", consejo: "Explora tus sombras sin miedo. La intuición es tu guía en la niebla." },
-        { nombre: "El Sol", consejo: "Celebra la claridad. La alegría y el éxito están a tu alcance." },
-        { nombre: "El Juicio", consejo: "Es momento de renacer. Escucha el llamado y responde con autenticidad." },
-        { nombre: "El Mundo", consejo: "Has completado un ciclo. Reconoce tu plenitud y prepárate para lo nuevo." }
+        { nombre: "El Loco", simbolo: "🃏", mensajes: [
+          "Da el salto sin mirar atrás. La inocencia es tu mayor fortaleza ahora.",
+          "El viaje comienza con un paso incierto. Confía en el camino.",
+          "No temas parecer ingenuo. La espontaneidad abre puertas."
+        ]},
+        { nombre: "El Mago", simbolo: "🜁", mensajes: [
+          "Tienes todas las herramientas. Es momento de manifestar tu voluntad.",
+          "Concentra tu energía. El universo responde a tu intención.",
+          "Como arriba es abajo. Crea tu realidad con sabiduría."
+        ]},
+        { nombre: "La Sacerdotisa", simbolo: "☾", mensajes: [
+          "Escucha tu intuición. El silencio guarda respuestas que la mente ignora.",
+          "Los misterios se revelan en la calma. Medita.",
+          "Confía en tu voz interior, es el eco del cosmos."
+        ]},
+        { nombre: "La Emperatriz", simbolo: "♀", mensajes: [
+          "Nutre tus proyectos. La abundancia llega cuando honras tu creatividad.",
+          "Conéctate con la naturaleza. Ella te sostiene.",
+          "La belleza y el placer son semillas de prosperidad."
+        ]},
+        { nombre: "El Emperador", simbolo: "♂", mensajes: [
+          "Establece límites y estructura. La disciplina te dará libertad.",
+          "Asume tu autoridad. Eres el arquitecto de tu destino.",
+          "Protege lo que has construido con firmeza y orden."
+        ]},
+        { nombre: "El Sumo Sacerdote", simbolo: "⛪", mensajes: [
+          "Busca sabiduría en la tradición, pero confía en tu propia brújula moral.",
+          "El conocimiento sagrado llega a quien lo honra.",
+          "Sigue un camino con significado. La fe mueve montañas."
+        ]},
+        { nombre: "Los Enamorados", simbolo: "⚭", mensajes: [
+          "Elige desde el corazón, no desde el miedo. La unión sagrada empieza contigo.",
+          "El amor es una decisión consciente. Ámate primero.",
+          "Armoniza tus dualidades. La integración trae paz."
+        ]},
+        { nombre: "El Carro", simbolo: "🜂", mensajes: [
+          "Avanza con determinación. Controla las riendas de tu destino.",
+          "La victoria favorece a quien mantiene el rumbo.",
+          "Domina tus impulsos y llegarás lejos."
+        ]},
+        { nombre: "La Fuerza", simbolo: "🦁", mensajes: [
+          "La paciencia y la compasión vencen cualquier obstáculo. Domina tu impulso.",
+          "La verdadera fuerza es suave. Persuade, no impongas.",
+          "Enfrenta tus sombras con coraje amable."
+        ]},
+        { nombre: "El Ermitaño", simbolo: "🜄", mensajes: [
+          "Retírate un momento. La soledad te mostrará la luz interior.",
+          "Busca dentro. La respuesta que necesitas ya está en ti.",
+          "Camina en silencio y encontrarás tu estrella."
+        ]},
+        { nombre: "La Rueda de la Fortuna", simbolo: "☸", mensajes: [
+          "Todo cambia. Acepta el ciclo y fluye con las vueltas del destino.",
+          "La suerte favorece a quien está preparado.",
+          "Lo que sube, baja. Mantén el equilibrio."
+        ]},
+        { nombre: "La Justicia", simbolo: "⚖", mensajes: [
+          "Actúa con equidad. Cosecharás lo que siembras; ajusta tus cuentas.",
+          "La verdad prevalece. Sé honesto contigo mismo.",
+          "El karma está en movimiento. Haz lo correcto."
+        ]},
+        { nombre: "El Colgado", simbolo: "🜍", mensajes: [
+          "Ríndete a la pausa. Ver las cosas desde otro ángulo traerá revelación.",
+          "Sacrifica el control. La entrega trae nueva perspectiva.",
+          "A veces, soltar es la acción más poderosa."
+        ]},
+        { nombre: "La Muerte", simbolo: "💀", mensajes: [
+          "Suelta lo que ya no vive. La transformación es inevitable y necesaria.",
+          "Deja ir el pasado. El renacimiento te espera.",
+          "Cierra ciclos con gratitud para abrir nuevos portales."
+        ]},
+        { nombre: "La Templanza", simbolo: "🜃", mensajes: [
+          "Busca el equilibrio. Mezcla los opuestos con arte y paciencia.",
+          "La moderación es la llave de la salud y la armonía.",
+          "Fluye como el agua, adaptándote sin perder tu esencia."
+        ]},
+        { nombre: "El Diablo", simbolo: "😈", mensajes: [
+          "Reconoce tus ataduras. Solo así podrás liberarte de lo que te esclaviza.",
+          "No eres víctima de tus deseos, sino su observador.",
+          "Rompe las cadenas de la ilusión material."
+        ]},
+        { nombre: "La Torre", simbolo: "🏰", mensajes: [
+          "Lo que se derrumba era frágil. Reconstruye sobre cimientos verdaderos.",
+          "La crisis trae claridad. Acepta el cambio repentino.",
+          "Después de la tormenta, el cielo se despeja."
+        ]},
+        { nombre: "La Estrella", simbolo: "⭐", mensajes: [
+          "Mantén la esperanza. El universo conspira a tu favor, confía.",
+          "Tus sueños son válidos. Sigue la luz de tu estrella.",
+          "La inspiración llega cuando te abres a recibir."
+        ]},
+        { nombre: "La Luna", simbolo: "🌙", mensajes: [
+          "Explora tus sombras sin miedo. La intuición es tu guía en la niebla.",
+          "No todo es lo que parece. Confía en tu percepción sutil.",
+          "Atraviesa la ilusión. La verdad emerge en la oscuridad."
+        ]},
+        { nombre: "El Sol", simbolo: "☀", mensajes: [
+          "Celebra la claridad. La alegría y el éxito están a tu alcance.",
+          "La vitalidad te inunda. Comparte tu luz.",
+          "Todo florece bajo tu energía radiante."
+        ]},
+        { nombre: "El Juicio", simbolo: "📯", mensajes: [
+          "Es momento de renacer. Escucha el llamado y responde con autenticidad.",
+          "Haz las paces con tu historia. El perdón libera.",
+          "Despierta a tu propósito superior."
+        ]},
+        { nombre: "El Mundo", simbolo: "🌍", mensajes: [
+          "Has completado un ciclo. Reconoce tu plenitud y prepárate para lo nuevo.",
+          "Eres uno con el todo. Celebra tu integración.",
+          "La danza cósmica te incluye. Baila con gratitud."
+        ]}
       ];
 
       const drawBtn = document.getElementById('draw-card-btn');
       const displayDiv = document.getElementById('advice-display');
+      const limitMsg = document.getElementById('limit-message');
 
-      function mostrarConsejoAleatorio() {
+      function getTodayString() {
+        const d = new Date();
+        return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
+      }
+
+      function puedeSacarCarta() {
+        const ultima = localStorage.getItem('ultimoConsejoFecha');
+        if (!ultima) return true;
+        return ultima !== getTodayString();
+      }
+
+      function mostrarConsejo() {
+        limitMsg.textContent = '';
+        if (!puedeSacarCarta()) {
+          displayDiv.innerHTML = `<p class="text-blood/80 text-xl italic border-t border-blood/20 pt-6">🌙 Ya has recibido un consejo hoy. Vuelve mañana para consultar de nuevo a los arcanos.</p>`;
+          return;
+        }
+
         const indice = Math.floor(Math.random() * arcanoMayor.length);
         const carta = arcanoMayor[indice];
+        const mensajeAleatorio = carta.mensajes[Math.floor(Math.random() * carta.mensajes.length)];
+
+        // Guardar fecha en localStorage
+        localStorage.setItem('ultimoConsejoFecha', getTodayString());
+
+        // Mostrar carta visual (imagen simulada) + mensaje
         displayDiv.innerHTML = `
-          <div class="border-t border-blood/30 pt-6">
-            <div class="text-6xl mb-2 text-blood/70">🜁</div>
-            <h3 class="font-display text-4xl tracking-wider text-bone">${carta.nombre}</h3>
-            <p class="text-2xl italic mt-4 text-whisper leading-relaxed max-w-xl mx-auto">“${carta.consejo}”</p>
-            <div class="mt-4 text-blood/40 text-sm">⚵ ⚴ ⚶</div>
+          <div class="flex flex-col items-center">
+            <div class="tarot-card-visual">
+              <div class="card-symbol">${carta.simbolo}</div>
+              <div class="card-name">${carta.nombre}</div>
+              <div class="card-ornament">⚶ ⚵ ⚴</div>
+            </div>
+            <p class="text-2xl italic mt-6 text-whisper leading-relaxed max-w-xl">“${mensajeAleatorio}”</p>
+            <p class="text-blood/40 text-sm mt-4 tracking-widest">ᛉ · CONSEJO DEL DÍA · ᛦ</p>
           </div>
         `;
       }
 
-      drawBtn.addEventListener('click', mostrarConsejoAleatorio);
-
-      // Opcional: permitir primera tirada al cargar
-      // mostrarConsejoAleatorio(); // descomentar si se quiere auto-mostrar
+      drawBtn.addEventListener('click', mostrarConsejo);
     })();
   </script>
  
-  <!-- SVG runa adicional decorativa -->
   <div style="position:fixed; bottom:15px; left:15px; opacity:0.06; z-index:1; pointer-events:none; width:150px; height:150px;">
     <svg viewBox="0 0 200 200" fill="none">
       <path d="M100 20 L130 70 L180 60 L150 100 L190 140 L140 150 L130 190 L90 160 L60 190 L70 140 L20 130 L50 90 L30 50 L80 60 L100 20Z" stroke="#6e2a2a" stroke-width="4" fill="none"/>
       <circle cx="100" cy="100" r="18" fill="#2a3a32" opacity="0.4"/>
     </svg>
   </div>
- 
 </body>
 </html>
