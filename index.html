@@ -78,7 +78,6 @@ body::before{
   transition:height 0.2s linear;
 }
 
-/* hojas */
 .vine::after{
   content:'';
   position:absolute;
@@ -126,7 +125,7 @@ body::before{
   box-shadow:0 0 20px rgba(110,42,42,0.6);
 }
 
-/* sombras */
+/* títulos */
 h1,h2{
   text-shadow:0 0 25px rgba(0,0,0,0.9);
 }
@@ -146,7 +145,7 @@ h1,h2{
 <div class="rune" style="top:70%;left:30%;">ᛟ</div>
 <div class="rune" style="top:30%;left:60%;">ᚱ</div>
 
-<!-- VINES -->
+<!-- ENREDADERAS -->
 <div class="vines">
   <div class="vine" style="left:5%"></div>
   <div class="vine" style="left:15%"></div>
@@ -154,7 +153,7 @@ h1,h2{
   <div class="vine" style="left:95%"></div>
 </div>
 
-<!-- PARTICULAS -->
+<!-- PARTÍCULAS -->
 <div id="particles"></div>
 
 <div class="min-h-screen flex flex-col items-center justify-center text-center px-6 relative z-10">
@@ -198,7 +197,7 @@ Pago por transferencia disponible — envía correo.
 
 </div>
 
-<!-- SOBRE MI -->
+<!-- SOBRE MÍ -->
 <div class="max-w-2xl mt-16 text-left card p-8 rounded-xl">
 
 <h2 class="text-3xl mb-4">Valentina S.</h2>
@@ -208,11 +207,11 @@ Pago por transferencia disponible — envía correo.
 </p>
 
 <p class="mb-4">
-Soy estudiante. Leer cartas es algo que nació como una pasión personal y con el tiempo se convirtió también en una forma de solventar mis propios gastos.
+Soy estudiante. Leer cartas empezó como una pasión personal y hoy también es una forma de solventar mis gastos.
 </p>
 
 <p class="mb-4">
-Cuento con 4 años de experiencia. Me interesan las plantas, las flores, lo espiritual, lo esotérico, lo nuevo, los animales, la música… y <strong>Dishonored</strong>.
+Cuento con 4 años de experiencia. Me gustan las plantas, las flores, lo espiritual, lo esotérico, lo nuevo, los animales, la música… y Dishonored.
 </p>
 
 <p class="mb-4">
@@ -227,6 +226,7 @@ Estoy a tu servicio.
 
 <!-- CONTACTO -->
 <div class="mt-12 text-center">
+
 <a href="mailto:vs9656271@gmail.com" class="btn px-6 py-3 rounded-full inline-block">
 vs9656271@gmail.com
 </a>
@@ -234,6 +234,7 @@ vs9656271@gmail.com
 <p class="mt-4 text-sm text-ash">
 Para pago por transferencia, escríbeme antes de tu cita.
 </p>
+
 </div>
 
 </div>
@@ -252,7 +253,7 @@ for(let i=0;i<40;i++){
   pContainer.appendChild(p);
 }
 
-/* vines scroll grow */
+/* crecimiento de enredaderas */
 const vines=document.querySelectorAll('.vine');
 window.addEventListener('scroll',()=>{
   let scroll=window.scrollY;
