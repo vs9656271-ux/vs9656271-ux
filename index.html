@@ -6,208 +6,146 @@
 <title>Sforza K.</title>
 
 <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <script>
 tailwind.config = {
   theme: {
     extend: {
       colors: {
-        abyss: {900:'#0b0f0c',800:'#121914'},
-        moss: {500:'#3a4d3f'},
-        wine: {500:'#5a1f2e'},
-        bone: {200:'#d6d2c4',300:'#bfb8a6'}
+        abyss: {900:'#0b0f0d',800:'#121917',700:'#1a2421'},
+        moss: {500:'#3a4f45',400:'#556b5d'},
+        bone: {200:'#d6d2c4',300:'#bfb9a5'},
+        blood: {500:'#6e2a2a'},
+        ash: {500:'#6b6f6d'}
       }
     }
   }
 }
 </script>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Playfair+Display:ital,wght@0,400;1,400&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
-
 <style>
-
-/* FUENTES */
-.font-display { font-family: 'Cinzel Decorative', serif; }
-.font-body { font-family: 'Cormorant Garamond', serif; }
-.font-editorial { font-family: 'Playfair Display', serif; }
-
-/* TEXTURA */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
-  opacity: 0.25;
-  pointer-events: none;
-  z-index: 1;
-  mix-blend-mode: overlay;
+body {
+  background:#0b0f0d;
+  color:#d6d2c4;
+  font-family:'Cormorant Garamond', serif;
 }
 
-/* ATMÓSFERA */
-.ambient-light {
-  position: fixed;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.15;
-  z-index: 0;
+/* textura */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(58,79,69,0.2), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(110,42,42,0.15), transparent 50%),
+    url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+  opacity:.35;
+  pointer-events:none;
 }
 
-.light-1 { background: #5a1f2e; top: -100px; left: -100px; }
-.light-2 { background: #2e3d32; bottom: -150px; right: -100px; }
+/* tipografías */
+.font-display{font-family:'Cinzel Decorative',serif}
 
-/* CARDS */
-.card-mystical {
-  background: linear-gradient(135deg, rgba(18,25,20,0.9), rgba(11,15,12,0.95));
-  border: 1px solid rgba(191,184,166,0.12);
-  backdrop-filter: blur(6px);
-  transition: all 0.4s ease;
+/* cards */
+.card-mystical{
+  background:linear-gradient(135deg,#121917,#0b0f0d);
+  border:1px solid rgba(191,185,165,0.1);
 }
-.card-mystical:hover {
-  border-color: rgba(191,184,166,0.25);
-  box-shadow: 0 0 30px rgba(90,31,46,0.25);
-  transform: translateY(-3px);
+.card-mystical:hover{
+  box-shadow:0 0 30px rgba(0,0,0,.7),
+             inset 0 0 20px rgba(58,79,69,.2);
 }
 
-/* BOTONES */
-.btn-mystical {
-  background: linear-gradient(135deg, #5a1f2e, #2e3d32);
-  border: 1px solid rgba(191,184,166,0.25);
-  color: #d6d2c4;
-  transition: all 0.3s ease;
+/* botones */
+.btn-mystical{
+  background:linear-gradient(135deg,#3a4f45,#1a2421);
+  border:1px solid rgba(191,185,165,0.2);
 }
-.btn-mystical:hover {
-  background: linear-gradient(135deg, #471824, #3a4d3f);
-  box-shadow: 0 0 20px rgba(90,31,46,0.4);
-  transform: translateY(-2px);
+.btn-mystical:hover{
+  box-shadow:0 0 20px rgba(110,42,42,0.4);
+  border-color:#6e2a2a;
 }
 
-/* DIVIDER */
-.section-divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(191,184,166,0.4), transparent);
+/* sombras teatrales */
+h1,h2,h3{
+  text-shadow:0 0 10px rgba(0,0,0,0.8);
 }
 
-/* ANIMACIÓN */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeIn 1.2s ease forwards;
+/* selección */
+::selection{
+  background:#6e2a2a;
+  color:#fff;
 }
-@keyframes fadeIn {
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* SELECCIÓN */
-::selection {
-  background: #5a1f2e;
-  color: #d6d2c4;
-}
-
-body { margin:0; }
-
 </style>
 </head>
 
-<body class="bg-abyss-900 text-bone-200 font-body">
+<body class="h-full">
 
-<!-- LUCES -->
-<div class="ambient-light light-1"></div>
-<div class="ambient-light light-2"></div>
+<div class="min-h-screen flex flex-col justify-center items-center text-center px-6">
 
-<!-- HERO -->
-<section class="min-h-screen flex items-center justify-center text-center px-6 relative z-10">
+<h1 class="font-display text-6xl mb-6">Sforza K.</h1>
 
-<div class="max-w-2xl">
-
-<h1 class="font-display text-6xl mb-6 tracking-wider fade-in">
-Sforza K.
-</h1>
-
-<p class="font-editorial text-bone-300 text-lg italic mb-8 fade-in">
-— Quien no vive para servir, no sirve para vivir —
+<p class="italic text-ash-500 mb-8">
+✦ Las respuestas existen. Solo no siempre gustan. ✦
 </p>
 
-<p class="font-editorial text-bone-300 text-xl mb-10 italic leading-relaxed fade-in">
-No endulzo respuestas. Leo lo que hay.
-</p>
+<div class="grid md:grid-cols-2 gap-8 max-w-4xl w-full">
 
-<div class="flex justify-center gap-4 fade-in">
-<a href="#servicios" class="btn-mystical px-6 py-3 rounded-full">
-Servicios
-</a>
+<!-- TAROT -->
+<div class="card-mystical p-8 rounded-xl">
+<h2 class="text-2xl mb-4">Lectura de Tarot</h2>
+<p class="mb-6">60 minutos · Sin límite de preguntas</p>
 
-<a href="#contacto" class="border border-bone-300 px-6 py-3 rounded-full hover:bg-bone-200 hover:text-black transition">
+<p class="text-3xl mb-4">$100 MXN</p>
+
+<a href="https://calendly.com/vs9656271/30min" target="_blank"
+class="btn-mystical px-6 py-3 rounded-full inline-block">
 Agendar
 </a>
-</div>
 
-</div>
-</section>
-
-<!-- SERVICIOS -->
-<section id="servicios" class="px-6 py-24 relative z-10">
-
-<div class="max-w-4xl mx-auto text-center mb-16">
-<h2 class="font-display text-3xl mb-4">Servicios</h2>
-<div class="section-divider max-w-xs mx-auto"></div>
-</div>
-
-<div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-
-<div class="card-mystical p-8 rounded-xl">
-<h3 class="font-display text-xl mb-4">Lectura de Tarot</h3>
-<p class="mb-4">Sesión completa sin límite de preguntas. Lo que salga, se dice.</p>
-<p class="text-bone-300 mb-6">$100 MXN</p>
-<a href="#" class="btn-mystical px-5 py-2 rounded-full">Agendar</a>
-</div>
-
-<div class="card-mystical p-8 rounded-xl">
-<h3 class="font-display text-xl mb-4">Carta Astral</h3>
-<p class="mb-4">Análisis profundo con interpretación clara y sin rodeos.</p>
-<p class="text-bone-300 mb-6">$450 MXN</p>
-<a href="#" class="btn-mystical px-5 py-2 rounded-full">Agendar</a>
-</div>
-
-</div>
-</section>
-
-<!-- SOBRE MI -->
-<section class="px-6 py-24 relative z-10">
-
-<div class="max-w-3xl mx-auto text-center">
-<h2 class="font-display text-3xl mb-6">Sobre mí</h2>
-
-<p class="font-editorial text-lg leading-relaxed text-bone-300 italic">
-No vendo fantasías. Leo lo que hay.
-Llevo años en esto y sé cuándo alguien quiere respuestas reales.
-Si vienes, vienes a escuchar la verdad.
+<p class="mt-4 text-ash-500 text-sm italic">
+Pago por transferencia disponible — envía correo para detalles.
 </p>
-
 </div>
-</section>
 
-<!-- CONTACTO -->
-<section id="contacto" class="px-6 py-24 text-center relative z-10">
+<!-- CARTA ASTRAL -->
+<div class="card-mystical p-8 rounded-xl">
+<h2 class="text-2xl mb-4">Carta Astral</h2>
+<p class="mb-6">90 minutos · Presencial o en línea</p>
 
-<h2 class="font-display text-3xl mb-6">Contacto</h2>
+<p class="text-3xl mb-4">$450 MXN</p>
 
-<p class="mb-6 text-bone-300">
-Agenda tu cita o escribe directamente.
-</p>
-
-<a href="mailto:vs9656271@gmail.com" class="btn-mystical px-6 py-3 rounded-full">
-Enviar correo
+<a href="https://calendly.com/vs9656271/carta-astral" target="_blank"
+class="btn-mystical px-6 py-3 rounded-full inline-block">
+Agendar
 </a>
 
-</section>
-
-<footer class="text-center py-10 border-t border-bone-300/20 relative z-10">
-<p class="text-bone-300 text-sm">
-Sforza K. · Tarot · CDMX
+<p class="mt-4 text-ash-500 text-sm italic">
+Pago por transferencia disponible — envía correo para detalles.
 </p>
-</footer>
+</div>
+
+</div>
+
+<div class="mt-12">
+<a href="mailto:vs9656271@gmail.com"
+class="btn-mystical px-6 py-3 rounded-full inline-block">
+Contactar por correo
+</a>
+
+<p class="mt-4 text-ash-500 text-sm">
+Para pago por transferencia, escríbeme antes de tu cita.
+</p>
+</div>
+
+</div>
+
+<script>
+lucide.createIcons();
+</script>
 
 </body>
 </html>
