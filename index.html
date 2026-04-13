@@ -37,7 +37,7 @@
   </script>
  
   <style>
-    /* ===== ESTILOS · ESTÉTICA SOMBRÍA & CORRUPCIÓN ===== */
+    /* ===== ESTILOS · ESTÉTICA SOMBRÍA ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
    
     body {
@@ -354,38 +354,36 @@
       user-select: all;
     }
 
-    /* Estilos para la carta de tarot rediseñada */
+    /* Estilos para las cartas Rider-Waite (Diseño propio) */
     .tarot-card-visual {
-      width: 200px;
-      height: 300px;
-      margin: 0 auto 20px;
-      background: linear-gradient(145deg, #140e0c 0%, #0a0706 100%);
-      border: 3px solid #b89a6a;
-      border-radius: 16px;
-      box-shadow: 0 25px 35px -8px #000000, inset 0 0 50px rgba(0,0,0,0.9), 0 0 0 2px #5a3e2e;
+      width: 160px;
+      height: 260px;
+      margin: 0 auto 10px;
+      background: linear-gradient(145deg, #1a1210 0%, #0c0908 100%);
+      border: 3px solid #8a6e4b;
+      border-radius: 12px;
+      box-shadow: 0 15px 25px -5px #000000, inset 0 0 40px rgba(0,0,0,0.9), 0 0 0 1px #b89a6a;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 16px 10px;
+      padding: 12px 6px;
       position: relative;
       overflow: hidden;
       transition: transform 0.3s;
     }
     .tarot-card-visual:hover {
       transform: scale(1.02);
-      box-shadow: 0 30px 45px -5px #000, inset 0 0 60px #1a0a0a, 0 0 0 2px #c9aa7b;
+      box-shadow: 0 20px 35px -5px #000, inset 0 0 50px #1a0a0a, 0 0 0 2px #c9aa7b;
     }
-    /* Marco interior */
     .tarot-card-visual::before {
       content: '';
       position: absolute;
-      inset: 8px;
-      border: 1px solid rgba(180, 150, 100, 0.5);
-      border-radius: 12px;
+      inset: 6px;
+      border: 1px solid rgba(180, 150, 100, 0.4);
+      border-radius: 8px;
       pointer-events: none;
     }
-    /* Runas en esquinas */
     .tarot-card-visual .corner-runes {
       position: absolute;
       inset: 0;
@@ -393,58 +391,69 @@
     }
     .tarot-card-visual .corner-runes span {
       position: absolute;
-      font-size: 22px;
+      font-size: 16px;
       color: #8a6e4b;
-      opacity: 0.5;
-      text-shadow: 0 0 8px #b89a6a;
+      opacity: 0.6;
+      text-shadow: 0 0 6px #b89a6a;
     }
-    .tarot-card-visual .corner-runes span:nth-child(1) { top: 5px; left: 8px; }
-    .tarot-card-visual .corner-runes span:nth-child(2) { top: 5px; right: 8px; }
-    .tarot-card-visual .corner-runes span:nth-child(3) { bottom: 5px; left: 8px; }
-    .tarot-card-visual .corner-runes span:nth-child(4) { bottom: 5px; right: 8px; }
+    .tarot-card-visual .corner-runes span:nth-child(1) { top: 4px; left: 6px; }
+    .tarot-card-visual .corner-runes span:nth-child(2) { top: 4px; right: 6px; }
+    .tarot-card-visual .corner-runes span:nth-child(3) { bottom: 4px; left: 6px; }
+    .tarot-card-visual .corner-runes span:nth-child(4) { bottom: 4px; right: 6px; }
     
     .tarot-card-visual .card-symbol {
-      font-size: 70px;
+      font-size: 48px;
       line-height: 1;
-      margin-bottom: 10px;
-      filter: drop-shadow(0 0 20px #c9aa7b);
+      margin-bottom: 5px;
+      filter: drop-shadow(0 0 15px #c9aa7b);
       opacity: 0.95;
       position: relative;
       z-index: 2;
     }
     .tarot-card-visual .card-name {
       font-family: 'Cinzel Decorative', serif;
-      font-size: 20px;
+      font-size: 16px;
       text-align: center;
       color: #f0e6d2;
-      text-shadow: 0 0 15px #2a1a1a, 0 0 5px #000;
-      letter-spacing: 3px;
-      border-top: 2px solid #8a6e4b;
-      padding-top: 14px;
+      text-shadow: 0 0 10px #2a1a1a;
+      letter-spacing: 1px;
+      border-top: 1.5px solid #8a6e4b;
+      padding-top: 10px;
       width: 100%;
       position: relative;
       z-index: 2;
       font-weight: 700;
+      line-height: 1.3;
     }
-    .tarot-card-visual .card-ornament {
-      margin-top: 8px;
-      font-size: 20px;
+    .tarot-card-visual .card-pos {
+      font-size: 12px;
       color: #b89a6a;
-      letter-spacing: 8px;
-      opacity: 0.8;
+      margin-top: 5px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
-    /* Círculo decorativo central */
-    .tarot-card-visual .astral-circle {
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      border: 1px dashed #8a6e4b;
-      border-radius: 50%;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      opacity: 0.2;
-      z-index: 1;
+
+    /* Modal de Consentimiento */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 4, 3, 0.9);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      border: 1px solid #4a2c2c;
+    }
+    .modal-content {
+      max-width: 550px;
+      width: 100%;
+      background: #0c1310;
+      border: 1px solid #6e2a2a;
+      padding: 30px;
+      border-radius: 4px;
+      box-shadow: 0 0 70px #000;
     }
   </style>
 </head>
@@ -480,6 +489,32 @@
  
   <div id="ash-storm" style="position:fixed; inset:0; pointer-events:none; z-index:2;"></div>
 
+  <!-- Modal de Consentimiento Informado (Oculto por defecto) -->
+  <div id="consent-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content text-left">
+      <h2 class="font-display text-3xl mb-4 text-bone border-b border-blood/40 pb-2">Consentimiento Informado</h2>
+      <div class="space-y-3 text-bone/90 text-base max-h-[400px] overflow-y-auto pr-2">
+        <p>Antes de continuar con la cita, es importante que leas y aceptes lo siguiente:</p>
+        <ul class="list-disc pl-5 space-y-2 text-sm">
+          <li><span class="text-blood">ᛉ</span> La lectura de Tarot y Carta Astral son herramientas de <span class="text-bone">orientación y autoconocimiento</span>. No sustituyen diagnósticos médicos, psicológicos o legales.</li>
+          <li><span class="text-blood">ᛉ</span> Toda la información compartida es <span class="text-bone">estrictamente confidencial</span>. No se comparte con terceros.</li>
+          <li><span class="text-blood">ᛉ</span> Para la Carta Astral, se requiere tu fecha, hora y lugar de nacimiento. Estos datos se usan exclusivamente para calcular tu mapa astral.</li>
+          <li><span class="text-blood">ᛉ</span> El servicio no incluye "trabajos de magia", "amarres" ni promesas de resultados milagrosos. Valentina S. rechaza la charlatanería.</li>
+          <li><span class="text-blood">ᛉ</span> La cita se confirma una vez realizado el pago o acordado el método. Tienes derecho a cancelar con 24h de anticipación.</li>
+        </ul>
+        <p class="italic text-whisper">Al aceptar, reconoces que has leído y estás de acuerdo con estos términos.</p>
+      </div>
+      <div class="mt-6 flex items-center gap-3">
+        <input type="checkbox" id="accept-consent" class="w-5 h-5 accent-blood">
+        <label for="accept-consent" class="text-bone cursor-pointer">He leído y acepto el consentimiento informado.</label>
+      </div>
+      <div class="mt-6 flex gap-4">
+        <button id="confirm-consent-btn" class="btn-void px-6 py-2 opacity-50 cursor-not-allowed" disabled>Continuar a Calendly</button>
+        <button id="close-modal-btn" class="text-ash hover:text-bone border-b border-blood/30 px-4">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
   <div class="content-wrapper relative flex flex-col items-center justify-center min-h-screen px-5 py-16 text-center">
    
     <div class="mb-6 opacity-70 flex gap-8 text-4xl text-blood/40">
@@ -499,6 +534,7 @@
     </p>
    
     <div class="grid md:grid-cols-2 gap-8 max-w-5xl w-full">
+      <!-- Tarjeta Tarot -->
       <div class="card-grimoire p-8 rounded-xl text-left">
         <div class="flex items-center gap-3 mb-2">
           <span class="text-4xl text-blood/60">🜁</span>
@@ -510,9 +546,10 @@
           <p class="text-whisper"><span class="text-blood font-bold">🜍 Para iniciados:</span> Si estás comenzando, recomiendo una <span class="text-bone">lectura general</span> — abarca amor, estado emocional, salud, dinero y trabajo/carrera.</p>
           <p class="mt-2 text-whisper">¿Tienes una pregunta fija? Entre más específica, más profundo llega el oráculo.</p>
         </div>
-        <a href="https://calendly.com/vs9656271/30min" target="_blank" class="btn-void px-7 py-3 rounded-sm inline-block mt-7 text-lg font-medium">AGENDAR · ᚱ</a>
+        <button data-agendar="https://calendly.com/vs9656271/30min" class="agendar-btn btn-void px-7 py-3 rounded-sm inline-block mt-7 text-lg font-medium">AGENDAR · ᚱ</button>
         <p class="mt-5 text-sm italic text-whisper border-t border-blood/20 pt-4">Efectivo o transferencia — confirma por correo.</p>
       </div>
+      <!-- Tarjeta Carta Astral -->
       <div class="card-grimoire p-8 rounded-xl text-left">
         <div class="flex items-center gap-3 mb-2">
           <span class="text-4xl text-blood/60">🜂</span>
@@ -523,80 +560,51 @@
         <div class="mt-5 p-4 bg-void/60 border-l-2 border-blood/60 text-sm">
           <p class="text-whisper"><span class="text-blood font-bold">🜍 Requisitos importantes:</span> Al agendar, <span class="text-bone">coloca tu fecha, hora exacta y lugar de nacimiento</span>. En la misma página de cita indica <span class="text-bone">cuál modalidad prefieres</span> (presencial o en línea).</p>
         </div>
-        <a href="https://calendly.com/vs9656271/carta-astral" target="_blank" class="btn-void px-7 py-3 rounded-sm inline-block mt-7 text-lg font-medium">AGENDAR · ᚦ</a>
+        <button data-agendar="https://calendly.com/vs9656271/carta-astral" class="agendar-btn btn-void px-7 py-3 rounded-sm inline-block mt-7 text-lg font-medium">AGENDAR · ᚦ</button>
         <p class="mt-5 text-sm italic text-whisper border-t border-blood/20 pt-4">Transferencia o efectivo — datos por correo.</p>
       </div>
     </div>
    
-    <!-- SECCIÓN VALENTINA S. AMPLIADA -->
+    <!-- SECCIÓN VALENTINA S. (Recortada para brevedad pero con info clave) -->
     <div class="max-w-4xl mt-20 card-grimoire p-8 md:p-10 rounded-xl text-left relative overflow-hidden">
       <div class="absolute -top-3 -left-3 text-7xl text-blood/20 rotate-12">ᛉ</div>
       <div class="absolute -bottom-3 -right-3 text-7xl text-blood/15 -rotate-12">ᚨ</div>
       <h2 class="text-4xl md:text-5xl font-display mb-2 tracking-wide">Valentina S.</h2>
       <p class="text-3xl md:text-4xl italic text-blood/90 mb-6 font-light border-b border-blood/20 pb-4">"Quien no vive para servir, no sirve para vivir."</p>
       <div class="space-y-4 text-lg leading-relaxed text-bone/90">
-        <p><span class="text-blood text-xl mr-2">🜍</span>Estudiante y lectora de cartas por pasión. Lo que comenzó como una forma de ayudar a otros hoy también me permite solventar mis gastos. Cuatro años de experiencia escuchando, interpretando y creando un espacio seguro.</p>
-        <p><span class="text-moss text-xl mr-2">🌿</span>Me enamoran las plantas, las flores, lo espiritual, lo esotérico, lo nuevo, los animales y la música. Y por supuesto, el mundo onírico y oscuro de ciertas historias que tanto me inspiran. Cuido de mi gente y, sobre todo, de mí misma.</p>
-        <p><span class="text-blood text-xl mr-2">🜄</span>Cada lectura es directa, sin juicios y llena de esa energía que solo el tarot puede traer. Estoy a tu servicio.</p>
-      </div>
-      
-      <!-- Nuevos párrafos con información adicional -->
-      <div class="mt-8 pt-6 border-t border-blood/20 space-y-4 text-lg leading-relaxed text-bone/90">
-        <p><span class="text-blood text-xl mr-2">🜍</span><span class="font-display text-blood">Experiencia comprobada:</span> He realizado <span class="text-bone font-semibold">más de 100 lecturas</span> en este tiempo, atendiendo a personas desde los 16 hasta más de 60 años. Cada consulta es un universo único y me adapto a la energía de quien me busca.</p>
-        <p><span class="text-blood text-xl mr-2">🜍</span><span class="font-display text-blood">Contra la charlatanería:</span> Me molesta profundamente la charlatanería. <span class="italic">No voy a decirte cosas que no vea o que no estén claras en la tirada.</span> Si algo no aparece, te lo diré con honestidad. Prefiero un silencio sincero a una mentira bonita.</p>
-        <p><span class="text-blood text-xl mr-2">🜍</span><span class="font-display text-blood">Aprendizaje constante:</span> Actualmente estoy estudiando <span class="text-bone font-semibold">osteomancia</span> (lectura de huesos), porque el conocimiento es infinito y siempre hay nuevas formas de conectar con lo sutil.</p>
-        <p><span class="text-blood text-xl mr-2">🜍</span><span class="font-display text-blood">Transparencia:</span> Convengo como experiencia porque sin temor te explicaré cómo funciona el tarot o el servicio por el que me contraten. <span class="text-bone">Sé que no soy una farsa</span> y quiero que tú también lo sientas. Pregunta sin miedo.</p>
-      </div>
-      
-      <div class="absolute -bottom-8 -right-8 w-36 h-36 opacity-20 rotate-12 pointer-events-none">
-        <svg viewBox="0 0 100 100" fill="none">
-          <path d="M10 90 Q30 60 50 70 T90 20" stroke="#1e3a2a" stroke-width="4" fill="none"/>
-          <circle cx="50" cy="65" r="5" fill="#2a4a35"/>
-          <circle cx="75" cy="40" r="6" fill="#1e3a2a"/>
-        </svg>
+        <p><span class="text-blood text-xl mr-2">🜍</span>Estudiante y lectora de cartas por pasión. +4 años de experiencia y más de 100 lecturas realizadas a personas desde los 16 hasta más de 60 años.</p>
+        <p><span class="text-blood text-xl mr-2">🜍</span><span class="font-display text-blood">Contra la charlatanería:</span> Me molesta profundamente. No digo cosas que no vea. Actualmente estudio <span class="text-bone font-semibold">osteomancia</span>.</p>
+        <p><span class="text-blood text-xl mr-2">🜍</span><span class="font-display text-blood">Transparencia:</span> Sin temor te explicaré cómo funciona el tarot. <span class="text-bone">Sé que no soy una farsa</span>.</p>
       </div>
     </div>
 
-    <!-- TUTORIAL DE USO -->
+    <!-- TUTORIAL Y DUDAS (Compacto) -->
     <div class="max-w-4xl w-full mt-12 tutorial-section">
       <details class="card-grimoire" style="padding:0; overflow:hidden;">
         <summary class="text-3xl">🜁 GUÍA DE USO · TUTORIAL</summary>
         <div class="details-content">
-          <p class="text-xl mb-4 text-bone">Bienvenida/o a este espacio. Aquí te explico cómo moverte:</p>
           <ul class="list-disc list-inside space-y-3 text-lg ml-4">
-            <li><span class="text-blood">✧</span> <span class="font-semibold">Agendar una lectura:</span> Usa los botones "AGENDAR" de cada servicio. Serás redirigida/o a Calendly, donde eliges día y hora.</li>
-            <li><span class="text-blood">✧</span> <span class="font-semibold">Después de agendar:</span> Revisa tu correo (a veces va a spam). Yo te confirmaré personalmente y te daré los datos de pago si es transferencia.</li>
-            <li><span class="text-blood">✧</span> <span class="font-semibold">Sección de Dudas:</span> Justo abajo de esta guía encuentras el proceso detallado y la CLABE para transferencias.</li>
-            <li><span class="text-blood">✧</span> <span class="font-semibold">Consejo diario de los Arcanos:</span> Más abajo hay una sección donde puedes recibir <span class="italic">un consejo aleatorio por día</span>. Presiona "Revelar carta" y aparecerá un arcano mayor con un mensaje para ti.</li>
-            <li><span class="text-blood">✧</span> <span class="font-semibold">Contacto:</span> Cualquier situación escríbeme a <a href="mailto:vs9656271@gmail.com" class="email-link">vs9656271@gmail.com</a>. Respondo en un plazo de 24 horas.</li>
+            <li><span class="text-blood">✧</span> <span class="font-semibold">Agendar:</span> Usa los botones "AGENDAR". Acepta el consentimiento y ve a Calendly.</li>
+            <li><span class="text-blood">✧</span> <span class="font-semibold">Tirada de 3 Cartas:</span> Escribe tu pregunta, presiona el botón y recibe consejo de los arcanos (1 vez al día).</li>
+            <li><span class="text-blood">✧</span> <span class="font-semibold">Contacto:</span> vs9656271@gmail.com</li>
           </ul>
-          <p class="mt-4 text-whisper italic">ᛉ La página está diseñada para ser intuitiva, pero si algo falla, avísame y lo resolvemos.</p>
         </div>
       </details>
     </div>
-
-    <!-- SECCIÓN DE DUDAS (PROCESO DE CITA) -->
     <div class="max-w-4xl w-full mt-6 doubt-section">
       <details class="card-grimoire" style="padding:0; overflow:hidden;">
-        <summary class="text-3xl">🜁 DUDAS FRECUENTES · PROCESO DE CITA</summary>
+        <summary class="text-3xl">🜁 DUDAS · PROCESO DE CITA</summary>
         <div class="details-content">
-          <p class="text-xl mb-4 text-bone">El camino para agendar tu lectura es sencillo:</p>
           <ol class="list-decimal list-inside space-y-3 text-lg ml-4">
-            <li><span class="text-blood">✧</span> Eliges fecha, hora y modalidad (presencial/en línea) desde los enlaces de Calendly.</li>
-            <li><span class="text-blood">✧</span> Recibirás un correo automático con los datos de la cita.</li>
-            <li><span class="text-blood">✧</span> Yo te confirmo personalmente la cita y resolvemos cualquier duda.</li>
-            <li><span class="text-blood">✧</span> Si eliges pago por transferencia, te proporcionaré el siguiente número CLABE:<br>
-              <span class="clabe-number text-xl mt-2 inline-block">014180200149285395</span>
-            </li>
-            <li><span class="text-blood">✧</span> Finalmente acordamos cualquier situación específica (temas a tratar, preparación, etc.)</li>
+            <li>Eliges fecha/hora en Calendly.</li>
+            <li>Recibes correo automático y confirmación personal.</li>
+            <li>CLABE transferencia: <span class="clabe-number">014180200149285395</span></li>
+            <li>Acordamos detalles.</li>
           </ol>
           <details class="inner-details mt-6">
-            <summary class="text-2xl font-display cursor-pointer list-none flex items-center gap-2 text-blood/80 hover:text-blood">
-              <span>ᛉ</span> Problemas con el pago
-            </summary>
+            <summary class="text-2xl font-display cursor-pointer text-blood/80">ᛉ Problemas con el pago</summary>
             <div class="mt-4 p-4 bg-void/80 border border-blood/30 rounded-sm">
-              <p class="text-lg italic">"Si el bolsillo pesa menos que el alma…"</p>
-              <p class="mt-2">Si no alcanzas a cubrir el monto total, <span class="text-bone font-semibold">podemos llegar a una negociación</span>. Escríbeme a <a href="mailto:vs9656271@gmail.com" class="email-link">vs9656271@gmail.com</a> y lo hablamos sin juicios. El universo entiende los ciclos.</p>
+              <p>Si no alcanzas a cubrir el monto total, <span class="text-bone font-semibold">podemos negociar</span>. Escríbeme.</p>
             </div>
           </details>
         </div>
@@ -605,34 +613,34 @@
    
     <div class="mt-14 w-full max-w-3xl">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-        <div class="bg-rot/50 p-6 border border-moss/40 rounded-sm backdrop-blur-sm">
-          <h3 class="font-display text-2xl mb-3 flex items-center gap-2"><span>🜃</span> Tributo</h3>
-          <p class="text-bone/90">Efectivo el día de la cita.<br>Transferencia bancaria (CLABE): <span class="font-mono bg-black/30 px-2">014180200149285395</span></p>
+        <div class="bg-rot/50 p-6 border border-moss/40 rounded-sm">
+          <h3 class="font-display text-2xl mb-3">🜃 Tributo</h3>
+          <p class="text-bone/90">Efectivo o Transferencia<br>CLABE: 014180200149285395</p>
         </div>
-        <div class="bg-rot/50 p-6 border border-moss/40 rounded-sm backdrop-blur-sm">
-          <h3 class="font-display text-2xl mb-3 flex items-center gap-2"><span>🜁</span> Contacto</h3>
-          <p class="text-bone/90"><a href="mailto:vs9656271@gmail.com" class="email-link text-lg hover:text-blood transition">vs9656271@gmail.com</a><br><span class="text-sm text-ash">Disponible ante cualquier duda o situación.</span></p>
+        <div class="bg-rot/50 p-6 border border-moss/40 rounded-sm">
+          <h3 class="font-display text-2xl mb-3">🜁 Contacto</h3>
+          <p class="text-bone/90"><a href="mailto:vs9656271@gmail.com" class="email-link">vs9656271@gmail.com</a></p>
         </div>
-      </div>
-      <div class="mt-10 text-center">
-        <p class="text-4xl md:text-5xl font-display text-bone tracking-widest correo-dato">vs9656271@gmail.com</p>
-        <p class="mt-4 text-ash text-sm tracking-[6px]">ᚨ ᚱ ᚢ ᚾ ᚨ ᛋ · CORREO DE CONTACTO · ᚦ ᛟ ᚷ ᚲ ᛉ</p>
       </div>
     </div>
 
-    <!-- SECCIÓN CONSEJO DE ARCANOS MAYORES -->
-    <div class="max-w-3xl w-full mt-20 card-grimoire p-8 rounded-xl text-center">
+    <!-- SECCIÓN TIRADA DE 3 CARTAS (PREGUNTA + RIDER WAITE) -->
+    <div class="max-w-5xl w-full mt-20 card-grimoire p-8 rounded-xl text-center">
       <h2 class="font-display text-4xl mb-2 flex items-center justify-center gap-3">
-        <span>🜂</span> Consejo del Tarot <span>🜄</span>
+        <span>🜂</span> Tirada de 3 Cartas · Pasado, Presente, Futuro <span>🜄</span>
       </h2>
-      <p class="text-whisper italic mb-6">Los Arcanos Mayores susurran... ¿quieres escuchar?</p>
+      <p class="text-whisper italic mb-6">Escribe tu pregunta y recibe la guía de los Arcanos (una vez al día)</p>
       
-      <div id="tarot-advice-container" class="min-h-[380px] flex flex-col items-center justify-center">
-        <button id="draw-card-btn" class="btn-void px-10 py-4 text-xl rounded-sm">
-          ᚠ Revelar carta ᚠ
+      <div class="max-w-2xl mx-auto mb-8">
+        <textarea id="user-question" rows="2" class="w-full bg-void/80 border border-blood/40 rounded-sm p-4 text-bone placeholder-ash/50 focus:border-blood focus:ring-1 focus:ring-blood outline-none resize-none" placeholder="Escribe aquí tu consulta... Ej: ¿Qué necesito saber sobre mi situación amorosa?"></textarea>
+      </div>
+
+      <div id="tarot-reading-container" class="min-h-[380px] flex flex-col items-center justify-center">
+        <button id="draw-three-cards-btn" class="btn-void px-10 py-4 text-xl rounded-sm">
+          ᚠ Revelar las 3 cartas ᚠ
         </button>
-        <div id="advice-display" class="mt-8 w-full"></div>
-        <p id="limit-message" class="text-blood/80 italic mt-4"></p>
+        <div id="reading-display" class="mt-8 w-full"></div>
+        <p id="reading-limit-message" class="text-blood/80 italic mt-4"></p>
       </div>
     </div>
    
@@ -645,336 +653,140 @@
     (function(){
       if (typeof lucide !== 'undefined') lucide.createIcons();
      
+      // Partículas, pétalos y enredaderas (MANTENIDO IGUAL)
       const ashContainer = document.getElementById('ash-storm');
       for (let i = 0; i < 65; i++) {
-        let p = document.createElement('div');
-        p.className = 'ash-particle';
-        p.style.left = Math.random() * 100 + '%';
-        p.style.top = Math.random() * 100 + '%';
-        p.style.animationDelay = (Math.random() * 25) + 's';
-        p.style.animationDuration = (12 + Math.random() * 22) + 's';
-        p.style.width = (2 + Math.random() * 6) + 'px';
-        p.style.height = p.style.width;
+        let p = document.createElement('div'); p.className = 'ash-particle';
+        p.style.left = Math.random() * 100 + '%'; p.style.top = Math.random() * 100 + '%';
+        p.style.animationDelay = (Math.random() * 25) + 's'; p.style.animationDuration = (12 + Math.random() * 22) + 's';
+        p.style.width = (2 + Math.random() * 6) + 'px'; p.style.height = p.style.width;
         ashContainer.appendChild(p);
       }
+      const canvas = document.getElementById('petals-canvas'); const ctx = canvas.getContext('2d'); let width, height; let petals = []; const PETAL_COUNT = 38; const petalColors = ['#6e2a2a', '#5a3e2e', '#7a4a3a', '#4f2a2f', '#3e2a2a', '#8b5a4b', '#6d4c41', '#4a2c2c'];
+      function resizeCanvas() { width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; }
+      window.addEventListener('resize', resizeCanvas); resizeCanvas();
+      function initPetals() { petals = []; for (let i = 0; i < PETAL_COUNT; i++) { petals.push({ x: Math.random() * width, y: Math.random() * height * 0.8 - 100, size: 8 + Math.random() * 18, speedY: 0.4 + Math.random() * 1.2, speedX: (Math.random() - 0.5) * 0.5, rotation: Math.random() * Math.PI * 2, rotSpeed: (Math.random() - 0.5) * 0.02, color: petalColors[Math.floor(Math.random() * petalColors.length)], opacity: 0.45 + Math.random() * 0.35, curve: 0.3 + Math.random() * 0.7 }); } } initPetals();
+      function shadeColor(col, percent) { let R = parseInt(col.substring(1,3),16); let G = parseInt(col.substring(3,5),16); let B = parseInt(col.substring(5,7),16); R = Math.max(0, R + percent); G = Math.max(0, G + percent); B = Math.max(0, B + percent); return `#${((1 << 24) + (R << 16) + (G << 8) + B).toString(16).slice(1)}`; }
+      function drawPetal(ctx, x, y, size, rotation, color, opacity) { ctx.save(); ctx.translate(x, y); ctx.rotate(rotation); ctx.globalAlpha = opacity * 0.9; const w = size * 0.8; const h = size * 1.2; const gradient = ctx.createRadialGradient(-w*0.2, -h*0.1, 0, 0, 0, size); gradient.addColorStop(0, color); gradient.addColorStop(0.7, shadeColor(color, -20)); gradient.addColorStop(1, shadeColor(color, -40)); ctx.fillStyle = gradient; ctx.shadowColor = '#1a0f0f'; ctx.shadowBlur = 10; ctx.beginPath(); ctx.moveTo(0, -h * 0.7); ctx.bezierCurveTo(w * 0.7, -h * 0.5, w * 0.9, h * 0.2, 0, h * 0.9); ctx.bezierCurveTo(-w * 0.8, h * 0.3, -w * 0.6, -h * 0.4, 0, -h * 0.7); ctx.closePath(); ctx.fill(); ctx.shadowBlur = 4; ctx.globalAlpha = opacity * 0.25; ctx.strokeStyle = '#2c1a1a'; ctx.lineWidth = 1.2; ctx.stroke(); ctx.restore(); }
+      function updatePetals() { for (let p of petals) { p.y += p.speedY; p.x += p.speedX + Math.sin(p.y * 0.01) * 0.2; p.rotation += p.rotSpeed; if (p.y > height + 50) { p.y = -30 - Math.random() * 50; p.x = Math.random() * width; p.speedY = 0.4 + Math.random() * 1.3; p.color = petalColors[Math.floor(Math.random() * petalColors.length)]; p.opacity = 0.4 + Math.random() * 0.4; } if (p.x < -40) p.x = width + 20; if (p.x > width + 40) p.x = -20; } }
+      function draw() { ctx.clearRect(0, 0, width, height); const sorted = [...petals].sort((a, b) => b.size - a.size); for (let p of sorted) { drawPetal(ctx, p.x, p.y, p.size, p.rotation, p.color, p.opacity); } updatePetals(); requestAnimationFrame(draw); } draw();
+      window.addEventListener('resize', () => { resizeCanvas(); petals.forEach(p => { p.x = Math.min(width, Math.max(0, p.x)); p.y = Math.min(height, Math.max(-50, p.y)); }); });
+      const vines = [document.getElementById('vine1'), document.getElementById('vine2'), document.getElementById('vine3'), document.getElementById('vine4'), document.getElementById('vine5'), document.getElementById('vine6')];
+      function updateVinesHeight() { const scrollY = window.scrollY; const maxScroll = document.body.scrollHeight - window.innerHeight; const progress = Math.min(scrollY / maxScroll, 1); vines.forEach((vine, index) => { if (!vine) return; let maxHeight = 200 + (index * 35); if (index === 4) maxHeight = 130; if (index === 5) maxHeight = 90; let height = Math.min(progress * maxHeight * 1.6, maxHeight); vine.style.height = height + 'px'; if ((index === 0 || index === 3) && height > 70) { if (!vine.querySelector('.extra-thorn')) { let thorn = document.createElement('div'); thorn.className = 'thorn extra-thorn'; thorn.style.top = '50px'; vine.appendChild(thorn); } } }); }
+      window.addEventListener('scroll', updateVinesHeight); window.addEventListener('resize', updateVinesHeight); updateVinesHeight();
 
-      const canvas = document.getElementById('petals-canvas');
-      const ctx = canvas.getContext('2d');
-      let width, height;
-      let petals = [];
-      const PETAL_COUNT = 38;
-      const petalColors = ['#6e2a2a', '#5a3e2e', '#7a4a3a', '#4f2a2f', '#3e2a2a', '#8b5a4b', '#6d4c41', '#4a2c2c'];
+      // ========== MODAL DE CONSENTIMIENTO ==========
+      const modal = document.getElementById('consent-modal');
+      const acceptCheck = document.getElementById('accept-consent');
+      const confirmBtn = document.getElementById('confirm-consent-btn');
+      const closeBtn = document.getElementById('close-modal-btn');
+      let currentAgendarLink = '';
 
-      function resizeCanvas() {
-        width = window.innerWidth;
-        height = window.innerHeight;
-        canvas.width = width;
-        canvas.height = height;
-      }
-      window.addEventListener('resize', resizeCanvas);
-      resizeCanvas();
-
-      function initPetals() {
-        petals = [];
-        for (let i = 0; i < PETAL_COUNT; i++) {
-          petals.push({
-            x: Math.random() * width,
-            y: Math.random() * height * 0.8 - 100,
-            size: 8 + Math.random() * 18,
-            speedY: 0.4 + Math.random() * 1.2,
-            speedX: (Math.random() - 0.5) * 0.5,
-            rotation: Math.random() * Math.PI * 2,
-            rotSpeed: (Math.random() - 0.5) * 0.02,
-            color: petalColors[Math.floor(Math.random() * petalColors.length)],
-            opacity: 0.45 + Math.random() * 0.35,
-            curve: 0.3 + Math.random() * 0.7
-          });
-        }
-      }
-      initPetals();
-
-      function shadeColor(col, percent) {
-        let R = parseInt(col.substring(1,3),16);
-        let G = parseInt(col.substring(3,5),16);
-        let B = parseInt(col.substring(5,7),16);
-        R = Math.max(0, R + percent);
-        G = Math.max(0, G + percent);
-        B = Math.max(0, B + percent);
-        return `#${((1 << 24) + (R << 16) + (G << 8) + B).toString(16).slice(1)}`;
-      }
-
-      function drawPetal(ctx, x, y, size, rotation, color, opacity, curveFactor) {
-        ctx.save();
-        ctx.translate(x, y);
-        ctx.rotate(rotation);
-        ctx.globalAlpha = opacity * 0.9;
-        const w = size * 0.8;
-        const h = size * 1.2;
-        const gradient = ctx.createRadialGradient(-w*0.2, -h*0.1, 0, 0, 0, size);
-        gradient.addColorStop(0, color);
-        gradient.addColorStop(0.7, shadeColor(color, -20));
-        gradient.addColorStop(1, shadeColor(color, -40));
-        ctx.fillStyle = gradient;
-        ctx.shadowColor = '#1a0f0f';
-        ctx.shadowBlur = 10;
-        ctx.beginPath();
-        ctx.moveTo(0, -h * 0.7);
-        ctx.bezierCurveTo(w * 0.7, -h * 0.5, w * 0.9, h * 0.2, 0, h * 0.9);
-        ctx.bezierCurveTo(-w * 0.8, h * 0.3, -w * 0.6, -h * 0.4, 0, -h * 0.7);
-        ctx.closePath();
-        ctx.fill();
-        ctx.shadowBlur = 4;
-        ctx.globalAlpha = opacity * 0.25;
-        ctx.strokeStyle = '#2c1a1a';
-        ctx.lineWidth = 1.2;
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.arc(w*0.1, h*0.1, size*0.15, 0, Math.PI*2);
-        ctx.fillStyle = '#3a2518';
-        ctx.globalAlpha = 0.2;
-        ctx.fill();
-        ctx.restore();
-      }
-
-      function updatePetals() {
-        for (let p of petals) {
-          p.y += p.speedY;
-          p.x += p.speedX + Math.sin(p.y * 0.01) * 0.2;
-          p.rotation += p.rotSpeed;
-          if (p.y > height + 50) {
-            p.y = -30 - Math.random() * 50;
-            p.x = Math.random() * width;
-            p.speedY = 0.4 + Math.random() * 1.3;
-            p.color = petalColors[Math.floor(Math.random() * petalColors.length)];
-            p.opacity = 0.4 + Math.random() * 0.4;
-          }
-          if (p.x < -40) p.x = width + 20;
-          if (p.x > width + 40) p.x = -20;
-        }
-      }
-
-      function draw() {
-        ctx.clearRect(0, 0, width, height);
-        const sorted = [...petals].sort((a, b) => b.size - a.size);
-        for (let p of sorted) {
-          drawPetal(ctx, p.x, p.y, p.size, p.rotation, p.color, p.opacity, p.curve);
-        }
-        updatePetals();
-        requestAnimationFrame(draw);
-      }
-      draw();
-
-      window.addEventListener('resize', () => {
-        resizeCanvas();
-        petals.forEach(p => {
-          p.x = Math.min(width, Math.max(0, p.x));
-          p.y = Math.min(height, Math.max(-50, p.y));
+      document.querySelectorAll('.agendar-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          currentAgendarLink = btn.getAttribute('data-agendar');
+          modal.style.display = 'flex';
+          acceptCheck.checked = false;
+          confirmBtn.disabled = true;
+          confirmBtn.classList.add('opacity-50', 'cursor-not-allowed');
         });
       });
-     
-      const vines = [
-        document.getElementById('vine1'), document.getElementById('vine2'), document.getElementById('vine3'),
-        document.getElementById('vine4'), document.getElementById('vine5'), document.getElementById('vine6')
+
+      acceptCheck.addEventListener('change', () => {
+        if (acceptCheck.checked) {
+          confirmBtn.disabled = false;
+          confirmBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        } else {
+          confirmBtn.disabled = true;
+          confirmBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        }
+      });
+
+      confirmBtn.addEventListener('click', () => {
+        if (acceptCheck.checked) {
+          window.open(currentAgendarLink, '_blank');
+          modal.style.display = 'none';
+        }
+      });
+
+      closeBtn.addEventListener('click', () => { modal.style.display = 'none'; });
+      modal.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
+
+      // ========== TIRADA DE 3 CARTAS RIDER WAITE ==========
+      // Baraja simulada (Rider Waite)
+      const arcanosMayores = [
+        { nombre: "El Loco", simbolo: "🃏", tipo: "mayor" }, { nombre: "El Mago", simbolo: "🜁", tipo: "mayor" }, { nombre: "La Sacerdotisa", simbolo: "☾", tipo: "mayor" },
+        { nombre: "La Emperatriz", simbolo: "♀", tipo: "mayor" }, { nombre: "El Emperador", simbolo: "♂", tipo: "mayor" }, { nombre: "El Sumo Sacerdote", simbolo: "⛪", tipo: "mayor" },
+        { nombre: "Los Enamorados", simbolo: "⚭", tipo: "mayor" }, { nombre: "El Carro", simbolo: "🜂", tipo: "mayor" }, { nombre: "La Fuerza", simbolo: "🦁", tipo: "mayor" },
+        { nombre: "El Ermitaño", simbolo: "🜄", tipo: "mayor" }, { nombre: "La Rueda", simbolo: "☸", tipo: "mayor" }, { nombre: "La Justicia", simbolo: "⚖", tipo: "mayor" },
+        { nombre: "El Colgado", simbolo: "🜍", tipo: "mayor" }, { nombre: "La Muerte", simbolo: "💀", tipo: "mayor" }, { nombre: "La Templanza", simbolo: "🜃", tipo: "mayor" },
+        { nombre: "El Diablo", simbolo: "😈", tipo: "mayor" }, { nombre: "La Torre", simbolo: "🏰", tipo: "mayor" }, { nombre: "La Estrella", simbolo: "⭐", tipo: "mayor" },
+        { nombre: "La Luna", simbolo: "🌙", tipo: "mayor" }, { nombre: "El Sol", simbolo: "☀", tipo: "mayor" }, { nombre: "El Juicio", simbolo: "📯", tipo: "mayor" },
+        { nombre: "El Mundo", simbolo: "🌍", tipo: "mayor" }
       ];
-      function updateVinesHeight() {
-        const scrollY = window.scrollY;
-        const maxScroll = document.body.scrollHeight - window.innerHeight;
-        const progress = Math.min(scrollY / maxScroll, 1);
-        vines.forEach((vine, index) => {
-          if (!vine) return;
-          let maxHeight = 200 + (index * 35);
-          if (index === 4) maxHeight = 130;
-          if (index === 5) maxHeight = 90;
-          let height = Math.min(progress * maxHeight * 1.6, maxHeight);
-          vine.style.height = height + 'px';
-          if ((index === 0 || index === 3) && height > 70) {
-            if (!vine.querySelector('.extra-thorn')) {
-              let thorn = document.createElement('div');
-              thorn.className = 'thorn extra-thorn';
-              thorn.style.top = '50px';
-              vine.appendChild(thorn);
-            }
-          }
-        });
-      }
-      window.addEventListener('scroll', updateVinesHeight);
-      window.addEventListener('resize', updateVinesHeight);
-      updateVinesHeight();
-     
-      const hour = new Date().getHours();
-      const subtitle = document.querySelector('p.italic.text-ash');
-      if (subtitle && (hour < 6 || hour > 22)) {
-        subtitle.innerHTML = '✦ La noche envuelve los misterios ✦';
+      const palos = ["Bastos", "Copas", "Espadas", "Oros"];
+      const figuras = ["As", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Sota", "Caballo", "Reina", "Rey"];
+      const arcanosMenores = [];
+      palos.forEach(palo => { figuras.forEach(fig => { arcanosMenores.push({ nombre: `${fig} de ${palo}`, simbolo: palo === "Bastos" ? "🔥" : (palo === "Copas" ? "💧" : (palo === "Espadas" ? "💨" : "🌿")), tipo: "menor" }); }); });
+      const barajaCompleta = [...arcanosMayores, ...arcanosMenores];
+
+      function generarMensaje(carta, posicion, pregunta) {
+        const esMayor = carta.tipo === "mayor";
+        const base = esMayor ? `La energía de ${carta.nombre} en tu ${posicion}` : `La influencia de ${carta.nombre} en tu ${posicion}`;
+        if (posicion === "Pasado") return `${base} señala que vienes de un ciclo donde la ${esMayor ? 'conciencia' : 'acción'} fue clave. ${pregunta ? 'Respecto a tu pregunta:' : ''} Es momento de soltar lo aprendido.`;
+        if (posicion === "Presente") return `${base} indica que ahora debes enfocarte en la ${esMayor ? 'introspección' : 'práctica'}. ${pregunta ? 'La respuesta inmediata está en tu entorno.' : 'Confía en el proceso.'}`;
+        return `${base} sugiere que el desenlace dependerá de cómo integres esta energía. ${esMayor ? 'Un llamado a la sabiduría interior.' : 'Pequeñas acciones diarias marcarán la diferencia.'}`;
       }
 
-      // ========== ARCANOS MAYORES ==========
-      const arcanoMayor = [
-        { nombre: "El Loco", simbolo: "🃏", mensajes: [
-          "Da el salto sin mirar atrás. La inocencia es tu mayor fortaleza ahora.",
-          "El viaje comienza con un paso incierto. Confía en el camino.",
-          "No temas parecer ingenuo. La espontaneidad abre puertas."
-        ]},
-        { nombre: "El Mago", simbolo: "🜁", mensajes: [
-          "Tienes todas las herramientas. Es momento de manifestar tu voluntad.",
-          "Concentra tu energía. El universo responde a tu intención.",
-          "Como arriba es abajo. Crea tu realidad con sabiduría."
-        ]},
-        { nombre: "La Sacerdotisa", simbolo: "☾", mensajes: [
-          "Escucha tu intuición. El silencio guarda respuestas que la mente ignora.",
-          "Los misterios se revelan en la calma. Medita.",
-          "Confía en tu voz interior, es el eco del cosmos."
-        ]},
-        { nombre: "La Emperatriz", simbolo: "♀", mensajes: [
-          "Nutre tus proyectos. La abundancia llega cuando honras tu creatividad.",
-          "Conéctate con la naturaleza. Ella te sostiene.",
-          "La belleza y el placer son semillas de prosperidad."
-        ]},
-        { nombre: "El Emperador", simbolo: "♂", mensajes: [
-          "Establece límites y estructura. La disciplina te dará libertad.",
-          "Asume tu autoridad. Eres el arquitecto de tu destino.",
-          "Protege lo que has construido con firmeza y orden."
-        ]},
-        { nombre: "El Sumo Sacerdote", simbolo: "⛪", mensajes: [
-          "Busca sabiduría en la tradición, pero confía en tu propia brújula moral.",
-          "El conocimiento sagrado llega a quien lo honra.",
-          "Sigue un camino con significado. La fe mueve montañas."
-        ]},
-        { nombre: "Los Enamorados", simbolo: "⚭", mensajes: [
-          "Elige desde el corazón, no desde el miedo. La unión sagrada empieza contigo.",
-          "El amor es una decisión consciente. Ámate primero.",
-          "Armoniza tus dualidades. La integración trae paz."
-        ]},
-        { nombre: "El Carro", simbolo: "🜂", mensajes: [
-          "Avanza con determinación. Controla las riendas de tu destino.",
-          "La victoria favorece a quien mantiene el rumbo.",
-          "Domina tus impulsos y llegarás lejos."
-        ]},
-        { nombre: "La Fuerza", simbolo: "🦁", mensajes: [
-          "La paciencia y la compasión vencen cualquier obstáculo. Domina tu impulso.",
-          "La verdadera fuerza es suave. Persuade, no impongas.",
-          "Enfrenta tus sombras con coraje amable."
-        ]},
-        { nombre: "El Ermitaño", simbolo: "🜄", mensajes: [
-          "Retírate un momento. La soledad te mostrará la luz interior.",
-          "Busca dentro. La respuesta que necesitas ya está en ti.",
-          "Camina en silencio y encontrarás tu estrella."
-        ]},
-        { nombre: "La Rueda de la Fortuna", simbolo: "☸", mensajes: [
-          "Todo cambia. Acepta el ciclo y fluye con las vueltas del destino.",
-          "La suerte favorece a quien está preparado.",
-          "Lo que sube, baja. Mantén el equilibrio."
-        ]},
-        { nombre: "La Justicia", simbolo: "⚖", mensajes: [
-          "Actúa con equidad. Cosecharás lo que siembras; ajusta tus cuentas.",
-          "La verdad prevalece. Sé honesto contigo mismo.",
-          "El karma está en movimiento. Haz lo correcto."
-        ]},
-        { nombre: "El Colgado", simbolo: "🜍", mensajes: [
-          "Ríndete a la pausa. Ver las cosas desde otro ángulo traerá revelación.",
-          "Sacrifica el control. La entrega trae nueva perspectiva.",
-          "A veces, soltar es la acción más poderosa."
-        ]},
-        { nombre: "La Muerte", simbolo: "💀", mensajes: [
-          "Suelta lo que ya no vive. La transformación es inevitable y necesaria.",
-          "Deja ir el pasado. El renacimiento te espera.",
-          "Cierra ciclos con gratitud para abrir nuevos portales."
-        ]},
-        { nombre: "La Templanza", simbolo: "🜃", mensajes: [
-          "Busca el equilibrio. Mezcla los opuestos con arte y paciencia.",
-          "La moderación es la llave de la salud y la armonía.",
-          "Fluye como el agua, adaptándote sin perder tu esencia."
-        ]},
-        { nombre: "El Diablo", simbolo: "😈", mensajes: [
-          "Reconoce tus ataduras. Solo así podrás liberarte de lo que te esclaviza.",
-          "No eres víctima de tus deseos, sino su observador.",
-          "Rompe las cadenas de la ilusión material."
-        ]},
-        { nombre: "La Torre", simbolo: "🏰", mensajes: [
-          "Lo que se derrumba era frágil. Reconstruye sobre cimientos verdaderos.",
-          "La crisis trae claridad. Acepta el cambio repentino.",
-          "Después de la tormenta, el cielo se despeja."
-        ]},
-        { nombre: "La Estrella", simbolo: "⭐", mensajes: [
-          "Mantén la esperanza. El universo conspira a tu favor, confía.",
-          "Tus sueños son válidos. Sigue la luz de tu estrella.",
-          "La inspiración llega cuando te abres a recibir."
-        ]},
-        { nombre: "La Luna", simbolo: "🌙", mensajes: [
-          "Explora tus sombras sin miedo. La intuición es tu guía en la niebla.",
-          "No todo es lo que parece. Confía en tu percepción sutil.",
-          "Atraviesa la ilusión. La verdad emerge en la oscuridad."
-        ]},
-        { nombre: "El Sol", simbolo: "☀", mensajes: [
-          "Celebra la claridad. La alegría y el éxito están a tu alcance.",
-          "La vitalidad te inunda. Comparte tu luz.",
-          "Todo florece bajo tu energía radiante."
-        ]},
-        { nombre: "El Juicio", simbolo: "📯", mensajes: [
-          "Es momento de renacer. Escucha el llamado y responde con autenticidad.",
-          "Haz las paces con tu historia. El perdón libera.",
-          "Despierta a tu propósito superior."
-        ]},
-        { nombre: "El Mundo", simbolo: "🌍", mensajes: [
-          "Has completado un ciclo. Reconoce tu plenitud y prepárate para lo nuevo.",
-          "Eres uno con el todo. Celebra tu integración.",
-          "La danza cósmica te incluye. Baila con gratitud."
-        ]}
-      ];
+      const drawBtn = document.getElementById('draw-three-cards-btn');
+      const displayDiv = document.getElementById('reading-display');
+      const limitMsg = document.getElementById('reading-limit-message');
 
-      const drawBtn = document.getElementById('draw-card-btn');
-      const displayDiv = document.getElementById('advice-display');
-      const limitMsg = document.getElementById('limit-message');
+      function getTodayString() { const d = new Date(); return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`; }
+      function puedeSacarCarta() { const ultima = localStorage.getItem('ultimaTiradaFecha'); return !ultima || ultima !== getTodayString(); }
 
-      function getTodayString() {
-        const d = new Date();
-        return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
-      }
-
-      function puedeSacarCarta() {
-        const ultima = localStorage.getItem('ultimoConsejoFecha');
-        if (!ultima) return true;
-        return ultima !== getTodayString();
-      }
-
-      function mostrarConsejo() {
+      function mostrarTirada() {
         limitMsg.textContent = '';
         if (!puedeSacarCarta()) {
-          displayDiv.innerHTML = `<p class="text-blood/80 text-xl italic border-t border-blood/20 pt-6">🌙 Ya has recibido un consejo hoy. Vuelve mañana para consultar de nuevo a los arcanos.</p>`;
+          displayDiv.innerHTML = `<p class="text-blood/80 text-xl italic border-t border-blood/20 pt-6">🌙 Ya has realizado tu tirada hoy. Vuelve mañana para consultar de nuevo a los arcanos.</p>`;
           return;
         }
 
-        const indice = Math.floor(Math.random() * arcanoMayor.length);
-        const carta = arcanoMayor[indice];
-        const mensajeAleatorio = carta.mensajes[Math.floor(Math.random() * carta.mensajes.length)];
+        const pregunta = document.getElementById('user-question').value.trim() || "sin pregunta específica";
+        const indices = [];
+        while(indices.length < 3) { const r = Math.floor(Math.random() * barajaCompleta.length); if (!indices.includes(r)) indices.push(r); }
+        const cartas = indices.map(i => barajaCompleta[i]);
+        const posiciones = ["Pasado", "Presente", "Futuro"];
 
-        localStorage.setItem('ultimoConsejoFecha', getTodayString());
+        localStorage.setItem('ultimaTiradaFecha', getTodayString());
 
-        displayDiv.innerHTML = `
-          <div class="flex flex-col items-center">
-            <div class="tarot-card-visual">
-              <div class="corner-runes">
-                <span>ᚨ</span><span>ᚱ</span><span>ᚦ</span><span>ᚢ</span>
+        let html = `<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">`;
+        cartas.forEach((carta, idx) => {
+          const pos = posiciones[idx];
+          const mensaje = generarMensaje(carta, pos, pregunta);
+          html += `
+            <div class="flex flex-col items-center">
+              <div class="tarot-card-visual">
+                <div class="corner-runes"><span>ᚨ</span><span>ᚱ</span><span>ᚦ</span><span>ᚢ</span></div>
+                <div class="card-symbol">${carta.simbolo}</div>
+                <div class="card-name">${carta.nombre}</div>
+                <div class="card-pos">${pos}</div>
               </div>
-              <div class="astral-circle"></div>
-              <div class="card-symbol">${carta.simbolo}</div>
-              <div class="card-name">${carta.nombre}</div>
-              <div class="card-ornament">⚶ ⚵ ⚴</div>
+              <p class="text-base italic mt-3 text-whisper leading-relaxed max-w-[200px]">“${mensaje}”</p>
             </div>
-            <p class="text-2xl italic mt-6 text-whisper leading-relaxed max-w-xl">"${mensajeAleatorio}"</p>
-            <p class="text-blood/40 text-sm mt-4 tracking-widest">ᛉ · CONSEJO DEL DÍA · ᛦ</p>
-          </div>
-        `;
+          `;
+        });
+        html += `</div><p class="text-blood/40 text-sm mt-8 tracking-widest">ᛉ · TIRADA DEL DÍA · ᛦ</p>`;
+        displayDiv.innerHTML = html;
       }
 
-      drawBtn.addEventListener('click', mostrarConsejo);
+      drawBtn.addEventListener('click', mostrarTirada);
     })();
   </script>
  
   <div style="position:fixed; bottom:15px; left:15px; opacity:0.06; z-index:1; pointer-events:none; width:150px; height:150px;">
-    <svg viewBox="0 0 200 200" fill="none">
-      <path d="M100 20 L130 70 L180 60 L150 100 L190 140 L140 150 L130 190 L90 160 L60 190 L70 140 L20 130 L50 90 L30 50 L80 60 L100 20Z" stroke="#6e2a2a" stroke-width="4" fill="none"/>
-      <circle cx="100" cy="100" r="18" fill="#2a3a32" opacity="0.4"/>
-    </svg>
+    <svg viewBox="0 0 200 200" fill="none"><path d="M100 20 L130 70 L180 60 L150 100 L190 140 L140 150 L130 190 L90 160 L60 190 L70 140 L20 130 L50 90 L30 50 L80 60 L100 20Z" stroke="#6e2a2a" stroke-width="4" fill="none"/><circle cx="100" cy="100" r="18" fill="#2a3a32" opacity="0.4"/></svg>
   </div>
 
   <!-- Tidio Chatbot Script -->
