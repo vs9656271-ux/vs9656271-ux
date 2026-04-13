@@ -15,11 +15,12 @@ tailwind.config = {
   theme: {
     extend: {
       colors: {
-        abyss: {900:'#0b0f0d',800:'#121917',700:'#1a2421'},
-        moss: {500:'#3a4f45',400:'#556b5d'},
-        bone: {200:'#d6d2c4',300:'#bfb9a5'},
-        blood: {500:'#6e2a2a'},
-        ash: {500:'#6b6f6d'}
+        abyss:'#0b0f0d',
+        moss:'#3a4f45',
+        rot:'#1a2421',
+        bone:'#d6d2c4',
+        blood:'#6e2a2a',
+        ash:'#6b6f6d'
       }
     }
   }
@@ -27,10 +28,11 @@ tailwind.config = {
 </script>
 
 <style>
-body {
+body{
   background:#0b0f0d;
   color:#d6d2c4;
-  font-family:'Cormorant Garamond', serif;
+  font-family:'Cormorant Garamond',serif;
+  overflow-x:hidden;
 }
 
 /* textura */
@@ -39,42 +41,96 @@ body::before{
   position:fixed;
   inset:0;
   background:
-    radial-gradient(circle at 20% 30%, rgba(58,79,69,0.2), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(110,42,42,0.15), transparent 50%),
+    radial-gradient(circle at 20% 20%, rgba(58,79,69,0.25), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(110,42,42,0.25), transparent 50%),
     url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
-  opacity:.35;
+  opacity:.45;
   pointer-events:none;
 }
 
-/* tipografías */
-.font-display{font-family:'Cinzel Decorative',serif}
+/* RUNAS */
+.rune{
+  position:absolute;
+  font-size:18px;
+  opacity:.12;
+  animation:float 14s infinite ease-in-out;
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-25px)}
+}
+
+/* VINES */
+.vines{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+}
+
+.vine{
+  position:absolute;
+  bottom:0;
+  width:2px;
+  background:linear-gradient(#3a4f45,transparent);
+  height:0;
+  transition:height 0.2s linear;
+}
+
+/* hojas */
+.vine::after{
+  content:'';
+  position:absolute;
+  width:8px;
+  height:8px;
+  background:#3a4f45;
+  border-radius:50%;
+  left:-3px;
+  top:30%;
+  box-shadow:
+    0 40px 0 #3a4f45,
+    0 80px 0 #3a4f45,
+    0 120px 0 #3a4f45;
+}
+
+/* partículas */
+.particle{
+  position:fixed;
+  width:2px;
+  height:2px;
+  background:#6b6f6d;
+  opacity:.3;
+  animation:float 10s infinite linear;
+}
 
 /* cards */
-.card-mystical{
+.card{
   background:linear-gradient(135deg,#121917,#0b0f0d);
-  border:1px solid rgba(191,185,165,0.1);
+  border:1px solid rgba(214,210,196,0.1);
+  transition:.4s;
 }
-.card-mystical:hover{
-  box-shadow:0 0 30px rgba(0,0,0,.7),
-             inset 0 0 20px rgba(58,79,69,.2);
+
+.card:hover{
+  box-shadow:0 0 50px rgba(0,0,0,.9),
+             inset 0 0 25px rgba(58,79,69,.2);
 }
 
 /* botones */
-.btn-mystical{
+.btn{
   background:linear-gradient(135deg,#3a4f45,#1a2421);
-  border:1px solid rgba(191,185,165,0.2);
-}
-.btn-mystical:hover{
-  box-shadow:0 0 20px rgba(110,42,42,0.4);
-  border-color:#6e2a2a;
+  border:1px solid rgba(214,210,196,0.2);
 }
 
-/* sombras teatrales */
-h1,h2,h3{
-  text-shadow:0 0 10px rgba(0,0,0,0.8);
+.btn:hover{
+  box-shadow:0 0 20px rgba(110,42,42,0.6);
 }
 
-/* selección */
+/* sombras */
+h1,h2{
+  text-shadow:0 0 25px rgba(0,0,0,0.9);
+}
+
 ::selection{
   background:#6e2a2a;
   color:#fff;
@@ -82,61 +138,100 @@ h1,h2,h3{
 </style>
 </head>
 
-<body class="h-full">
+<body>
 
-<div class="min-h-screen flex flex-col justify-center items-center text-center px-6">
+<!-- RUNAS -->
+<div class="rune" style="top:10%;left:20%;">ᚠ</div>
+<div class="rune" style="top:50%;left:80%;">ᚷ</div>
+<div class="rune" style="top:70%;left:30%;">ᛟ</div>
+<div class="rune" style="top:30%;left:60%;">ᚱ</div>
+
+<!-- VINES -->
+<div class="vines">
+  <div class="vine" style="left:5%"></div>
+  <div class="vine" style="left:15%"></div>
+  <div class="vine" style="left:85%"></div>
+  <div class="vine" style="left:95%"></div>
+</div>
+
+<!-- PARTICULAS -->
+<div id="particles"></div>
+
+<div class="min-h-screen flex flex-col items-center justify-center text-center px-6 relative z-10">
 
 <h1 class="font-display text-6xl mb-6">Sforza K.</h1>
 
-<p class="italic text-ash-500 mb-8">
+<p class="italic text-ash mb-8">
 ✦ Las respuestas existen. Solo no siempre gustan. ✦
 </p>
 
+<!-- SERVICIOS -->
 <div class="grid md:grid-cols-2 gap-8 max-w-4xl w-full">
 
-<!-- TAROT -->
-<div class="card-mystical p-8 rounded-xl">
+<div class="card p-8 rounded-xl">
 <h2 class="text-2xl mb-4">Lectura de Tarot</h2>
-<p class="mb-6">60 minutos · Sin límite de preguntas</p>
+<p>60 min · Sin límite de preguntas</p>
+<p class="text-3xl mt-4">$100 MXN</p>
 
-<p class="text-3xl mb-4">$100 MXN</p>
-
-<a href="https://calendly.com/vs9656271/30min" target="_blank"
-class="btn-mystical px-6 py-3 rounded-full inline-block">
+<a href="https://calendly.com/vs9656271/30min" target="_blank" class="btn px-6 py-3 rounded-full inline-block mt-6">
 Agendar
 </a>
 
-<p class="mt-4 text-ash-500 text-sm italic">
-Pago por transferencia disponible — envía correo para detalles.
+<p class="mt-4 text-sm italic text-ash">
+Pago por transferencia disponible — envía correo.
 </p>
 </div>
 
-<!-- CARTA ASTRAL -->
-<div class="card-mystical p-8 rounded-xl">
+<div class="card p-8 rounded-xl">
 <h2 class="text-2xl mb-4">Carta Astral</h2>
-<p class="mb-6">90 minutos · Presencial o en línea</p>
+<p>90 min · Presencial o en línea</p>
+<p class="text-3xl mt-4">$450 MXN</p>
 
-<p class="text-3xl mb-4">$450 MXN</p>
-
-<a href="https://calendly.com/vs9656271/carta-astral" target="_blank"
-class="btn-mystical px-6 py-3 rounded-full inline-block">
+<a href="https://calendly.com/vs9656271/carta-astral" target="_blank" class="btn px-6 py-3 rounded-full inline-block mt-6">
 Agendar
 </a>
 
-<p class="mt-4 text-ash-500 text-sm italic">
-Pago por transferencia disponible — envía correo para detalles.
+<p class="mt-4 text-sm italic text-ash">
+Pago por transferencia disponible — envía correo.
 </p>
 </div>
 
 </div>
 
-<div class="mt-12">
-<a href="mailto:vs9656271@gmail.com"
-class="btn-mystical px-6 py-3 rounded-full inline-block">
-Contactar por correo
+<!-- SOBRE MI -->
+<div class="max-w-2xl mt-16 text-left card p-8 rounded-xl">
+
+<h2 class="text-3xl mb-4">Valentina S.</h2>
+
+<p class="mb-4 italic text-ash">
+“Quien no vive para servir, no sirve para vivir.”
+</p>
+
+<p class="mb-4">
+Soy estudiante. Leer cartas es algo que nació como una pasión personal y con el tiempo se convirtió también en una forma de solventar mis propios gastos.
+</p>
+
+<p class="mb-4">
+Cuento con 4 años de experiencia. Me interesan las plantas, las flores, lo espiritual, lo esotérico, lo nuevo, los animales, la música… y <strong>Dishonored</strong>.
+</p>
+
+<p class="mb-4">
+Busco que cada lectura sea un espacio cómodo, directo y sin juicios. Me importa cuidar a quienes llegan conmigo, pero también cuidarme a mí misma.
+</p>
+
+<p>
+Estoy a tu servicio.
+</p>
+
+</div>
+
+<!-- CONTACTO -->
+<div class="mt-12 text-center">
+<a href="mailto:vs9656271@gmail.com" class="btn px-6 py-3 rounded-full inline-block">
+vs9656271@gmail.com
 </a>
 
-<p class="mt-4 text-ash-500 text-sm">
+<p class="mt-4 text-sm text-ash">
 Para pago por transferencia, escríbeme antes de tu cita.
 </p>
 </div>
@@ -145,6 +240,26 @@ Para pago por transferencia, escríbeme antes de tu cita.
 
 <script>
 lucide.createIcons();
+
+/* partículas */
+const pContainer = document.getElementById('particles');
+for(let i=0;i<40;i++){
+  let p=document.createElement('div');
+  p.className='particle';
+  p.style.left=Math.random()*100+'%';
+  p.style.top=Math.random()*100+'%';
+  p.style.animationDuration=(5+Math.random()*10)+'s';
+  pContainer.appendChild(p);
+}
+
+/* vines scroll grow */
+const vines=document.querySelectorAll('.vine');
+window.addEventListener('scroll',()=>{
+  let scroll=window.scrollY;
+  vines.forEach(v=>{
+    v.style.height = (scroll * 0.3) + 'px';
+  });
+});
 </script>
 
 </body>
