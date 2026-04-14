@@ -29,48 +29,31 @@
   </script>
  
   <style>
-    /* ===== ESTILOS BASE (MANTENIDOS Y COMPACTADOS) ===== */
+    /* ===== ESTILOS BASE ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background-color: #0a0e0c; color: #d6d2c4; font-family: 'Cormorant Garamond', serif; min-height: 100vh; position: relative; overflow-x: hidden; }
-    body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(circle at 20% 30%, rgba(110,42,42,0.3) 0%, transparent 40%), radial-gradient(circle at 90% 70%, rgba(58,79,69,0.4) 0%, transparent 50%), radial-gradient(circle at 40% 80%, rgba(20, 20, 10, 0.4) 0%, transparent 30%), repeating-linear-gradient(45deg, rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 2px, transparent 2px, transparent 8px), url('https://www.transparenttextures.com/patterns/dark-wood.png'); opacity: 0.7; pointer-events: none; z-index: 0; }
+    body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(circle at 20% 30%, rgba(110,42,42,0.3) 0%, transparent 40%), radial-gradient(circle at 90% 70%, rgba(58,79,69,0.4) 0%, transparent 50%), repeating-linear-gradient(45deg, rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 2px, transparent 2px, transparent 8px), url('https://www.transparenttextures.com/patterns/dark-wood.png'); opacity: 0.7; pointer-events: none; z-index: 0; }
     body::after { content: ''; position: fixed; inset: 0; box-shadow: inset 0 0 250px #000000, inset 0 0 80px #1a0f0f; pointer-events: none; z-index: 2; }
-    .rune { position: fixed; font-family: 'Cinzel Decorative', serif; font-size: 28px; color: #5a6b5a; opacity: 0.18; text-shadow: 0 0 15px #1e3a2a, 0 0 30px #0a0e0c; animation: floatRune 18s infinite ease-in-out; z-index: 1; pointer-events: none; filter: blur(0.4px); }
-    @keyframes floatRune { 0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.14; } 50% { transform: translateY(-55px) rotate(8deg); opacity: 0.35; } }
-    .void-mark { position: fixed; bottom: 20px; right: 20px; width: 100px; height: 100px; opacity: 0.25; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="%236e2a2a" stroke-width="2.5" d="M50 10 L60 30 L80 20 L70 40 L90 50 L70 60 L80 80 L60 70 L50 90 L40 70 L20 80 L30 60 L10 50 L30 40 L20 20 L40 30 Z"/><circle cx="50" cy="50" r="10" fill="%236e2a2a" opacity="0.6"/><path d="M45 45 L55 55 M55 45 L45 55" stroke="%23d6d2c4" stroke-width="1.5" opacity="0.5"/></svg>'); background-size: contain; background-repeat: no-repeat; z-index: 5; filter: drop-shadow(0 0 20px #2a1a1a); }
+    .rune { position: fixed; font-family: 'Cinzel Decorative', serif; font-size: 28px; color: #5a6b5a; opacity: 0.18; text-shadow: 0 0 15px #1e3a2a; animation: floatRune 18s infinite ease-in-out; z-index: 1; pointer-events: none; }
+    @keyframes floatRune { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-40px); } }
+    .void-mark { position: fixed; bottom: 20px; right: 20px; width: 100px; height: 100px; opacity: 0.25; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="%236e2a2a" stroke-width="2.5" d="M50 10 L60 30 L80 20 L70 40 L90 50 L70 60 L80 80 L60 70 L50 90 L40 70 L20 80 L30 60 L10 50 L30 40 L20 20 L40 30 Z"/></svg>'); background-size: contain; z-index: 5; }
     .vines-container { position: fixed; inset: 0; pointer-events: none; z-index: 3; }
-    .vine-delilah { position: absolute; bottom: 0; width: 6px; background: linear-gradient(to top, #142115, #1e3a2a, #0f1f15, transparent); border-radius: 3px 3px 0 0; box-shadow: 0 0 25px #0f1a12, 0 0 8px #1a2e20; transition: height 0.08s ease-out; transform-origin: bottom; }
-    .vine-delilah::before, .vine-delilah::after { content: ''; position: absolute; width: 26px; height: 26px; background: #142115; border-radius: 70% 20% 60% 30% / 50% 40% 60% 40%; transform: rotate(35deg); left: -16px; box-shadow: 0 0 18px #0a120c, inset -4px -4px 8px #0c1a10; border-left: 4px solid #3a5a45; }
-    .vine-delilah::after { top: 70px; transform: rotate(-45deg) scaleX(-1); left: auto; right: -16px; background: #1a2a1e; }
-    .vine-delilah .thorn { position: absolute; width: 18px; height: 5px; background: #5a2a2a; left: -18px; top: 95px; border-radius: 4px; transform: rotate(-25deg); box-shadow: 0 0 15px #3a1a1a; }
-    .vine-top { position: absolute; top: 0; width: 5px; background: linear-gradient(to bottom, #1e3a2a, #2a4a35, transparent); box-shadow: 0 0 18px #0f1a12; height: 180px; }
-    .vine-top::before { content: ''; position: absolute; width: 24px; height: 24px; background: #142115; border-radius: 50% 30% 50% 40% / 40% 50% 40% 50%; left: -10px; bottom: 30px; transform: rotate(70deg); box-shadow: inset -4px -4px 8px #0c1a10; border-bottom: 4px solid #3a5a45; }
-    .ash-particle { position: fixed; width: 4px; height: 4px; background: #8a8f8c; border-radius: 50%; opacity: 0.25; filter: blur(1.5px); animation: ashDrift 18s infinite linear; z-index: 2; }
-    @keyframes ashDrift { 0% { transform: translateY(0) translateX(0); opacity: 0.1; } 50% { transform: translateY(-100px) translateX(40px); opacity: 0.4; } 100% { transform: translateY(-200px) translateX(-30px); opacity: 0.0; } }
+    .vine-delilah { position: absolute; bottom: 0; width: 5px; background: linear-gradient(to top, #1e3a2a, transparent); height: 120px; }
+    .ash-particle { position: fixed; width: 4px; height: 4px; background: #8a8f8c; border-radius: 50%; opacity: 0.2; filter: blur(1.5px); animation: ashDrift 18s infinite linear; z-index: 2; }
+    @keyframes ashDrift { 0% { transform: translateY(0); opacity: 0.1; } 50% { transform: translateY(-100px); opacity: 0.3; } 100% { transform: translateY(-200px); opacity: 0; } }
     #petals-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 8; opacity: 0.9; }
-    .card-grimoire { background: linear-gradient(145deg, #0c1310 0%, #060a08 100%); border: 1px solid rgba(110,42,42,0.35); box-shadow: 0 30px 50px -12px #000000, inset 0 0 50px rgba(0,0,0,0.8), 0 0 0 1px rgba(58,79,69,0.3); backdrop-filter: blur(3px); transition: all 0.4s; position: relative; z-index: 15; }
+    .card-grimoire { background: linear-gradient(145deg, #0c1310 0%, #060a08 100%); border: 1px solid rgba(110,42,42,0.35); box-shadow: 0 30px 50px -12px #000000, inset 0 0 50px rgba(0,0,0,0.8); backdrop-filter: blur(3px); transition: all 0.4s; position: relative; z-index: 15; padding: 24px; border-radius: 16px; }
     .card-grimoire:hover { box-shadow: 0 0 65px rgba(110,42,42,0.4), inset 0 0 30px #1a2a1e, 0 0 0 1px #6e2a2a; border-color: rgba(110,42,42,0.8); transform: translateY(-5px); }
-    .card-grimoire::after { content: 'ᛉ ᚨ ᛟ ᚱ'; position: absolute; bottom: 12px; right: 20px; font-size: 16px; color: #4a5a4e; opacity: 0.5; letter-spacing: 10px; font-family: 'Cinzel Decorative'; }
-    .btn-void { background: linear-gradient(135deg, #15201a, #0a100d); border: 1px solid #3a4f45; color: #e0dac8; box-shadow: 0 8px 0 #050807, 0 0 25px rgba(0,0,0,0.9); transition: all 0.12s; text-transform: uppercase; letter-spacing: 4px; font-weight: 600; position: relative; z-index: 20; display: inline-block; text-decoration: none; padding: 10px 20px; }
+    .btn-void { background: linear-gradient(135deg, #15201a, #0a100d); border: 1px solid #3a4f45; color: #e0dac8; box-shadow: 0 8px 0 #050807; transition: all 0.12s; text-transform: uppercase; letter-spacing: 4px; font-weight: 600; padding: 10px 20px; display: inline-block; text-decoration: none; }
     .btn-void:hover { background: linear-gradient(135deg, #1e2e25, #121c16); border-color: #8a3a3a; box-shadow: 0 4px 0 #050807, 0 0 40px #5a2a2a; transform: translateY(4px); color: #f5efe2; }
     .glow-text { text-shadow: 0 0 25px #1a2a1e, 0 0 45px #050a07; }
     h1, h2, h3 { font-family: 'Cinzel Decorative', serif; letter-spacing: 4px; }
-    .hr-rune { display: flex; align-items: center; gap: 20px; opacity: 0.7; }
-    .hr-rune span { font-size: 28px; color: #6e2a2a; }
     .content-wrapper { position: relative; z-index: 20; }
-    .email-link { border-bottom: 1px dashed #8a3a3a; font-style: italic; }
-    .email-link:hover { color: #b84a4a; }
+    .email-link { border-bottom: 1px dashed #8a3a3a; }
     ::selection { background: #6e2a2a; color: #f0e9db; }
-    ::-webkit-scrollbar { width: 12px; } ::-webkit-scrollbar-track { background: #050807; } ::-webkit-scrollbar-thumb { background: #1e2e25; border: 1px solid #3a4f45; }
-    .doubt-section details, .tutorial-section details { border: 1px solid #3a4f45; background: rgba(10, 14, 12, 0.8); backdrop-filter: blur(5px); margin-bottom: 14px; }
-    .doubt-section summary, .tutorial-section summary { padding: 16px 24px; font-family: 'Cinzel Decorative', serif; font-size: 1.6rem; letter-spacing: 4px; color: #d6d2c4; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 12px; }
-    .doubt-section summary::-webkit-details-marker, .tutorial-section summary::-webkit-details-marker { display: none; }
-    .doubt-section summary::before, .tutorial-section summary::before { content: 'ᛉ'; font-size: 2rem; color: #6e2a2a; margin-right: 10px; }
-    .doubt-section details[open] summary::before, .tutorial-section details[open] summary::before { content: 'ᛦ'; transform: rotate(180deg); }
-    .doubt-section details[open] summary, .tutorial-section details[open] summary { border-bottom: 1px solid #3a4f45; }
-    .doubt-section .details-content, .tutorial-section .details-content { padding: 20px 28px; background: #0c1310; }
 
     /* Tarjeta de Sí/No */
-    .tarot-card-visual { width: 200px; height: 320px; margin: 0 auto 20px; background: linear-gradient(145deg, #140e0c 0%, #0a0706 100%); border: 3px solid #8a6e4b; border-radius: 14px; box-shadow: 0 20px 30px -8px #000000, inset 0 0 45px rgba(0,0,0,0.95), 0 0 0 2px #5a3e2e; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 14px 8px; position: relative; overflow: hidden; }
+    .tarot-card-visual { width: 200px; height: 320px; margin: 0 auto 20px; background: linear-gradient(145deg, #140e0c 0%, #0a0706 100%); border: 3px solid #8a6e4b; border-radius: 14px; box-shadow: 0 20px 30px -8px #000000, inset 0 0 45px rgba(0,0,0,0.95); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 14px 8px; position: relative; }
     .tarot-card-visual .corner-runes span { position: absolute; font-size: 18px; color: #8a6e4b; opacity: 0.6; }
     .tarot-card-visual .corner-runes span:nth-child(1) { top: 6px; left: 8px; } .tarot-card-visual .corner-runes span:nth-child(2) { top: 6px; right: 8px; } .tarot-card-visual .corner-runes span:nth-child(3) { bottom: 6px; left: 8px; } .tarot-card-visual .corner-runes span:nth-child(4) { bottom: 6px; right: 8px; }
     .tarot-card-visual .card-symbol { font-size: 70px; margin: 15px 0; filter: drop-shadow(0 0 18px #c9aa7b); }
@@ -83,37 +66,17 @@
     /* Juego de Escape */
     .escape-option { background: #0e1210; border: 1px solid #3a4f45; padding: 20px 15px; cursor: pointer; transition: all 0.2s; border-radius: 4px; }
     .escape-option:hover { border-color: #8a3a3a; box-shadow: 0 0 30px rgba(110,42,42,0.4); transform: translateY(-5px); background: #141c18; }
-
-    /* Boletín Nocturno (Compacto) */
-    :root{ --ink:#e9e0d5; --muted:#c7b8aa; --line:rgba(233,224,213,.18); --gold:#c9a227; --radius:12px; }
-    .nocturna-board{ color:var(--ink); background: radial-gradient(600px 300px at 20% 0%, rgba(111,45,189,.12), transparent 60%), linear-gradient(180deg, rgba(11,10,15,.96), rgba(11,10,15,.98)); border:1px solid var(--line); border-radius:var(--radius); padding:16px; margin-top: 30px; font-size: 14px; }
-    .nocturna-header{ display:flex; gap:10px; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); padding-bottom:10px; margin-bottom:12px; }
-    .nocturna-title{ font-size:18px; margin:0; }
-    .nocturna-grid{ display:grid; grid-template-columns: 1.2fr .8fr; gap:12px; }
-    .panel{ border:1px solid var(--line); border-radius:var(--radius); background:linear-gradient(180deg, rgba(18,16,26,.80), rgba(15,13,20,.85)); padding:12px; }
-    .badge{ font-size:10px; padding:2px 6px; }
-    .nota{ padding:8px; }
-    .nota-title{ font-size:13px; }
-    .nota-body{ font-size:12px; }
-    .estado-principal{ padding:8px; }
-    .pill{ font-size:10px; padding:2px 6px; }
-    .btn{ padding:6px 10px; font-size:12px; }
-    .descuento{ margin-top:10px; }
-    .altar{ padding:10px; }
-    .altar h3{ font-size:13px; }
-    .hidden{ display:none !important; }
   </style>
 </head>
 <body class="font-body antialiased">
 
   <canvas id="petals-canvas"></canvas>
 
-  <div class="rune" style="top:5%; left:8%;">ᚠ</div> <div class="rune" style="top:18%; left:92%;">ᚢ</div> <div class="rune" style="top:72%; left:82%;">ᚦ</div> <div class="rune" style="top:48%; left:12%;">ᚨ</div> <div class="rune" style="top:85%; left:35%;">ᚱ</div> <div class="rune" style="top:12%; left:65%;">ᚷ</div> <div class="rune" style="top:62%; left:5%;">ᛟ</div> <div class="rune" style="top:92%; left:88%;">ᛉ</div>
+  <div class="rune" style="top:5%; left:8%;">ᚠ</div> <div class="rune" style="top:18%; left:92%;">ᚢ</div> <div class="rune" style="top:72%; left:82%;">ᚦ</div> <div class="rune" style="top:48%; left:12%;">ᚨ</div> <div class="rune" style="top:85%; left:35%;">ᚱ</div>
   <div class="void-mark"></div>
  
   <div class="vines-container">
-    <div class="vine-delilah" style="left: 2%; height: 0;" id="vine1"><div class="thorn"></div></div> <div class="vine-delilah" style="left: 14%; height: 0;" id="vine2"></div> <div class="vine-delilah" style="left: 87%; height: 0;" id="vine3"></div> <div class="vine-delilah" style="left: 97%; height: 0;" id="vine4"></div>
-    <div class="vine-top" style="left: 5%;"></div> <div class="vine-top" style="left: 94%; transform: scaleX(-1);"></div>
+    <div class="vine-delilah" style="left: 2%;"></div> <div class="vine-delilah" style="left: 14%;"></div> <div class="vine-delilah" style="left: 87%;"></div> <div class="vine-delilah" style="left: 97%;"></div>
   </div>
   <div id="ash-storm" style="position:fixed; inset:0; pointer-events:none; z-index:2;"></div>
 
@@ -125,7 +88,7 @@
         <p>Antes de continuar, lee y acepta:</p>
         <ul class="list-disc pl-5 space-y-2 text-sm">
           <li><span class="text-blood">ᛉ</span> Afirmo tener <span class="text-bone">18 años o más</span>.</li>
-          <li><span class="text-blood">ᛉ</span> Lectura de Tarot y Carta Astral son <span class="text-bone">orientación y autoconocimiento</span>. No sustituyen diagnóstico médico/psicológico.</li>
+          <li><span class="text-blood">ᛉ</span> Lectura de Tarot y Carta Astral son <span class="text-bone">orientación y autoconocimiento</span>.</li>
           <li><span class="text-blood">ᛉ</span> <span class="text-bone">No me responsabilizo</span> de problemas derivados ni atiendo personas con inestabilidad mental severa.</li>
           <li><span class="text-blood">ᛉ</span> Información <span class="text-bone">estrictamente confidencial</span>.</li>
           <li><span class="text-blood">ᛉ</span> Rechazo a la charlatanería. No se ofrecen "amarres".</li>
@@ -147,25 +110,53 @@
     <div class="mb-6 opacity-70 flex gap-8 text-4xl text-blood/40"> <span>ᛟ</span><span>ᚨ</span><span>ᚱ</span><span>ᚢ</span> </div>
     <h1 class="font-display text-6xl md:text-7xl lg:text-8xl font-black tracking-[8px] glow-text">Sforza K.</h1>
     <div class="hr-rune my-4"> <span>᛫</span><span class="text-bone/60 text-2xl tracking-[15px]">⛧</span><span>᛫</span> </div>
-    <p class="text-2xl italic text-ash mb-12 font-light tracking-wide">« Todo sucede por algo, tú confía :) »</p>
-   
-    <div class="grid md:grid-cols-2 gap-8 max-w-5xl w-full">
-      <div class="card-grimoire p-8 rounded-xl text-left">
-        <div class="flex items-center gap-3 mb-2"> <span class="text-4xl text-blood/60">🜁</span> <h2 class="text-3xl font-display">Lectura de Tarot</h2> </div>
-        <p class="text-lg text-bone/80 mb-1">60 minutos · Sin límite de preguntas</p> <p class="text-4xl font-display text-bone mt-2">$70 <span class="text-base">MXN</span></p>
-        <div class="mt-5 p-4 bg-void/60 border-l-2 border-blood/60 text-sm italic"> <p class="text-whisper"><span class="text-blood font-bold">🜍 Para iniciados:</span> Si estás comenzando, recomiendo una <span class="text-bone">lectura general</span>.</p> </div>
-        <button data-agendar="https://calendly.com/vs9656271/30min" class="agendar-btn btn-void px-7 py-3 rounded-sm inline-block mt-7 text-lg">AGENDAR · ᚱ</button>
-      </div>
-      <div class="card-grimoire p-8 rounded-xl text-left">
-        <div class="flex items-center gap-3 mb-2"> <span class="text-4xl text-blood/60">🜂</span> <h2 class="text-3xl font-display">Carta Astral</h2> </div>
-        <p class="text-lg text-bone/80 mb-1">90 minutos · Presencial o en línea</p> <p class="text-4xl font-display text-bone mt-2">$400 <span class="text-base">MXN</span></p>
-        <div class="mt-5 p-4 bg-void/60 border-l-2 border-blood/60 text-sm"> <p class="text-whisper"><span class="text-blood font-bold">🜍 Requisitos:</span> Fecha, hora exacta y lugar de nacimiento.</p> </div>
-        <button data-agendar="https://calendly.com/vs9656271/carta-astral" class="agendar-btn btn-void px-7 py-3 rounded-sm inline-block mt-7 text-lg">AGENDAR · ᚦ</button>
+    <p class="text-2xl italic text-ash mb-8 font-light tracking-wide">« Todo sucede por algo, tú confía :) »</p>
+
+    <!-- GUÍA DE USO (AL INICIO) -->
+    <div class="max-w-4xl w-full mb-12 card-grimoire p-6 rounded-xl text-left">
+      <h2 class="font-display text-3xl mb-4 flex items-center gap-3"><span>🜁</span> Guía de Uso · Tutorial</h2>
+      <div class="grid md:grid-cols-2 gap-6 text-bone/90">
+        <div>
+          <h3 class="text-blood text-xl mb-2">📜 Para agendar:</h3>
+          <ol class="list-decimal pl-5 space-y-2">
+            <li>Haz clic en los botones <span class="text-bone">"AGENDAR"</span> de cada servicio.</li>
+            <li>Acepta el consentimiento informado.</li>
+            <li>Serás redirigido a Calendly para elegir fecha/hora.</li>
+            <li>Recibirás confirmación por correo.</li>
+          </ol>
+        </div>
+        <div>
+          <h3 class="text-blood text-xl mb-2">🔮 En esta página encontrarás:</h3>
+          <ul class="list-disc pl-5 space-y-2">
+            <li><span class="text-bone">Oráculo de Sí/No</span> (3 preguntas al día).</li>
+            <li><span class="text-bone">Juego de Escape</span> para probar tu intuición.</li>
+            <li>Información sobre Valentina y su filosofía.</li>
+            <li>Ante cualquier duda, consulta a <span class="text-blood font-bold">Cautín</span>, mi astrólogo y chatbot de confianza (esquina inferior derecha).</li>
+          </ul>
+        </div>
       </div>
     </div>
    
+    <div class="grid md:grid-cols-2 gap-8 max-w-5xl w-full">
+      <div class="card-grimoire rounded-xl text-left">
+        <div class="flex items-center gap-3 mb-2"> <span class="text-4xl text-blood/60">🜁</span> <h2 class="text-3xl font-display">Lectura de Tarot</h2> </div>
+        <p class="text-lg text-bone/80 mb-1">60 minutos · Sin límite de preguntas</p> <p class="text-4xl font-display text-bone mt-2">$70 <span class="text-base">MXN</span></p>
+        <button data-agendar="https://calendly.com/vs9656271/30min" class="agendar-btn btn-void px-7 py-3 rounded-sm inline-block mt-7 text-lg">AGENDAR · ᚱ</button>
+      </div>
+      <div class="card-grimoire rounded-xl text-left">
+        <div class="flex items-center gap-3 mb-2"> <span class="text-4xl text-blood/60">🜂</span> <h2 class="text-3xl font-display">Carta Astral</h2> </div>
+        <p class="text-lg text-bone/80 mb-1">90 minutos · Presencial o en línea</p> <p class="text-4xl font-display text-bone mt-2">$400 <span class="text-base">MXN</span></p>
+        <button data-agendar="https://calendly.com/vs9656271/carta-astral" class="agendar-btn btn-void px-7 py-3 rounded-sm inline-block mt-7 text-lg">AGENDAR · ᚦ</button>
+      </div>
+    </div>
+
+    <!-- ANUNCIO PEQUEÑO DE DESCUENTO -->
+    <div class="max-w-4xl w-full mt-8 text-center">
+      <p class="bg-blood/20 border border-blood/40 rounded-full px-6 py-3 inline-block text-bone italic">🜍 Miércoles de Descuento: 20% OFF en cualquier servicio. ¡Agenda y aprovecha! 🜍</p>
+    </div>
+   
     <!-- VALENTINA S. -->
-    <div class="max-w-4xl mt-20 card-grimoire p-8 md:p-10 rounded-xl text-left relative overflow-hidden">
+    <div class="max-w-4xl mt-16 card-grimoire rounded-xl text-left relative overflow-hidden">
       <h2 class="text-4xl md:text-5xl font-display mb-2">Valentina S.</h2>
       <p class="text-3xl italic text-blood/90 mb-6 border-b border-blood/20 pb-4">"Quien no vive para servir, no sirve para vivir."</p>
       <div class="space-y-4 text-lg text-bone/90">
@@ -175,15 +166,8 @@
       </div>
     </div>
 
-    <!-- TUTORIAL Y DUDAS -->
-    <div class="max-w-4xl w-full mt-12 tutorial-section">
-      <details class="card-grimoire"> <summary class="text-3xl">🜁 GUÍA DE USO</summary> <div class="details-content"> <ul class="list-disc pl-5"><li>Agenda con los botones.</li><li>Oráculo Sí/No (3 al día).</li><li>Juego de Escape intuitivo.</li><li>Contacto: vs9656271@gmail.com</li></ul> </div> </details>
-    </div>
-    <div class="max-w-4xl w-full mt-6 doubt-section">
-      <details class="card-grimoire"> <summary class="text-3xl">🜁 DUDAS · CITA</summary> <div class="details-content"> <ol class="list-decimal pl-5"><li>Eliges fecha/hora en Calendly.</li><li>Recibes confirmación.</li><li>Acordamos detalles.</li></ol> </div> </details>
-    </div>
-   
-    <div class="mt-14 w-full max-w-3xl">
+    <!-- CONTACTO Y TRIBUTO -->
+    <div class="mt-12 w-full max-w-3xl">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
         <div class="bg-rot/50 p-6 border border-moss/40 rounded-sm">
           <h3 class="font-display text-2xl mb-3">🜃 Tributo</h3>
@@ -197,45 +181,8 @@
       </div>
     </div>
 
-    <!-- BOLETÍN NOCTURNO (COMPACTO) -->
-    <section class="nocturna-board max-w-4xl w-full">
-      <header class="nocturna-header">
-        <div> <h1 class="nocturna-title">Boletín Nocturno</h1> <p class="nocturna-sub" style="font-size:11px;">Novedades y disponibilidad</p> </div>
-        <div class="nocturna-actions">
-          <button class="sigil-chip" data-filter="all" style="padding:4px 8px;">Todas</button>
-          <button class="sigil-chip" data-filter="nuevo" style="padding:4px 8px;">Nuevas</button>
-        </div>
-      </header>
-      <div class="nocturna-grid">
-        <section class="panel">
-          <h2 style="font-size:14px;">Novedades</h2>
-          <div class="novedades">
-            <article class="nota" data-cat="nuevo"> <div class="nota-top"> <h3 class="nota-title">Carta Astral</h3> <span class="badge nuevo">Nueva</span> </div> <p class="nota-body">Agenda tu carta astral. <a href="https://calendly.com/vs9656271/carta-astral">Reservar</a></p> </article>
-            <article class="nota" data-cat="destacado"> <div class="nota-top"> <h3 class="nota-title">Lectura 30 min</h3> <span class="badge destacado">Destacado</span> </div> <p class="nota-body"><a href="https://calendly.com/vs9656271/30min">Agendar lectura</a></p> </article>
-          </div>
-        </section>
-        <aside class="panel">
-          <h2 style="font-size:14px;">Disponibilidad</h2>
-          <div class="estado-principal">
-            <div class="estado-label"> <strong>Estado</strong> <span class="pill alta">Alta demanda</span> </div>
-            <div class="cta" style="margin-top:5px;">
-              <a class="btn" href="https://calendly.com/vs9656271/carta-astral">Carta Astral</a>
-              <a class="btn secondary" href="https://calendly.com/vs9656271/30min">Lectura 30min</a>
-            </div>
-          </div>
-          <div class="descuento">
-            <div class="altar" id="descuento-dia" data-day="3" data-service="todos" data-discount="20">
-              <div class="altar-top"> <h3>Descuento del Día</h3> <span class="sigil rojo" id="descuento-etiqueta" style="padding:2px 6px;">-20%</span> </div>
-              <p id="descuento-texto" style="font-size:12px;">Miércoles: 20% dto. en cualquier servicio.</p>
-              <span class="micro" id="descuento-hoy"></span>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <!-- ORÁCULO DE SÍ O NO (1 CARTA, 3 AL DÍA) -->
-    <div class="max-w-3xl w-full mt-16 card-grimoire p-8 rounded-xl text-center">
+    <!-- ORÁCULO DE SÍ O NO -->
+    <div class="max-w-3xl w-full mt-16 card-grimoire rounded-xl text-center">
       <h2 class="font-display text-3xl mb-2 flex items-center justify-center gap-3"> <span>🜂</span> Oráculo de Sí o No <span>🜄</span> </h2>
       <p class="text-whisper italic mb-2">Escribe tu pregunta de Sí/No y recibe la guía de los Arcanos</p>
       <p class="text-blood/60 text-sm mb-6" id="tiradas-restantes">Preguntas restantes hoy: 3</p>
@@ -251,10 +198,10 @@
       </div>
     </div>
 
-    <!-- JUEGO DE ESCAPE (MÁS INTERACTIVO) -->
-    <div class="max-w-4xl w-full mt-16 card-grimoire p-8 rounded-xl text-center">
+    <!-- JUEGO DE ESCAPE (MÁS GRACIOSO) -->
+    <div class="max-w-4xl w-full mt-16 card-grimoire rounded-xl text-center">
       <h2 class="font-display text-3xl mb-2 flex items-center justify-center gap-3"> <span>🜍</span> Escape de las Sombras <span>🜍</span> </h2>
-      <p class="text-whisper italic mb-2">Probemos tu intuición. Estás atrapado en una mansión oscura.</p>
+      <p class="text-whisper italic mb-2">Probemos tu intuición (y tu sentido del humor). Estás atrapado en una mansión oscura.</p>
       <p class="text-blood/60 text-sm mb-6" id="ronda-actual">Ronda 1 de 3</p>
       
       <div id="escape-game-container" class="min-h-[200px] flex flex-col items-center justify-center">
@@ -264,8 +211,9 @@
       </div>
     </div>
    
-    <div class="mt-24 text-ash/30 text-xs border-t border-blood/10 pt-8 w-full max-w-3xl">
+    <div class="mt-24 text-ash/30 text-xs border-t border-blood/10 pt-8 w-full max-w-3xl flex flex-col items-center gap-2">
       <p>Valentina S. · Lecturas de tarot & carta astral · Ambiente místico</p>
+      <p class="text-base text-whisper italic">⭐ ¿Te gustó la experiencia? Recomiéndame a quien pueda necesitar luz en la oscuridad. ⭐</p>
     </div>
   </div>
 
@@ -273,90 +221,59 @@
     (function(){
       if (typeof lucide !== 'undefined') lucide.createIcons();
      
-      // Partículas y pétalos (simplificado para no saturar)
+      // Partículas y pétalos
       const ashContainer = document.getElementById('ash-storm');
-      for (let i = 0; i < 50; i++) { let p = document.createElement('div'); p.className = 'ash-particle'; p.style.left = Math.random() * 100 + '%'; p.style.top = Math.random() * 100 + '%'; p.style.animationDelay = (Math.random() * 20) + 's'; p.style.animationDuration = (10 + Math.random() * 20) + 's'; ashContainer.appendChild(p); }
-      const canvas = document.getElementById('petals-canvas'); const ctx = canvas.getContext('2d'); let width, height; let petals = []; const PETAL_COUNT = 30;
+      for (let i = 0; i < 40; i++) { let p = document.createElement('div'); p.className = 'ash-particle'; p.style.left = Math.random() * 100 + '%'; p.style.top = Math.random() * 100 + '%'; p.style.animationDelay = (Math.random() * 20) + 's'; ashContainer.appendChild(p); }
+      const canvas = document.getElementById('petals-canvas'); const ctx = canvas.getContext('2d'); let width, height; let petals = [];
       function resizeCanvas() { width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; } window.addEventListener('resize', resizeCanvas); resizeCanvas();
-      function initPetals() { petals = []; for (let i = 0; i < PETAL_COUNT; i++) { petals.push({ x: Math.random() * width, y: Math.random() * height, size: 8 + Math.random() * 15, speedY: 0.2 + Math.random() * 1, speedX: (Math.random() - 0.5) * 0.4, rotation: Math.random() * Math.PI * 2, color: '#6e2a2a', opacity: 0.3 + Math.random() * 0.3 }); } } initPetals();
-      function drawPetal(ctx, x, y, size, rotation, color, opacity) { ctx.save(); ctx.translate(x, y); ctx.rotate(rotation); ctx.globalAlpha = opacity; ctx.fillStyle = color; ctx.shadowColor = '#1a0f0f'; ctx.shadowBlur = 10; ctx.beginPath(); ctx.ellipse(0, 0, size*0.6, size*0.4, 0, 0, Math.PI*2); ctx.fill(); ctx.restore(); }
-      function updatePetals() { for (let p of petals) { p.y += p.speedY; p.x += p.speedX; p.rotation += 0.01; if (p.y > height + 50) { p.y = -30; p.x = Math.random() * width; } } }
+      function initPetals() { petals = []; for (let i = 0; i < 25; i++) { petals.push({ x: Math.random() * width, y: Math.random() * height, size: 8 + Math.random() * 15, speedY: 0.2 + Math.random() * 1, speedX: (Math.random() - 0.5) * 0.4, rotation: Math.random() * Math.PI * 2, color: '#6e2a2a', opacity: 0.3 }); } } initPetals();
+      function drawPetal(ctx, x, y, size, rotation, color, opacity) { ctx.save(); ctx.translate(x, y); ctx.rotate(rotation); ctx.globalAlpha = opacity; ctx.fillStyle = color; ctx.beginPath(); ctx.ellipse(0, 0, size*0.6, size*0.4, 0, 0, Math.PI*2); ctx.fill(); ctx.restore(); }
+      function updatePetals() { for (let p of petals) { p.y += p.speedY; p.x += p.speedX; if (p.y > height + 50) { p.y = -30; p.x = Math.random() * width; } } }
       function draw() { ctx.clearRect(0, 0, width, height); for (let p of petals) { drawPetal(ctx, p.x, p.y, p.size, p.rotation, p.color, p.opacity); } updatePetals(); requestAnimationFrame(draw); } draw();
 
-      // Enredaderas scroll
-      const vines = [document.getElementById('vine1'), document.getElementById('vine2'), document.getElementById('vine3'), document.getElementById('vine4')];
-      function updateVinesHeight() { const scrollY = window.scrollY; const maxScroll = document.body.scrollHeight - window.innerHeight; const progress = Math.min(scrollY / maxScroll, 1); vines.forEach((vine, i) => { if(vine) vine.style.height = (progress * (150 + i*30)) + 'px'; }); }
-      window.addEventListener('scroll', updateVinesHeight); updateVinesHeight();
-
-      // ========== MODAL DE CONSENTIMIENTO (CON REGISTRO) ==========
+      // ========== MODAL DE CONSENTIMIENTO ==========
       const modal = document.getElementById('consent-modal'); const acceptCheck = document.getElementById('accept-consent'); const confirmBtn = document.getElementById('confirm-consent-btn'); const closeBtn = document.getElementById('close-modal-btn'); let currentAgendarLink = '';
       document.querySelectorAll('.agendar-btn').forEach(btn => { btn.addEventListener('click', (e) => { e.preventDefault(); currentAgendarLink = btn.getAttribute('data-agendar'); modal.style.display = 'flex'; acceptCheck.checked = false; confirmBtn.disabled = true; confirmBtn.classList.add('opacity-50', 'cursor-not-allowed'); }); });
-      acceptCheck.addEventListener('change', () => { confirmBtn.disabled = !acceptCheck.checked; confirmBtn.classList.toggle('opacity-50', !acceptCheck.checked); confirmBtn.classList.toggle('cursor-not-allowed', !acceptCheck.checked); });
-      confirmBtn.addEventListener('click', () => { if (acceptCheck.checked) { const ahora = new Date(); localStorage.setItem('consentimientoFecha', ahora.toLocaleString()); window.open(currentAgendarLink, '_blank'); modal.style.display = 'none'; } });
+      acceptCheck.addEventListener('change', () => { confirmBtn.disabled = !acceptCheck.checked; confirmBtn.classList.toggle('opacity-50', !acceptCheck.checked); });
+      confirmBtn.addEventListener('click', () => { if (acceptCheck.checked) { localStorage.setItem('consentimientoFecha', new Date().toLocaleString()); window.open(currentAgendarLink, '_blank'); modal.style.display = 'none'; } });
       closeBtn.addEventListener('click', () => { modal.style.display = 'none'; }); modal.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
 
-      // ========== ORÁCULO SÍ/NO (1 CARTA, 3 AL DÍA) ==========
+      // ========== ORÁCULO SÍ/NO ==========
       const arcanosMayores = [ { nombre: "El Loco", simbolo: "🃏", afirmativo: false }, { nombre: "El Mago", simbolo: "🜁", afirmativo: true }, { nombre: "La Sacerdotisa", simbolo: "☾", afirmativo: null }, { nombre: "La Emperatriz", simbolo: "♀", afirmativo: true }, { nombre: "El Emperador", simbolo: "♂", afirmativo: true }, { nombre: "El Hierofante", simbolo: "⛪", afirmativo: true }, { nombre: "Los Enamorados", simbolo: "⚭", afirmativo: true }, { nombre: "El Carro", simbolo: "🜂", afirmativo: true }, { nombre: "La Fuerza", simbolo: "🦁", afirmativo: true }, { nombre: "El Ermitaño", simbolo: "🜄", afirmativo: null }, { nombre: "La Rueda", simbolo: "☸", afirmativo: null }, { nombre: "La Justicia", simbolo: "⚖", afirmativo: true }, { nombre: "El Colgado", simbolo: "🜍", afirmativo: null }, { nombre: "La Muerte", simbolo: "💀", afirmativo: false }, { nombre: "La Templanza", simbolo: "🜃", afirmativo: true }, { nombre: "El Diablo", simbolo: "😈", afirmativo: false }, { nombre: "La Torre", simbolo: "🏰", afirmativo: false }, { nombre: "La Estrella", simbolo: "⭐", afirmativo: true }, { nombre: "La Luna", simbolo: "🌙", afirmativo: null }, { nombre: "El Sol", simbolo: "☀", afirmativo: true }, { nombre: "El Juicio", simbolo: "📯", afirmativo: true }, { nombre: "El Mundo", simbolo: "🌍", afirmativo: true } ];
-      
-      const drawBtn = document.getElementById('draw-card-btn'); const displayDiv = document.getElementById('reading-display'); const limitMsg = document.getElementById('reading-limit-message'); const tiradasSpan = document.getElementById('tiradas-restantes');
+      const drawBtn = document.getElementById('draw-card-btn'); const displayDiv = document.getElementById('reading-display'); const tiradasSpan = document.getElementById('tiradas-restantes');
       let tiradasHoy = parseInt(localStorage.getItem('tiradasHoySN') || '0'); const MAX_TIRADAS = 3;
       function actualizarContador() { tiradasSpan.textContent = `Preguntas restantes hoy: ${MAX_TIRADAS - tiradasHoy}`; } actualizarContador();
       function puedeTirar() { const hoy = new Date().toDateString(); const ultimaFecha = localStorage.getItem('ultimaFechaSN'); if (ultimaFecha !== hoy) { tiradasHoy = 0; localStorage.setItem('tiradasHoySN', '0'); localStorage.setItem('ultimaFechaSN', hoy); } else { tiradasHoy = parseInt(localStorage.getItem('tiradasHoySN') || '0'); } actualizarContador(); return tiradasHoy < MAX_TIRADAS; }
-
       drawBtn.addEventListener('click', () => {
-        limitMsg.textContent = '';
         if (!puedeTirar()) { displayDiv.innerHTML = `<p class="text-blood/80 text-xl italic pt-6">🌙 Límite de 3 preguntas alcanzado. Vuelve mañana.</p>`; return; }
         const pregunta = document.getElementById('user-question').value.trim();
         if (!pregunta) { displayDiv.innerHTML = `<p class="text-blood/80 text-xl italic pt-6">🜍 Escribe una pregunta de Sí o No.</p>`; return; }
-
         const carta = arcanosMayores[Math.floor(Math.random() * arcanosMayores.length)];
         let respuesta = "INCIERTO (Pregunta de nuevo más tarde)";
         if (carta.afirmativo === true) respuesta = "SÍ";
         else if (carta.afirmativo === false) respuesta = "NO";
-        
         tiradasHoy++; localStorage.setItem('tiradasHoySN', tiradasHoy); localStorage.setItem('ultimaFechaSN', new Date().toDateString()); actualizarContador();
-
-        displayDiv.innerHTML = `<div class="flex flex-col items-center"><div class="tarot-card-visual"><div class="corner-runes"><span>ᚨ</span><span>ᚱ</span><span>ᚦ</span><span>ᚢ</span></div><div class="card-symbol">${carta.simbolo}</div><div class="card-name">${carta.nombre}</div></div><p class="text-3xl font-display mt-4 text-bone">${respuesta}</p><p class="text-whisper italic mt-2">${carta.nombre === "El Loco" ? "Aventúrate con cautela." : "Confía en la energía de la carta."}</p></div>`;
+        displayDiv.innerHTML = `<div class="flex flex-col items-center"><div class="tarot-card-visual"><div class="corner-runes"><span>ᚨ</span><span>ᚱ</span><span>ᚦ</span><span>ᚢ</span></div><div class="card-symbol">${carta.simbolo}</div><div class="card-name">${carta.nombre}</div></div><p class="text-3xl font-display mt-4 text-bone">${respuesta}</p></div>`;
       });
 
-      // ========== JUEGO DE ESCAPE (MÁS INTERACTIVO) ==========
+      // ========== JUEGO DE ESCAPE (GRACIOSO) ==========
       const escapeOptionsDiv = document.getElementById('escape-options'); const escapeResultDiv = document.getElementById('escape-result'); const rondaSpan = document.getElementById('ronda-actual'); const resetBtn = document.getElementById('reset-escape-btn');
       let ronda = 1; const maxRondas = 3; let juegoActivo = true;
       const escenarios = [
-        { pregunta: "Estás en el vestíbulo. Un crujido te hiela la sangre. ¿Qué haces?", opciones: ["🚪 Abrir la puerta principal (parece segura)", "🪜 Subir las escaleras (están oscuras)", "🍴 Explorar la cocina (huele raro)"], correcta: 1, descripcion: "Subes sigilosamente y el ruido queda atrás." },
-        { pregunta: "Llegas al pasillo del segundo piso. Tres puertas te observan.", opciones: ["ᚨ Puerta con runas (brilla levemente)", "🚪 Puerta entreabierta (se escucha un susurro)", "⬛ Puerta al final (completamente negra)"], correcta: 0, descripcion: "Las runas te protegen y la puerta cede." },
-        { pregunta: "Una salida secreta al jardín. Un perro espectral vigila.", opciones: ["🍖 Ofrecerle comida imaginaria", "🏃 Correr hacia la verja", "🎵 Calmarlo con una canción suave"], correcta: 2, descripcion: "Tu voz lo tranquiliza y te deja pasar." }
+        { pregunta: "Estás en el vestíbulo. Un crujido te hiela la sangre. ¿Qué haces?", opciones: ["🚪 Abrir la puerta (y rezar)", "🪜 Subir escaleras (modo ninja)", "🍴 Cocina (a robar galletas)"], correcta: 1, mensaje: "Subes como alma que lleva el diablo. El crujido era solo tu rodilla." },
+        { pregunta: "Llegas al pasillo. Tres puertas te miran feo.", opciones: ["ᚨ Puerta con runas (brilla bonito)", "🚪 Puerta entreabierta (huele a incienso)", "⬛ Puerta negra (muy emo)"], correcta: 0, mensaje: "Las runas te escupen un papelito: 'Bien hecho, humano curioso'." },
+        { pregunta: "Salida al jardín. Un perro espectral te ladra.", opciones: ["🍖 Ofrecerle una croqueta imaginaria", "🏃 Correr como si no hubiera un mañana", "🎵 Cantarle 'Cielito Lindo'"], correcta: 2, mensaje: "El perro ladea la cabeza, confundido pero conmovido. Te deja pasar." }
       ];
-
       function cargarRonda() {
-        if (ronda > maxRondas) {
-          escapeResultDiv.innerHTML = "✨ ¡Has escapado de la mansión! Las sombras se disipan y ves la luz de la luna. Tu intuición te ha guiado a salvo. ✨";
-          escapeResultDiv.style.animation = "glowText 2s infinite alternate";
-          escapeOptionsDiv.innerHTML = ''; rondaSpan.textContent = `¡Victoria!`; resetBtn.classList.remove('hidden'); juegoActivo = false; return;
-        }
-        escapeResultDiv.style.animation = "none";
-        rondaSpan.textContent = `Ronda ${ronda} de ${maxRondas}`;
-        const esc = escenarios[ronda-1];
+        if (ronda > maxRondas) { escapeResultDiv.innerHTML = "✨ ¡LIBRE! Las sombras se rinden ante tu astucia (y tu mala suerte). Eres el héroe de esta mansión cutre. ✨"; escapeOptionsDiv.innerHTML = ''; rondaSpan.textContent = `¡Victoria!`; resetBtn.classList.remove('hidden'); juegoActivo = false; return; }
+        rondaSpan.textContent = `Ronda ${ronda} de ${maxRondas}`; const esc = escenarios[ronda-1];
         let html = `<p class="text-xl mb-4 col-span-full text-bone">${esc.pregunta}</p>`;
-        esc.opciones.forEach((opt, i) => { html += `<div class="escape-option flex flex-col items-center p-6" data-opt="${i}"><span class="text-5xl mb-3">${opt.split(' ')[0]}</span><h3 class="font-display text-xl mb-1">${opt.substring(opt.indexOf(' ')+1).split('(')[0]}</h3><p class="text-xs text-ash">${opt.split('(')[1]?.replace(')','')}</p></div>`; });
+        esc.opciones.forEach((opt, i) => { html += `<div class="escape-option flex flex-col items-center p-6" data-opt="${i}"><span class="text-5xl mb-3">${opt.split(' ')[0]}</span><h3 class="font-display text-xl">${opt.substring(opt.indexOf(' ')+1)}</h3></div>`; });
         escapeOptionsDiv.innerHTML = html;
-        document.querySelectorAll('.escape-option').forEach(opt => { opt.addEventListener('click', (e) => { if (!juegoActivo) return; const elegida = parseInt(opt.dataset.opt); if (elegida === esc.correcta) { ronda++; cargarRonda(); } else { escapeResultDiv.innerHTML = `🌑 La oscuridad te envuelve... Has fallado. ${escenarios[ronda-1].descripcion} Pero no era el camino correcto.`; escapeOptionsDiv.innerHTML = ''; rondaSpan.textContent = `Escape fallido`; resetBtn.classList.remove('hidden'); juegoActivo = false; } }); });
-        escapeResultDiv.innerHTML = '';
+        document.querySelectorAll('.escape-option').forEach(opt => { opt.addEventListener('click', (e) => { if (!juegoActivo) return; const elegida = parseInt(opt.dataset.opt); if (elegida === esc.correcta) { escapeResultDiv.innerHTML = `✅ ${esc.mensaje}`; ronda++; cargarRonda(); } else { escapeResultDiv.innerHTML = `❌ Fallaste. ${elegida === 0 ? 'La puerta estaba atrancada.' : (elegida === 1 ? 'Te resbalaste con un calcetín.' : 'El perro te ignoró olímpicamente.')} Intenta otra vez.`; } }); });
       }
       resetBtn.addEventListener('click', () => { ronda = 1; juegoActivo = true; resetBtn.classList.add('hidden'); cargarRonda(); });
       cargarRonda();
-
-      // ========== BOLETÍN (FILTROS Y DESCUENTO) ==========
-      (function(){
-        const chips = document.querySelectorAll(".nocturna-board .sigil-chip"); const notas = document.querySelectorAll(".nocturna-board .nota");
-        chips.forEach(chip => { chip.addEventListener("click", () => { const f = chip.dataset.filter || "all"; chips.forEach(c => c.setAttribute("aria-pressed", c.dataset.filter === f ? "true" : "false")); notas.forEach(n => { n.classList.toggle("hidden", f !== "all" && n.dataset.cat !== f); }); }); });
-      })();
-      (function(){
-        const el = document.getElementById("descuento-dia"); if(!el) return;
-        const descuentoEtiqueta = document.getElementById("descuento-etiqueta"); if(descuentoEtiqueta) descuentoEtiqueta.textContent = "-20%";
-        const hoy = document.getElementById("descuento-hoy"); const isToday = (new Date()).getDay() === 3;
-        if(hoy) hoy.textContent = isToday ? "¡Hoy aplica!" : "Solo Miércoles";
-      })();
     })();
   </script>
  
