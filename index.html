@@ -29,43 +29,144 @@
   </script>
  
   <style>
-    /* ===== ESTILOS BASE ===== */
+    /* ===== ESTILOS BASE MEJORADOS ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background-color: #0a0e0c; color: #d6d2c4; font-family: 'Cormorant Garamond', serif; min-height: 100vh; position: relative; overflow-x: hidden; }
-    body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(circle at 20% 30%, rgba(110,42,42,0.3) 0%, transparent 40%), radial-gradient(circle at 90% 70%, rgba(58,79,69,0.4) 0%, transparent 50%), repeating-linear-gradient(45deg, rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 2px, transparent 2px, transparent 8px), url('https://www.transparenttextures.com/patterns/dark-wood.png'); opacity: 0.7; pointer-events: none; z-index: 0; }
+    body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(circle at 20% 30%, rgba(110,42,42,0.25) 0%, transparent 40%), radial-gradient(circle at 90% 70%, rgba(58,79,69,0.35) 0%, transparent 50%), repeating-linear-gradient(45deg, rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 2px, transparent 2px, transparent 8px), url('https://www.transparenttextures.com/patterns/dark-wood.png'); opacity: 0.8; pointer-events: none; z-index: 0; }
     body::after { content: ''; position: fixed; inset: 0; box-shadow: inset 0 0 250px #000000, inset 0 0 80px #1a0f0f; pointer-events: none; z-index: 2; }
     .rune { position: fixed; font-family: 'Cinzel Decorative', serif; font-size: 28px; color: #5a6b5a; opacity: 0.18; text-shadow: 0 0 15px #1e3a2a; animation: floatRune 18s infinite ease-in-out; z-index: 1; pointer-events: none; }
-    @keyframes floatRune { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-40px); } }
+    @keyframes floatRune { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-40px) rotate(2deg); } }
     .void-mark { position: fixed; bottom: 20px; right: 20px; width: 100px; height: 100px; opacity: 0.25; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="%236e2a2a" stroke-width="2.5" d="M50 10 L60 30 L80 20 L70 40 L90 50 L70 60 L80 80 L60 70 L50 90 L40 70 L20 80 L30 60 L10 50 L30 40 L20 20 L40 30 Z"/></svg>'); background-size: contain; z-index: 5; }
     .vines-container { position: fixed; inset: 0; pointer-events: none; z-index: 3; }
     .vine-delilah { position: absolute; bottom: 0; width: 5px; background: linear-gradient(to top, #1e3a2a, transparent); height: 120px; }
     .ash-particle { position: fixed; width: 4px; height: 4px; background: #8a8f8c; border-radius: 50%; opacity: 0.2; filter: blur(1.5px); animation: ashDrift 18s infinite linear; z-index: 2; }
     @keyframes ashDrift { 0% { transform: translateY(0); opacity: 0.1; } 50% { transform: translateY(-100px); opacity: 0.3; } 100% { transform: translateY(-200px); opacity: 0; } }
     #petals-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 8; opacity: 0.9; }
-    .card-grimoire { background: linear-gradient(145deg, #0c1310 0%, #060a08 100%); border: 1px solid rgba(110,42,42,0.35); box-shadow: 0 30px 50px -12px #000000, inset 0 0 50px rgba(0,0,0,0.8); backdrop-filter: blur(3px); transition: all 0.4s; position: relative; z-index: 15; padding: 24px; border-radius: 16px; }
-    .card-grimoire:hover { box-shadow: 0 0 65px rgba(110,42,42,0.4), inset 0 0 30px #1a2a1e, 0 0 0 1px #6e2a2a; border-color: rgba(110,42,42,0.8); transform: translateY(-5px); }
-    .btn-void { background: linear-gradient(135deg, #15201a, #0a100d); border: 1px solid #3a4f45; color: #e0dac8; box-shadow: 0 8px 0 #050807; transition: all 0.12s; text-transform: uppercase; letter-spacing: 4px; font-weight: 600; padding: 10px 20px; display: inline-block; text-decoration: none; }
-    .btn-void:hover { background: linear-gradient(135deg, #1e2e25, #121c16); border-color: #8a3a3a; box-shadow: 0 4px 0 #050807, 0 0 40px #5a2a2a; transform: translateY(4px); color: #f5efe2; }
-    .glow-text { text-shadow: 0 0 25px #1a2a1e, 0 0 45px #050a07; }
+    .card-grimoire { background: linear-gradient(145deg, #0c1310 0%, #060a08 100%); border: 1px solid rgba(110,42,42,0.4); box-shadow: 0 30px 50px -12px #000000, inset 0 0 50px rgba(0,0,0,0.8); backdrop-filter: blur(3px); transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1); position: relative; z-index: 15; padding: 28px; border-radius: 24px; }
+    .card-grimoire:hover { box-shadow: 0 0 70px rgba(110,42,42,0.5), inset 0 0 40px #1a2a1e, 0 0 0 1px #8a3a3a; border-color: rgba(110,42,42,0.9); transform: translateY(-6px); }
+    .btn-void { background: linear-gradient(135deg, #15201a, #0a100d); border: 1px solid #3a4f45; color: #e0dac8; box-shadow: 0 8px 0 #050807; transition: all 0.15s; text-transform: uppercase; letter-spacing: 5px; font-weight: 600; padding: 12px 24px; display: inline-block; text-decoration: none; border-radius: 30px; }
+    .btn-void:hover { background: linear-gradient(135deg, #1e2e25, #121c16); border-color: #8a3a3a; box-shadow: 0 4px 0 #050807, 0 0 45px #5a2a2a; transform: translateY(4px); color: #f5efe2; }
+    .glow-text { text-shadow: 0 0 30px #1a2a1e, 0 0 55px #050a07; }
     h1, h2, h3 { font-family: 'Cinzel Decorative', serif; letter-spacing: 4px; }
     .content-wrapper { position: relative; z-index: 20; }
-    .email-link { border-bottom: 1px dashed #8a3a3a; }
+    .email-link { border-bottom: 1px dashed #8a3a3a; transition: border 0.2s; }
+    .email-link:hover { border-bottom: 1px solid #b34a4a; color: #f0e6d2; }
     ::selection { background: #6e2a2a; color: #f0e9db; }
 
-    /* Tarjeta de Sí/No */
-    .tarot-card-visual { width: 200px; height: 320px; margin: 0 auto 20px; background: linear-gradient(145deg, #140e0c 0%, #0a0706 100%); border: 3px solid #8a6e4b; border-radius: 14px; box-shadow: 0 20px 30px -8px #000000, inset 0 0 45px rgba(0,0,0,0.95); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 14px 8px; position: relative; }
-    .tarot-card-visual .corner-runes span { position: absolute; font-size: 18px; color: #8a6e4b; opacity: 0.6; }
-    .tarot-card-visual .corner-runes span:nth-child(1) { top: 6px; left: 8px; } .tarot-card-visual .corner-runes span:nth-child(2) { top: 6px; right: 8px; } .tarot-card-visual .corner-runes span:nth-child(3) { bottom: 6px; left: 8px; } .tarot-card-visual .corner-runes span:nth-child(4) { bottom: 6px; right: 8px; }
-    .tarot-card-visual .card-symbol { font-size: 70px; margin: 15px 0; filter: drop-shadow(0 0 18px #c9aa7b); }
-    .tarot-card-visual .card-name { font-family: 'Cinzel Decorative', serif; font-size: 20px; color: #f0e6d2; border-top: 2px solid #8a6e4b; padding-top: 14px; width: 100%; }
+    /* ===== TARJETA DE SÍ/NO REDISEÑADA (TOTALMENTE CUSTOM) ===== */
+    .tarot-card-visual {
+      width: 260px;
+      height: 400px;
+      margin: 0 auto 20px;
+      background: #0d0907;
+      background-image: radial-gradient(circle at 20% 30%, rgba(70,40,30,0.3) 0%, transparent 50%),
+                      repeating-linear-gradient(45deg, rgba(180,140,100,0.03) 0px, rgba(180,140,100,0.03) 2px, transparent 2px, transparent 8px);
+      border: 6px double #8a6e4b;
+      border-radius: 18px;
+      box-shadow: 0 25px 40px -8px #000000, inset 0 0 60px rgba(0,0,0,0.9), 0 0 0 2px rgba(110,42,42,0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 12px 20px;
+      position: relative;
+      transition: all 0.4s ease;
+      backdrop-filter: blur(2px);
+    }
+    .tarot-card-visual::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 2px solid rgba(138,110,75,0.35);
+      border-radius: 14px;
+      pointer-events: none;
+    }
+    .tarot-card-visual::after {
+      content: '✦';
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 24px;
+      color: #a08060;
+      opacity: 0.6;
+      text-shadow: 0 0 12px #6e2a2a;
+    }
+    .corner-runes span {
+      position: absolute;
+      font-size: 22px;
+      color: #b89a7a;
+      opacity: 0.8;
+      text-shadow: 0 0 8px #2a1a0a;
+      font-family: 'Cinzel Decorative', serif;
+    }
+    .corner-runes span:nth-child(1) { top: 12px; left: 14px; transform: rotate(-15deg); }
+    .corner-runes span:nth-child(2) { top: 12px; right: 14px; transform: rotate(15deg); }
+    .corner-runes span:nth-child(3) { bottom: 12px; left: 14px; transform: rotate(15deg); }
+    .corner-runes span:nth-child(4) { bottom: 12px; right: 14px; transform: rotate(-15deg); }
+    
+    .card-symbol {
+      font-size: 90px;
+      margin: 10px 0 5px;
+      filter: drop-shadow(0 0 25px #c9aa7b) drop-shadow(0 0 8px #6e2a2a);
+      background: radial-gradient(circle, rgba(200,170,120,0.15) 0%, transparent 70%);
+      padding: 15px 25px;
+      border-radius: 50%;
+      display: inline-block;
+      line-height: 1;
+    }
+    .card-name {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #f0e6d2;
+      border-top: 3px double #8a6e4b;
+      padding-top: 18px;
+      width: 100%;
+      text-align: center;
+      letter-spacing: 3px;
+      text-shadow: 0 2px 5px black;
+      background: linear-gradient(transparent, rgba(20,10,5,0.3));
+    }
+    /* Detalle central geométrico */
+    .card-geometric-center {
+      width: 100%;
+      height: 4px;
+      background: repeating-linear-gradient(90deg, #8a6e4b 0px, #8a6e4b 6px, transparent 6px, transparent 12px);
+      margin: 5px 0;
+    }
 
-    /* Modal */
-    .modal-overlay { position: fixed; inset: 0; background: rgba(4, 6, 5, 0.95); backdrop-filter: blur(10px); z-index: 100; display: flex; align-items: center; justify-content: center; padding: 20px; }
-    .modal-content { max-width: 600px; width: 100%; background: #0c1310; border: 1px solid #6e2a2a; padding: 35px; border-radius: 4px; }
+    /* Respuesta (SÍ/NO) con estilo arcano */
+    .arcano-respuesta {
+      font-size: 3.5rem;
+      font-family: 'Cinzel Decorative', serif;
+      font-weight: 900;
+      background: linear-gradient(135deg, #e6d5ba, #b89a7a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 30px #5a2a2a, 0 0 15px black;
+      letter-spacing: 8px;
+      margin-top: 5px;
+    }
 
-    /* Juego de Escape */
-    .escape-option { background: #0e1210; border: 1px solid #3a4f45; padding: 20px 15px; cursor: pointer; transition: all 0.2s; border-radius: 4px; }
-    .escape-option:hover { border-color: #8a3a3a; box-shadow: 0 0 30px rgba(110,42,42,0.4); transform: translateY(-5px); background: #141c18; }
+    /* Modal mejorado */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(4, 6, 5, 0.96); backdrop-filter: blur(12px); z-index: 100; display: flex; align-items: center; justify-content: center; padding: 20px; }
+    .modal-content { max-width: 600px; width: 100%; background: #0c1310; border: 2px solid #6e2a2a; padding: 40px; border-radius: 24px; box-shadow: 0 0 80px #1f0f0f; }
+
+    /* Juego de Escape mejorado */
+    .escape-option { background: #0e1210; border: 2px solid #2a3a32; padding: 24px 15px; cursor: pointer; transition: all 0.3s; border-radius: 20px; backdrop-filter: blur(4px); }
+    .escape-option:hover { border-color: #8a3a3a; box-shadow: 0 0 40px rgba(110,42,42,0.5); transform: translateY(-6px); background: #141c18; }
+
+    /* Animación de brillo para botones */
+    .pulse-glow {
+      animation: pulseGlow 3s infinite;
+    }
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 5px #6e2a2a; }
+      50% { box-shadow: 0 0 20px #8a3a3a, 0 0 5px #6e2a2a; }
+      100% { box-shadow: 0 0 5px #6e2a2a; }
+    }
   </style>
 </head>
 <body class="font-body antialiased">
@@ -84,7 +185,7 @@
   <div id="consent-modal" class="modal-overlay" style="display: none;">
     <div class="modal-content text-left">
       <h2 class="font-display text-3xl mb-4 text-bone border-b border-blood/40 pb-2">Consentimiento Informado</h2>
-      <div class="space-y-3 text-bone/90 text-base max-h-[400px] overflow-y-auto pr-2">
+      <div class="space-y-3 text-bone/90 text-base max-h-[400px] overflow-y-auto pr-2 custom-scroll">
         <p>Antes de continuar, lee y acepta:</p>
         <ul class="list-disc pl-5 space-y-2 text-sm">
           <li><span class="text-blood">ᛉ</span> Afirmo tener <span class="text-bone">18 años o más</span>.</li>
@@ -112,12 +213,12 @@
     <div class="hr-rune my-4"> <span>᛫</span><span class="text-bone/60 text-2xl tracking-[15px]">⛧</span><span>᛫</span> </div>
     <p class="text-2xl italic text-ash mb-8 font-light tracking-wide">« Todo sucede por algo, tú confía :) »</p>
 
-    <!-- GUÍA DE USO (AL INICIO) -->
-    <div class="max-w-4xl w-full mb-12 card-grimoire p-6 rounded-xl text-left">
+    <!-- GUÍA DE USO -->
+    <div class="max-w-4xl w-full mb-12 card-grimoire p-8 rounded-2xl text-left">
       <h2 class="font-display text-3xl mb-4 flex items-center gap-3"><span>🜁</span> Guía de Uso · Tutorial</h2>
-      <div class="grid md:grid-cols-2 gap-6 text-bone/90">
+      <div class="grid md:grid-cols-2 gap-8 text-bone/90">
         <div>
-          <h3 class="text-blood text-xl mb-2">📜 Para agendar:</h3>
+          <h3 class="text-blood text-xl mb-3">📜 Para agendar:</h3>
           <ol class="list-decimal pl-5 space-y-2">
             <li>Haz clic en los botones <span class="text-bone">"AGENDAR"</span> de cada servicio.</li>
             <li>Acepta el consentimiento informado.</li>
@@ -126,9 +227,9 @@
           </ol>
         </div>
         <div>
-          <h3 class="text-blood text-xl mb-2">🔮 En esta página encontrarás:</h3>
+          <h3 class="text-blood text-xl mb-3">🔮 En esta página encontrarás:</h3>
           <ul class="list-disc pl-5 space-y-2">
-            <li><span class="text-bone">Oráculo de Sí/No</span> (3 preguntas al día).</li>
+            <li><span class="text-bone">Oráculo de Sí/No</span> (cartas diseñadas a mano).</li> 
             <li><span class="text-bone">Juego de Escape</span> para probar tu intuición.</li>
             <li>Información sobre Valentina y su filosofía.</li>
             <li>Ante cualquier duda, consulta a <span class="text-blood font-bold">Cautín</span>, mi astrólogo y chatbot de confianza (esquina inferior derecha).</li>
@@ -138,25 +239,25 @@
     </div>
    
     <div class="grid md:grid-cols-2 gap-8 max-w-5xl w-full">
-      <div class="card-grimoire rounded-xl text-left">
+      <div class="card-grimoire rounded-2xl text-left">
         <div class="flex items-center gap-3 mb-2"> <span class="text-4xl text-blood/60">🜁</span> <h2 class="text-3xl font-display">Lectura de Tarot</h2> </div>
         <p class="text-lg text-bone/80 mb-1">60 minutos · Sin límite de preguntas</p> <p class="text-4xl font-display text-bone mt-2">$70 <span class="text-base">MXN</span></p>
-        <button data-agendar="https://calendly.com/vs9656271/30min" class="agendar-btn btn-void px-7 py-3 rounded-sm inline-block mt-7 text-lg">AGENDAR · ᚱ</button>
+        <button data-agendar="https://calendly.com/vs9656271/30min" class="agendar-btn btn-void px-7 py-3 rounded-full inline-block mt-7 text-lg pulse-glow">AGENDAR · ᚱ</button>
       </div>
-      <div class="card-grimoire rounded-xl text-left">
+      <div class="card-grimoire rounded-2xl text-left">
         <div class="flex items-center gap-3 mb-2"> <span class="text-4xl text-blood/60">🜂</span> <h2 class="text-3xl font-display">Carta Astral</h2> </div>
         <p class="text-lg text-bone/80 mb-1">90 minutos · Presencial o en línea</p> <p class="text-4xl font-display text-bone mt-2">$400 <span class="text-base">MXN</span></p>
-        <button data-agendar="https://calendly.com/vs9656271/carta-astral" class="agendar-btn btn-void px-7 py-3 rounded-sm inline-block mt-7 text-lg">AGENDAR · ᚦ</button>
+        <button data-agendar="https://calendly.com/vs9656271/carta-astral" class="agendar-btn btn-void px-7 py-3 rounded-full inline-block mt-7 text-lg pulse-glow">AGENDAR · ᚦ</button>
       </div>
     </div>
 
-    <!-- ANUNCIO PEQUEÑO DE DESCUENTO -->
-    <div class="max-w-4xl w-full mt-8 text-center">
-      <p class="bg-blood/20 border border-blood/40 rounded-full px-6 py-3 inline-block text-bone italic">🜍 Miércoles de Descuento: 20% OFF en cualquier servicio. ¡Agenda y aprovecha! 🜍</p>
+    <!-- DESCUENTO -->
+    <div class="max-w-4xl w-full mt-10 text-center">
+      <p class="bg-blood/20 border border-blood/40 rounded-full px-8 py-4 inline-block text-bone italic text-lg shadow-lg">🜍 Miércoles de Descuento: 20% OFF en cualquier servicio. ¡Agenda y aprovecha! 🜍</p>
     </div>
    
     <!-- VALENTINA S. -->
-    <div class="max-w-4xl mt-16 card-grimoire rounded-xl text-left relative overflow-hidden">
+    <div class="max-w-4xl mt-16 card-grimoire rounded-2xl text-left relative overflow-hidden">
       <h2 class="text-4xl md:text-5xl font-display mb-2">Valentina S.</h2>
       <p class="text-3xl italic text-blood/90 mb-6 border-b border-blood/20 pb-4">"Quien no vive para servir, no sirve para vivir."</p>
       <div class="space-y-4 text-lg text-bone/90">
@@ -169,49 +270,49 @@
     <!-- CONTACTO Y TRIBUTO -->
     <div class="mt-12 w-full max-w-3xl">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-        <div class="bg-rot/50 p-6 border border-moss/40 rounded-sm">
+        <div class="bg-rot/50 p-6 border border-moss/40 rounded-2xl">
           <h3 class="font-display text-2xl mb-3">🜃 Tributo</h3>
           <p class="text-bone/90">Efectivo o Transferencia</p>
           <details class="mt-2"><summary class="cursor-pointer text-blood text-sm">Ver CLABE</summary><p class="mt-2 font-mono bg-black/30 p-2 rounded">014180200149285395</p></details>
         </div>
-        <div class="bg-rot/50 p-6 border border-moss/40 rounded-sm">
+        <div class="bg-rot/50 p-6 border border-moss/40 rounded-2xl">
           <h3 class="font-display text-2xl mb-3">🜁 Contacto</h3>
           <p class="text-bone/90"><a href="mailto:vs9656271@gmail.com" class="email-link">vs9656271@gmail.com</a></p>
         </div>
       </div>
     </div>
 
-    <!-- ORÁCULO DE SÍ O NO -->
-    <div class="max-w-3xl w-full mt-16 card-grimoire rounded-xl text-center">
+    <!-- ORÁCULO DE SÍ O NO (DISEÑO DE CARTA COMPLETAMENTE NUEVO) -->
+    <div class="max-w-3xl w-full mt-20 card-grimoire rounded-2xl text-center">
       <h2 class="font-display text-3xl mb-2 flex items-center justify-center gap-3"> <span>🜂</span> Oráculo de Sí o No <span>🜄</span> </h2>
-      <p class="text-whisper italic mb-2">Escribe tu pregunta de Sí/No y recibe la guía de los Arcanos</p>
+      <p class="text-whisper italic mb-2 text-lg">Escribe tu pregunta de Sí/No y recibe la guía de los Arcanos</p>
       <p class="text-blood/60 text-sm mb-6" id="tiradas-restantes">Preguntas restantes hoy: 3</p>
       
-      <div class="max-w-lg mx-auto mb-6">
-        <textarea id="user-question" rows="2" class="w-full bg-void/80 border border-blood/40 rounded-sm p-4 text-bone placeholder-ash/50 outline-none resize-none" placeholder="Ej: ¿Conseguiré ese trabajo?"></textarea>
+      <div class="max-w-lg mx-auto mb-8">
+        <textarea id="user-question" rows="2" class="w-full bg-void/80 border-2 border-blood/30 rounded-xl p-5 text-bone placeholder-ash/50 outline-none resize-none focus:border-blood/70 transition" placeholder="Ej: ¿Conseguiré ese trabajo?"></textarea>
       </div>
 
-      <div id="tarot-reading-container" class="min-h-[300px] flex flex-col items-center justify-center">
-        <button id="draw-card-btn" class="btn-void px-10 py-4 text-xl rounded-sm"> ᚠ Consultar al Oráculo ᚠ </button>
-        <div id="reading-display" class="mt-8 w-full"></div>
+      <div id="tarot-reading-container" class="min-h-[400px] flex flex-col items-center justify-center">
+        <button id="draw-card-btn" class="btn-void px-10 py-5 text-xl rounded-full pulse-glow"> ᚠ Consultar al Oráculo ᚠ </button>
+        <div id="reading-display" class="mt-10 w-full"></div>
         <p id="reading-limit-message" class="text-blood/80 italic mt-4"></p>
       </div>
     </div>
 
-    <!-- JUEGO DE ESCAPE (MÁS GRACIOSO) -->
-    <div class="max-w-4xl w-full mt-16 card-grimoire rounded-xl text-center">
+    <!-- JUEGO DE ESCAPE -->
+    <div class="max-w-4xl w-full mt-20 card-grimoire rounded-2xl text-center">
       <h2 class="font-display text-3xl mb-2 flex items-center justify-center gap-3"> <span>🜍</span> Escape de las Sombras <span>🜍</span> </h2>
       <p class="text-whisper italic mb-2">Probemos tu intuición (y tu sentido del humor). Estás atrapado en una mansión oscura.</p>
-      <p class="text-blood/60 text-sm mb-6" id="ronda-actual">Ronda 1 de 3</p>
+      <p class="text-blood/60 text-sm mb-8" id="ronda-actual">Ronda 1 de 3</p>
       
       <div id="escape-game-container" class="min-h-[200px] flex flex-col items-center justify-center">
         <div id="escape-options" class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full"></div>
-        <div id="escape-result" class="mt-8 p-6 bg-void/60 border border-blood/30 rounded-sm w-full text-lg italic"></div>
-        <button id="reset-escape-btn" class="btn-void px-6 py-2 mt-6 hidden">Jugar de nuevo</button>
+        <div id="escape-result" class="mt-10 p-8 bg-void/60 border-2 border-blood/30 rounded-2xl w-full text-xl italic"></div>
+        <button id="reset-escape-btn" class="btn-void px-8 py-3 mt-8 hidden rounded-full">Jugar de nuevo</button>
       </div>
     </div>
    
-    <div class="mt-24 text-ash/30 text-xs border-t border-blood/10 pt-8 w-full max-w-3xl flex flex-col items-center gap-2">
+    <div class="mt-28 text-ash/30 text-xs border-t border-blood/10 pt-10 w-full max-w-3xl flex flex-col items-center gap-3">
       <p>Valentina S. · Lecturas de tarot & carta astral · Ambiente místico</p>
       <p class="text-base text-whisper italic">⭐ ¿Te gustó la experiencia? Recomiéndame a quien pueda necesitar luz en la oscuridad. ⭐</p>
     </div>
@@ -231,32 +332,76 @@
       function updatePetals() { for (let p of petals) { p.y += p.speedY; p.x += p.speedX; if (p.y > height + 50) { p.y = -30; p.x = Math.random() * width; } } }
       function draw() { ctx.clearRect(0, 0, width, height); for (let p of petals) { drawPetal(ctx, p.x, p.y, p.size, p.rotation, p.color, p.opacity); } updatePetals(); requestAnimationFrame(draw); } draw();
 
-      // ========== MODAL DE CONSENTIMIENTO ==========
+      // MODAL CONSENTIMIENTO
       const modal = document.getElementById('consent-modal'); const acceptCheck = document.getElementById('accept-consent'); const confirmBtn = document.getElementById('confirm-consent-btn'); const closeBtn = document.getElementById('close-modal-btn'); let currentAgendarLink = '';
       document.querySelectorAll('.agendar-btn').forEach(btn => { btn.addEventListener('click', (e) => { e.preventDefault(); currentAgendarLink = btn.getAttribute('data-agendar'); modal.style.display = 'flex'; acceptCheck.checked = false; confirmBtn.disabled = true; confirmBtn.classList.add('opacity-50', 'cursor-not-allowed'); }); });
       acceptCheck.addEventListener('change', () => { confirmBtn.disabled = !acceptCheck.checked; confirmBtn.classList.toggle('opacity-50', !acceptCheck.checked); });
       confirmBtn.addEventListener('click', () => { if (acceptCheck.checked) { localStorage.setItem('consentimientoFecha', new Date().toLocaleString()); window.open(currentAgendarLink, '_blank'); modal.style.display = 'none'; } });
       closeBtn.addEventListener('click', () => { modal.style.display = 'none'; }); modal.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
 
-      // ========== ORÁCULO SÍ/NO ==========
-      const arcanosMayores = [ { nombre: "El Loco", simbolo: "🃏", afirmativo: false }, { nombre: "El Mago", simbolo: "🜁", afirmativo: true }, { nombre: "La Sacerdotisa", simbolo: "☾", afirmativo: null }, { nombre: "La Emperatriz", simbolo: "♀", afirmativo: true }, { nombre: "El Emperador", simbolo: "♂", afirmativo: true }, { nombre: "El Hierofante", simbolo: "⛪", afirmativo: true }, { nombre: "Los Enamorados", simbolo: "⚭", afirmativo: true }, { nombre: "El Carro", simbolo: "🜂", afirmativo: true }, { nombre: "La Fuerza", simbolo: "🦁", afirmativo: true }, { nombre: "El Ermitaño", simbolo: "🜄", afirmativo: null }, { nombre: "La Rueda", simbolo: "☸", afirmativo: null }, { nombre: "La Justicia", simbolo: "⚖", afirmativo: true }, { nombre: "El Colgado", simbolo: "🜍", afirmativo: null }, { nombre: "La Muerte", simbolo: "💀", afirmativo: false }, { nombre: "La Templanza", simbolo: "🜃", afirmativo: true }, { nombre: "El Diablo", simbolo: "😈", afirmativo: false }, { nombre: "La Torre", simbolo: "🏰", afirmativo: false }, { nombre: "La Estrella", simbolo: "⭐", afirmativo: true }, { nombre: "La Luna", simbolo: "🌙", afirmativo: null }, { nombre: "El Sol", simbolo: "☀", afirmativo: true }, { nombre: "El Juicio", simbolo: "📯", afirmativo: true }, { nombre: "El Mundo", simbolo: "🌍", afirmativo: true } ];
+      // ORÁCULO SÍ/NO - DATOS MEJORADOS Y DISEÑO DE CARTA CUSTOM
+      const arcanosMayores = [ 
+        { nombre: "El Loco", simbolo: "🃏", afirmativo: false, runa: "ᚠ" }, 
+        { nombre: "El Mago", simbolo: "🜁", afirmativo: true, runa: "ᚢ" }, 
+        { nombre: "La Sacerdotisa", simbolo: "☾", afirmativo: null, runa: "ᚦ" }, 
+        { nombre: "La Emperatriz", simbolo: "♀", afirmativo: true, runa: "ᚨ" }, 
+        { nombre: "El Emperador", simbolo: "♂", afirmativo: true, runa: "ᚱ" }, 
+        { nombre: "El Hierofante", simbolo: "⛪", afirmativo: true, runa: "ᚲ" }, 
+        { nombre: "Los Enamorados", simbolo: "⚭", afirmativo: true, runa: "ᚷ" }, 
+        { nombre: "El Carro", simbolo: "🜂", afirmativo: true, runa: "ᚹ" }, 
+        { nombre: "La Fuerza", simbolo: "🦁", afirmativo: true, runa: "ᚺ" }, 
+        { nombre: "El Ermitaño", simbolo: "🜄", afirmativo: null, runa: "ᚾ" }, 
+        { nombre: "La Rueda", simbolo: "☸", afirmativo: null, runa: "ᛁ" }, 
+        { nombre: "La Justicia", simbolo: "⚖", afirmativo: true, runa: "ᛃ" }, 
+        { nombre: "El Colgado", simbolo: "🜍", afirmativo: null, runa: "ᛈ" }, 
+        { nombre: "La Muerte", simbolo: "💀", afirmativo: false, runa: "ᛇ" }, 
+        { nombre: "La Templanza", simbolo: "🜃", afirmativo: true, runa: "ᛉ" }, 
+        { nombre: "El Diablo", simbolo: "😈", afirmativo: false, runa: "ᛊ" }, 
+        { nombre: "La Torre", simbolo: "🏰", afirmativo: false, runa: "ᛏ" }, 
+        { nombre: "La Estrella", simbolo: "⭐", afirmativo: true, runa: "ᛒ" }, 
+        { nombre: "La Luna", simbolo: "🌙", afirmativo: null, runa: "ᛖ" }, 
+        { nombre: "El Sol", simbolo: "☀", afirmativo: true, runa: "ᛗ" }, 
+        { nombre: "El Juicio", simbolo: "📯", afirmativo: true, runa: "ᛚ" }, 
+        { nombre: "El Mundo", simbolo: "🌍", afirmativo: true, runa: "ᛜ" } 
+      ];
       const drawBtn = document.getElementById('draw-card-btn'); const displayDiv = document.getElementById('reading-display'); const tiradasSpan = document.getElementById('tiradas-restantes');
       let tiradasHoy = parseInt(localStorage.getItem('tiradasHoySN') || '0'); const MAX_TIRADAS = 3;
       function actualizarContador() { tiradasSpan.textContent = `Preguntas restantes hoy: ${MAX_TIRADAS - tiradasHoy}`; } actualizarContador();
       function puedeTirar() { const hoy = new Date().toDateString(); const ultimaFecha = localStorage.getItem('ultimaFechaSN'); if (ultimaFecha !== hoy) { tiradasHoy = 0; localStorage.setItem('tiradasHoySN', '0'); localStorage.setItem('ultimaFechaSN', hoy); } else { tiradasHoy = parseInt(localStorage.getItem('tiradasHoySN') || '0'); } actualizarContador(); return tiradasHoy < MAX_TIRADAS; }
+      
       drawBtn.addEventListener('click', () => {
-        if (!puedeTirar()) { displayDiv.innerHTML = `<p class="text-blood/80 text-xl italic pt-6">🌙 Límite de 3 preguntas alcanzado. Vuelve mañana.</p>`; return; }
+        if (!puedeTirar()) { displayDiv.innerHTML = `<p class="text-blood/80 text-2xl italic pt-6 font-display">🌙 Límite de 3 preguntas alcanzado. Vuelve mañana.</p>`; return; }
         const pregunta = document.getElementById('user-question').value.trim();
-        if (!pregunta) { displayDiv.innerHTML = `<p class="text-blood/80 text-xl italic pt-6">🜍 Escribe una pregunta de Sí o No.</p>`; return; }
+        if (!pregunta) { displayDiv.innerHTML = `<p class="text-blood/80 text-2xl italic pt-6">🜍 Escribe una pregunta de Sí o No.</p>`; return; }
         const carta = arcanosMayores[Math.floor(Math.random() * arcanosMayores.length)];
-        let respuesta = "INCIERTO (Pregunta de nuevo más tarde)";
+        let respuesta = "INCIERTO ✦";
+        let respuestaClase = "arcano-respuesta";
         if (carta.afirmativo === true) respuesta = "SÍ";
         else if (carta.afirmativo === false) respuesta = "NO";
+        else respuesta = "INCIERTO";
+        
         tiradasHoy++; localStorage.setItem('tiradasHoySN', tiradasHoy); localStorage.setItem('ultimaFechaSN', new Date().toDateString()); actualizarContador();
-        displayDiv.innerHTML = `<div class="flex flex-col items-center"><div class="tarot-card-visual"><div class="corner-runes"><span>ᚨ</span><span>ᚱ</span><span>ᚦ</span><span>ᚢ</span></div><div class="card-symbol">${carta.simbolo}</div><div class="card-name">${carta.nombre}</div></div><p class="text-3xl font-display mt-4 text-bone">${respuesta}</p></div>`;
+        
+        // NUEVO DISEÑO DE CARTA TOTALMENTE CUSTOM
+        displayDiv.innerHTML = `
+          <div class="flex flex-col items-center">
+            <div class="tarot-card-visual">
+              <div class="corner-runes">
+                <span>${carta.runa || 'ᚨ'}</span><span>ᚱ</span><span>ᚦ</span><span>ᚢ</span>
+              </div>
+              <div style="flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+                <div class="card-symbol">${carta.simbolo}</div>
+                <div class="card-geometric-center"></div>
+              </div>
+              <div class="card-name">${carta.nombre}</div>
+            </div>
+            <div class="${respuestaClase} text-5xl md:text-6xl mt-6 font-display">${respuesta}</div>
+            <p class="text-whisper/70 text-sm mt-3 italic tracking-widest">✦ los arcanos han hablado ✦</p>
+          </div>
+        `;
       });
 
-      // ========== JUEGO DE ESCAPE (GRACIOSO) ==========
+      // JUEGO DE ESCAPE
       const escapeOptionsDiv = document.getElementById('escape-options'); const escapeResultDiv = document.getElementById('escape-result'); const rondaSpan = document.getElementById('ronda-actual'); const resetBtn = document.getElementById('reset-escape-btn');
       let ronda = 1; const maxRondas = 3; let juegoActivo = true;
       const escenarios = [
