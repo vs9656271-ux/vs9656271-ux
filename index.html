@@ -37,7 +37,7 @@
   </script>
  
   <style>
-    /* ===== ESTILOS · ESTÉTICA SOMBRÍA ===== */
+    /* ===== ESTILOS · ESTÉTICA SOMBRÍA & CORRUPCIÓN (INSPIRACIÓN SILENCIOSA) ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
    
     body {
@@ -49,16 +49,18 @@
       overflow-x: hidden;
     }
    
+    /* Textura de corrupción — papel envejecido, polvo, manchas de aceite */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(circle at 20% 30%, rgba(110,42,42,0.25) 0%, transparent 40%),
-        radial-gradient(circle at 90% 70%, rgba(58,79,69,0.35) 0%, transparent 50%),
-        repeating-linear-gradient(45deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 2px, transparent 2px, transparent 8px),
+        radial-gradient(circle at 20% 30%, rgba(110,42,42,0.3) 0%, transparent 40%),
+        radial-gradient(circle at 90% 70%, rgba(58,79,69,0.4) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(20, 20, 10, 0.4) 0%, transparent 30%),
+        repeating-linear-gradient(45deg, rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 2px, transparent 2px, transparent 8px),
         url('https://www.transparenttextures.com/patterns/dark-wood.png');
-      opacity: 0.6;
+      opacity: 0.7;
       pointer-events: none;
       z-index: 0;
     }
@@ -67,40 +69,41 @@
       content: '';
       position: fixed;
       inset: 0;
-      box-shadow: inset 0 0 200px #000000, inset 0 0 60px #1a0f0f;
+      box-shadow: inset 0 0 250px #000000, inset 0 0 80px #1a0f0f;
       pointer-events: none;
       z-index: 2;
     }
    
+    /* --- RUNAS FLOTANTES (MÁS DENSAS) --- */
     .rune {
       position: fixed;
       font-family: 'Cinzel Decorative', serif;
-      font-size: 26px;
+      font-size: 28px;
       color: #5a6b5a;
-      opacity: 0.16;
-      text-shadow: 0 0 12px #1e3a2a, 0 0 25px #0a0e0c;
+      opacity: 0.18;
+      text-shadow: 0 0 15px #1e3a2a, 0 0 30px #0a0e0c;
       animation: floatRune 18s infinite ease-in-out;
       z-index: 1;
       pointer-events: none;
-      filter: blur(0.3px);
+      filter: blur(0.4px);
     }
     @keyframes floatRune {
-      0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.12; }
-      50% { transform: translateY(-45px) rotate(5deg); opacity: 0.3; }
+      0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.14; }
+      50% { transform: translateY(-55px) rotate(8deg); opacity: 0.35; }
     }
    
     .void-mark {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      width: 90px;
-      height: 90px;
-      opacity: 0.22;
+      width: 100px;
+      height: 100px;
+      opacity: 0.25;
       background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="%236e2a2a" stroke-width="2.5" d="M50 10 L60 30 L80 20 L70 40 L90 50 L70 60 L80 80 L60 70 L50 90 L40 70 L20 80 L30 60 L10 50 L30 40 L20 20 L40 30 Z"/><circle cx="50" cy="50" r="10" fill="%236e2a2a" opacity="0.6"/><path d="M45 45 L55 55 M55 45 L45 55" stroke="%23d6d2c4" stroke-width="1.5" opacity="0.5"/></svg>');
       background-size: contain;
       background-repeat: no-repeat;
       z-index: 5;
-      filter: drop-shadow(0 0 15px #2a1a1a);
+      filter: drop-shadow(0 0 20px #2a1a1a);
     }
    
     .vines-container {
@@ -109,14 +112,13 @@
       pointer-events: none;
       z-index: 3;
     }
-   
     .vine-delilah {
       position: absolute;
       bottom: 0;
-      width: 5px;
-      background: linear-gradient(to top, #1e3a2a, #2a4a35, #0f1f15, transparent);
+      width: 6px;
+      background: linear-gradient(to top, #142115, #1e3a2a, #0f1f15, transparent);
       border-radius: 3px 3px 0 0;
-      box-shadow: 0 0 18px #0f1a12, 0 0 5px #1a2e20;
+      box-shadow: 0 0 25px #0f1a12, 0 0 8px #1a2e20;
       transition: height 0.08s ease-out;
       transform-origin: bottom;
     }
@@ -124,70 +126,70 @@
     .vine-delilah::after {
       content: '';
       position: absolute;
-      width: 22px;
-      height: 22px;
+      width: 26px;
+      height: 26px;
       background: #142115;
       border-radius: 70% 20% 60% 30% / 50% 40% 60% 40%;
       transform: rotate(35deg);
-      left: -14px;
-      box-shadow: 0 0 12px #0a120c, inset -3px -3px 6px #0c1a10;
-      border-left: 3px solid #3a5a45;
+      left: -16px;
+      box-shadow: 0 0 18px #0a120c, inset -4px -4px 8px #0c1a10;
+      border-left: 4px solid #3a5a45;
     }
     .vine-delilah::after {
-      top: 65px;
+      top: 70px;
       transform: rotate(-45deg) scaleX(-1);
       left: auto;
-      right: -14px;
+      right: -16px;
       background: #1a2a1e;
     }
     .vine-delilah .thorn {
       position: absolute;
-      width: 16px;
-      height: 4px;
+      width: 18px;
+      height: 5px;
       background: #5a2a2a;
-      left: -16px;
-      top: 85px;
-      border-radius: 3px;
-      transform: rotate(-20deg);
-      box-shadow: 0 0 10px #3a1a1a;
+      left: -18px;
+      top: 95px;
+      border-radius: 4px;
+      transform: rotate(-25deg);
+      box-shadow: 0 0 15px #3a1a1a;
     }
     .vine-top {
       position: absolute;
       top: 0;
-      width: 4px;
+      width: 5px;
       background: linear-gradient(to bottom, #1e3a2a, #2a4a35, transparent);
-      box-shadow: 0 0 12px #0f1a12;
-      height: 150px;
+      box-shadow: 0 0 18px #0f1a12;
+      height: 180px;
     }
     .vine-top::before {
       content: '';
       position: absolute;
-      width: 20px;
-      height: 20px;
+      width: 24px;
+      height: 24px;
       background: #142115;
       border-radius: 50% 30% 50% 40% / 40% 50% 40% 50%;
-      left: -8px;
-      bottom: 25px;
+      left: -10px;
+      bottom: 30px;
       transform: rotate(70deg);
-      box-shadow: inset -3px -3px 6px #0c1a10;
-      border-bottom: 3px solid #3a5a45;
+      box-shadow: inset -4px -4px 8px #0c1a10;
+      border-bottom: 4px solid #3a5a45;
     }
    
     .ash-particle {
       position: fixed;
-      width: 3px;
-      height: 3px;
+      width: 4px;
+      height: 4px;
       background: #8a8f8c;
       border-radius: 50%;
-      opacity: 0.2;
-      filter: blur(1px);
-      animation: ashDrift 16s infinite linear;
+      opacity: 0.25;
+      filter: blur(1.5px);
+      animation: ashDrift 18s infinite linear;
       z-index: 2;
     }
     @keyframes ashDrift {
-      0% { transform: translateY(0) translateX(0); opacity: 0.08; }
-      50% { transform: translateY(-80px) translateX(30px); opacity: 0.35; }
-      100% { transform: translateY(-160px) translateX(-20px); opacity: 0.0; }
+      0% { transform: translateY(0) translateX(0); opacity: 0.1; }
+      50% { transform: translateY(-100px) translateX(40px); opacity: 0.4; }
+      100% { transform: translateY(-200px) translateX(-30px); opacity: 0.0; }
     }
 
     #petals-canvas {
@@ -204,26 +206,26 @@
     .card-grimoire {
       background: linear-gradient(145deg, #0c1310 0%, #060a08 100%);
       border: 1px solid rgba(110,42,42,0.35);
-      box-shadow: 0 25px 45px -10px #000000, inset 0 0 40px rgba(0,0,0,0.7), 0 0 0 1px rgba(58,79,69,0.25);
-      backdrop-filter: blur(2px);
+      box-shadow: 0 30px 50px -12px #000000, inset 0 0 50px rgba(0,0,0,0.8), 0 0 0 1px rgba(58,79,69,0.3);
+      backdrop-filter: blur(3px);
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
       z-index: 15;
     }
     .card-grimoire:hover {
-      box-shadow: 0 0 55px rgba(110,42,42,0.3), inset 0 0 25px #1a2a1e, 0 0 0 1px #6e2a2a;
-      border-color: rgba(110,42,42,0.7);
-      transform: translateY(-4px);
+      box-shadow: 0 0 65px rgba(110,42,42,0.4), inset 0 0 30px #1a2a1e, 0 0 0 1px #6e2a2a;
+      border-color: rgba(110,42,42,0.8);
+      transform: translateY(-5px);
     }
     .card-grimoire::after {
       content: 'ᛉ ᚨ ᛟ ᚱ';
       position: absolute;
-      bottom: 10px;
-      right: 18px;
-      font-size: 14px;
+      bottom: 12px;
+      right: 20px;
+      font-size: 16px;
       color: #4a5a4e;
-      opacity: 0.4;
-      letter-spacing: 8px;
+      opacity: 0.5;
+      letter-spacing: 10px;
       font-family: 'Cinzel Decorative';
     }
    
@@ -231,10 +233,10 @@
       background: linear-gradient(135deg, #15201a, #0a100d);
       border: 1px solid #3a4f45;
       color: #e0dac8;
-      box-shadow: 0 8px 0 #050807, 0 0 20px rgba(0,0,0,0.8);
+      box-shadow: 0 8px 0 #050807, 0 0 25px rgba(0,0,0,0.9);
       transition: all 0.12s;
       text-transform: uppercase;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
       font-weight: 600;
       position: relative;
       z-index: 20;
@@ -244,28 +246,28 @@
     .btn-void:hover {
       background: linear-gradient(135deg, #1e2e25, #121c16);
       border-color: #8a3a3a;
-      box-shadow: 0 4px 0 #050807, 0 0 30px #5a2a2a;
+      box-shadow: 0 4px 0 #050807, 0 0 40px #5a2a2a;
       transform: translateY(4px);
       color: #f5efe2;
     }
    
     .glow-text {
-      text-shadow: 0 0 18px #1a2a1e, 0 0 35px #050a07;
+      text-shadow: 0 0 25px #1a2a1e, 0 0 45px #050a07;
     }
    
     h1, h2, h3 {
       font-family: 'Cinzel Decorative', serif;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
     }
    
     .hr-rune {
       display: flex;
       align-items: center;
-      gap: 16px;
-      opacity: 0.6;
+      gap: 20px;
+      opacity: 0.7;
     }
     .hr-rune span {
-      font-size: 24px;
+      font-size: 28px;
       color: #6e2a2a;
     }
    
@@ -282,49 +284,38 @@
     .email-link:hover { color: #b84a4a; }
    
     ::selection { background: #6e2a2a; color: #f0e9db; }
-    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar { width: 12px; }
     ::-webkit-scrollbar-track { background: #050807; }
     ::-webkit-scrollbar-thumb { background: #1e2e25; border-radius: 0; border: 1px solid #3a4f45; }
 
-    .correo-dato {
-      font-family: 'Cinzel Decorative', serif;
-      text-shadow: 0 0 10px #1e2a1e;
-      letter-spacing: 2px;
-      border-bottom: 1px solid rgba(110,42,42,0.5);
-      padding-bottom: 6px;
-      display: inline-block;
-    }
-
     .doubt-section details, .tutorial-section details {
       border: 1px solid #3a4f45;
-      background: rgba(10, 14, 12, 0.7);
-      backdrop-filter: blur(4px);
-      margin-bottom: 12px;
+      background: rgba(10, 14, 12, 0.8);
+      backdrop-filter: blur(5px);
+      margin-bottom: 14px;
       border-radius: 2px;
     }
     .doubt-section summary, .tutorial-section summary {
-      padding: 14px 20px;
+      padding: 16px 24px;
       font-family: 'Cinzel Decorative', serif;
-      font-size: 1.5rem;
-      letter-spacing: 3px;
+      font-size: 1.6rem;
+      letter-spacing: 4px;
       color: #d6d2c4;
       cursor: pointer;
       list-style: none;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       border-bottom: 1px solid transparent;
-      transition: all 0.2s;
     }
     .doubt-section summary::-webkit-details-marker,
     .tutorial-section summary::-webkit-details-marker { display: none; }
     .doubt-section summary::before,
     .tutorial-section summary::before {
       content: 'ᛉ';
-      font-size: 1.8rem;
+      font-size: 2rem;
       color: #6e2a2a;
-      margin-right: 8px;
-      transition: transform 0.2s;
+      margin-right: 10px;
     }
     .doubt-section details[open] summary::before,
     .tutorial-section details[open] summary::before {
@@ -335,53 +326,48 @@
     .tutorial-section details[open] summary { border-bottom: 1px solid #3a4f45; }
     .doubt-section .details-content,
     .tutorial-section .details-content {
-      padding: 18px 24px;
+      padding: 20px 28px;
       background: #0c1310;
       color: #d6d2c4;
-    }
-    .inner-details {
-      margin-top: 10px;
-      border-left: 3px solid #6e2a2a;
-      padding-left: 16px;
     }
     .clabe-number {
       font-family: monospace;
       background: #1a201c;
-      padding: 4px 10px;
+      padding: 6px 12px;
       border-radius: 4px;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       border: 1px solid #5a2a2a;
       user-select: all;
     }
 
     /* Estilos para las cartas Rider-Waite (Diseño propio) */
     .tarot-card-visual {
-      width: 160px;
-      height: 260px;
-      margin: 0 auto 10px;
-      background: linear-gradient(145deg, #1a1210 0%, #0c0908 100%);
+      width: 170px;
+      height: 280px;
+      margin: 0 auto 15px;
+      background: linear-gradient(145deg, #140e0c 0%, #0a0706 100%);
       border: 3px solid #8a6e4b;
-      border-radius: 12px;
-      box-shadow: 0 15px 25px -5px #000000, inset 0 0 40px rgba(0,0,0,0.9), 0 0 0 1px #b89a6a;
+      border-radius: 14px;
+      box-shadow: 0 20px 30px -8px #000000, inset 0 0 45px rgba(0,0,0,0.95), 0 0 0 2px #5a3e2e;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 12px 6px;
+      padding: 14px 8px;
       position: relative;
       overflow: hidden;
       transition: transform 0.3s;
     }
     .tarot-card-visual:hover {
-      transform: scale(1.02);
-      box-shadow: 0 20px 35px -5px #000, inset 0 0 50px #1a0a0a, 0 0 0 2px #c9aa7b;
+      transform: scale(1.03);
+      box-shadow: 0 25px 40px -5px #000, inset 0 0 55px #1a0a0a, 0 0 0 2px #c9aa7b;
     }
     .tarot-card-visual::before {
       content: '';
       position: absolute;
-      inset: 6px;
-      border: 1px solid rgba(180, 150, 100, 0.4);
-      border-radius: 8px;
+      inset: 8px;
+      border: 1px solid rgba(180, 150, 100, 0.5);
+      border-radius: 10px;
       pointer-events: none;
     }
     .tarot-card-visual .corner-runes {
@@ -391,54 +377,53 @@
     }
     .tarot-card-visual .corner-runes span {
       position: absolute;
-      font-size: 16px;
+      font-size: 18px;
       color: #8a6e4b;
       opacity: 0.6;
-      text-shadow: 0 0 6px #b89a6a;
+      text-shadow: 0 0 8px #b89a6a;
     }
-    .tarot-card-visual .corner-runes span:nth-child(1) { top: 4px; left: 6px; }
-    .tarot-card-visual .corner-runes span:nth-child(2) { top: 4px; right: 6px; }
-    .tarot-card-visual .corner-runes span:nth-child(3) { bottom: 4px; left: 6px; }
-    .tarot-card-visual .corner-runes span:nth-child(4) { bottom: 4px; right: 6px; }
+    .tarot-card-visual .corner-runes span:nth-child(1) { top: 6px; left: 8px; }
+    .tarot-card-visual .corner-runes span:nth-child(2) { top: 6px; right: 8px; }
+    .tarot-card-visual .corner-runes span:nth-child(3) { bottom: 6px; left: 8px; }
+    .tarot-card-visual .corner-runes span:nth-child(4) { bottom: 6px; right: 8px; }
     
     .tarot-card-visual .card-symbol {
-      font-size: 48px;
+      font-size: 55px;
       line-height: 1;
-      margin-bottom: 5px;
-      filter: drop-shadow(0 0 15px #c9aa7b);
+      margin-bottom: 8px;
+      filter: drop-shadow(0 0 18px #c9aa7b);
       opacity: 0.95;
       position: relative;
       z-index: 2;
     }
     .tarot-card-visual .card-name {
       font-family: 'Cinzel Decorative', serif;
-      font-size: 16px;
+      font-size: 18px;
       text-align: center;
       color: #f0e6d2;
-      text-shadow: 0 0 10px #2a1a1a;
-      letter-spacing: 1px;
-      border-top: 1.5px solid #8a6e4b;
-      padding-top: 10px;
+      text-shadow: 0 0 15px #2a1a1a, 0 0 5px #000;
+      letter-spacing: 2px;
+      border-top: 2px solid #8a6e4b;
+      padding-top: 14px;
       width: 100%;
       position: relative;
       z-index: 2;
       font-weight: 700;
-      line-height: 1.3;
     }
     .tarot-card-visual .card-pos {
-      font-size: 12px;
+      font-size: 14px;
       color: #b89a6a;
-      margin-top: 5px;
+      margin-top: 6px;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
     }
 
     /* Modal de Consentimiento */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(2, 4, 3, 0.9);
-      backdrop-filter: blur(8px);
+      background: rgba(4, 6, 5, 0.95);
+      backdrop-filter: blur(10px);
       z-index: 100;
       display: flex;
       align-items: center;
@@ -447,13 +432,29 @@
       border: 1px solid #4a2c2c;
     }
     .modal-content {
-      max-width: 550px;
+      max-width: 580px;
       width: 100%;
       background: #0c1310;
       border: 1px solid #6e2a2a;
-      padding: 30px;
+      padding: 35px;
       border-radius: 4px;
-      box-shadow: 0 0 70px #000;
+      box-shadow: 0 0 90px #000;
+    }
+
+    /* Juego de Intuición */
+    .intuition-door {
+      background: #0e1210;
+      border: 1px solid #3a4f45;
+      padding: 25px 15px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border-radius: 4px;
+    }
+    .intuition-door:hover {
+      border-color: #8a3a3a;
+      box-shadow: 0 0 30px rgba(110,42,42,0.4);
+      transform: translateY(-5px);
+      background: #141c18;
     }
   </style>
 </head>
@@ -469,7 +470,8 @@
   <div class="rune" style="top:12%; left:65%;">ᚷ</div>
   <div class="rune" style="top:62%; left:5%;">ᛟ</div>
   <div class="rune" style="top:92%; left:88%;">ᛉ</div>
-  <div class="rune" style="top:38%; left:78%; opacity:0.1;">ᛗ</div>
+  <div class="rune" style="top:38%; left:78%; opacity:0.12;">ᛗ</div>
+  <div class="rune" style="top:55%; left:45%; opacity:0.08; font-size:35px;">ᛞ</div>
  
   <div class="void-mark"></div>
  
@@ -478,35 +480,34 @@
     <div class="vine-delilah" style="left: 14%; height: 0;" id="vine2"></div>
     <div class="vine-delilah" style="left: 87%; height: 0;" id="vine3"><div class="thorn"></div></div>
     <div class="vine-delilah" style="left: 97%; height: 0;" id="vine4"></div>
-    <div class="vine-delilah" style="left: 42%; height: 0; opacity:0.6;" id="vine5"></div>
-    <div class="vine-delilah" style="left: 70%; height: 0; opacity:0.4;" id="vine6"></div>
+    <div class="vine-delilah" style="left: 42%; height: 0; opacity:0.7;" id="vine5"></div>
+    <div class="vine-delilah" style="left: 70%; height: 0; opacity:0.5;" id="vine6"></div>
     <div class="vine-top" style="left: 5%;"></div>
     <div class="vine-top" style="left: 94%; transform: scaleX(-1);"></div>
-    <div class="vine-top" style="left: 18%; height: 90px; opacity:0.7;"></div>
-    <div class="vine-top" style="left: 80%; height: 130px;"></div>
-    <div class="vine-top" style="left: 55%; height: 60px; opacity:0.5;"></div>
+    <div class="vine-top" style="left: 18%; height: 110px; opacity:0.8;"></div>
+    <div class="vine-top" style="left: 80%; height: 160px;"></div>
+    <div class="vine-top" style="left: 55%; height: 80px; opacity:0.6;"></div>
   </div>
  
   <div id="ash-storm" style="position:fixed; inset:0; pointer-events:none; z-index:2;"></div>
 
-  <!-- Modal de Consentimiento Informado (Oculto por defecto) -->
+  <!-- Modal de Consentimiento -->
   <div id="consent-modal" class="modal-overlay" style="display: none;">
     <div class="modal-content text-left">
       <h2 class="font-display text-3xl mb-4 text-bone border-b border-blood/40 pb-2">Consentimiento Informado</h2>
       <div class="space-y-3 text-bone/90 text-base max-h-[400px] overflow-y-auto pr-2">
-        <p>Antes de continuar con la cita, es importante que leas y aceptes lo siguiente:</p>
+        <p>Antes de continuar, lee y acepta:</p>
         <ul class="list-disc pl-5 space-y-2 text-sm">
-          <li><span class="text-blood">ᛉ</span> La lectura de Tarot y Carta Astral son herramientas de <span class="text-bone">orientación y autoconocimiento</span>. No sustituyen diagnósticos médicos, psicológicos o legales.</li>
-          <li><span class="text-blood">ᛉ</span> Toda la información compartida es <span class="text-bone">estrictamente confidencial</span>. No se comparte con terceros.</li>
-          <li><span class="text-blood">ᛉ</span> Para la Carta Astral, se requiere tu fecha, hora y lugar de nacimiento. Estos datos se usan exclusivamente para calcular tu mapa astral.</li>
-          <li><span class="text-blood">ᛉ</span> El servicio no incluye "trabajos de magia", "amarres" ni promesas de resultados milagrosos. Valentina S. rechaza la charlatanería.</li>
-          <li><span class="text-blood">ᛉ</span> La cita se confirma una vez realizado el pago o acordado el método. Tienes derecho a cancelar con 24h de anticipación.</li>
+          <li><span class="text-blood">ᛉ</span> Lectura de Tarot y Carta Astral son <span class="text-bone">orientación y autoconocimiento</span>. No sustituyen diagnóstico médico/psicológico.</li>
+          <li><span class="text-blood">ᛉ</span> Información <span class="text-bone">estrictamente confidencial</span>.</li>
+          <li><span class="text-blood">ᛉ</span> Para Carta Astral se requiere fecha, hora y lugar de nacimiento.</li>
+          <li><span class="text-blood">ᛉ</span> Rechazo a la charlatanería. No se ofrecen "amarres" ni promesas milagrosas.</li>
+          <li><span class="text-blood">ᛉ</span> Cita confirmada al acordar pago. Cancelación con 24h de anticipación.</li>
         </ul>
-        <p class="italic text-whisper">Al aceptar, reconoces que has leído y estás de acuerdo con estos términos.</p>
       </div>
       <div class="mt-6 flex items-center gap-3">
         <input type="checkbox" id="accept-consent" class="w-5 h-5 accent-blood">
-        <label for="accept-consent" class="text-bone cursor-pointer">He leído y acepto el consentimiento informado.</label>
+        <label for="accept-consent" class="text-bone cursor-pointer">He leído y acepto el consentimiento.</label>
       </div>
       <div class="mt-6 flex gap-4">
         <button id="confirm-consent-btn" class="btn-void px-6 py-2 opacity-50 cursor-not-allowed" disabled>Continuar a Calendly</button>
@@ -521,7 +522,7 @@
       <span>ᛟ</span><span>ᚨ</span><span>ᚱ</span><span>ᚢ</span>
     </div>
    
-    <h1 class="font-display text-6xl md:text-7xl lg:text-8xl font-black tracking-[6px] glow-text" style="text-shadow: 0 0 30px #0f1a12, 0 0 60px #040806;">
+    <h1 class="font-display text-6xl md:text-7xl lg:text-8xl font-black tracking-[8px] glow-text" style="text-shadow: 0 0 35px #0f1a12, 0 0 70px #040806;">
       Sforza K.
     </h1>
    
@@ -534,7 +535,6 @@
     </p>
    
     <div class="grid md:grid-cols-2 gap-8 max-w-5xl w-full">
-      <!-- Tarjeta Tarot -->
       <div class="card-grimoire p-8 rounded-xl text-left">
         <div class="flex items-center gap-3 mb-2">
           <span class="text-4xl text-blood/60">🜁</span>
@@ -549,7 +549,6 @@
         <button data-agendar="https://calendly.com/vs9656271/30min" class="agendar-btn btn-void px-7 py-3 rounded-sm inline-block mt-7 text-lg font-medium">AGENDAR · ᚱ</button>
         <p class="mt-5 text-sm italic text-whisper border-t border-blood/20 pt-4">Efectivo o transferencia — confirma por correo.</p>
       </div>
-      <!-- Tarjeta Carta Astral -->
       <div class="card-grimoire p-8 rounded-xl text-left">
         <div class="flex items-center gap-3 mb-2">
           <span class="text-4xl text-blood/60">🜂</span>
@@ -565,7 +564,7 @@
       </div>
     </div>
    
-    <!-- SECCIÓN VALENTINA S. (Recortada para brevedad pero con info clave) -->
+    <!-- SECCIÓN VALENTINA S. -->
     <div class="max-w-4xl mt-20 card-grimoire p-8 md:p-10 rounded-xl text-left relative overflow-hidden">
       <div class="absolute -top-3 -left-3 text-7xl text-blood/20 rotate-12">ᛉ</div>
       <div class="absolute -bottom-3 -right-3 text-7xl text-blood/15 -rotate-12">ᚨ</div>
@@ -578,7 +577,7 @@
       </div>
     </div>
 
-    <!-- TUTORIAL Y DUDAS (Compacto) -->
+    <!-- TUTORIAL Y DUDAS -->
     <div class="max-w-4xl w-full mt-12 tutorial-section">
       <details class="card-grimoire" style="padding:0; overflow:hidden;">
         <summary class="text-3xl">🜁 GUÍA DE USO · TUTORIAL</summary>
@@ -601,12 +600,6 @@
             <li>CLABE transferencia: <span class="clabe-number">014180200149285395</span></li>
             <li>Acordamos detalles.</li>
           </ol>
-          <details class="inner-details mt-6">
-            <summary class="text-2xl font-display cursor-pointer text-blood/80">ᛉ Problemas con el pago</summary>
-            <div class="mt-4 p-4 bg-void/80 border border-blood/30 rounded-sm">
-              <p>Si no alcanzas a cubrir el monto total, <span class="text-bone font-semibold">podemos negociar</span>. Escríbeme.</p>
-            </div>
-          </details>
         </div>
       </details>
     </div>
@@ -624,7 +617,7 @@
       </div>
     </div>
 
-    <!-- SECCIÓN TIRADA DE 3 CARTAS (PREGUNTA + RIDER WAITE) -->
+    <!-- SECCIÓN TIRADA DE 3 CARTAS (CON VALIDACIÓN DE PREGUNTA) -->
     <div class="max-w-5xl w-full mt-20 card-grimoire p-8 rounded-xl text-center">
       <h2 class="font-display text-4xl mb-2 flex items-center justify-center gap-3">
         <span>🜂</span> Tirada de 3 Cartas · Pasado, Presente, Futuro <span>🜄</span>
@@ -643,6 +636,36 @@
         <p id="reading-limit-message" class="text-blood/80 italic mt-4"></p>
       </div>
     </div>
+
+    <!-- JUEGO DE INTUICIÓN: EL ORÁCULO DE LAS SOMBRAS -->
+    <div class="max-w-4xl w-full mt-16 card-grimoire p-8 rounded-xl text-center">
+      <h2 class="font-display text-3xl mb-2 flex items-center justify-center gap-3">
+        <span>🜍</span> El Oráculo de las Sombras <span>🜍</span>
+      </h2>
+      <p class="text-whisper italic mb-8">Deja que tu intuición te guíe. Escoge una puerta.</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="intuition-door" data-door="1">
+          <div class="text-6xl mb-4">🜁</div>
+          <h3 class="font-display text-2xl mb-2">La Puerta del Viento</h3>
+          <p class="text-ash text-sm">Susurros del exterior...</p>
+        </div>
+        <div class="intuition-door" data-door="2">
+          <div class="text-6xl mb-4">🜄</div>
+          <h3 class="font-display text-2xl mb-2">La Puerta del Agua</h3>
+          <p class="text-ash text-sm">Reflejos de lo profundo...</p>
+        </div>
+        <div class="intuition-door" data-door="3">
+          <div class="text-6xl mb-4">🜂</div>
+          <h3 class="font-display text-2xl mb-2">La Puerta del Fuego</h3>
+          <p class="text-ash text-sm">Calor que transforma...</p>
+        </div>
+      </div>
+      
+      <div id="oracle-result" class="mt-8 p-6 bg-void/60 border border-blood/30 rounded-sm min-h-[80px] flex items-center justify-center italic text-lg text-bone">
+        Tu elección revelará un mensaje...
+      </div>
+    </div>
    
     <div class="mt-24 text-ash/30 text-xs font-body border-t border-blood/10 pt-8 w-full max-w-3xl">
       <p>Valentina S. · Lecturas de tarot & carta astral · Ambiente místico · Todos los presagios son bienvenidos</p>
@@ -653,141 +676,97 @@
     (function(){
       if (typeof lucide !== 'undefined') lucide.createIcons();
      
-      // Partículas, pétalos y enredaderas (MANTENIDO IGUAL)
+      // Partículas de ceniza (más cantidad)
       const ashContainer = document.getElementById('ash-storm');
-      for (let i = 0; i < 65; i++) {
+      for (let i = 0; i < 85; i++) {
         let p = document.createElement('div'); p.className = 'ash-particle';
         p.style.left = Math.random() * 100 + '%'; p.style.top = Math.random() * 100 + '%';
-        p.style.animationDelay = (Math.random() * 25) + 's'; p.style.animationDuration = (12 + Math.random() * 22) + 's';
-        p.style.width = (2 + Math.random() * 6) + 'px'; p.style.height = p.style.width;
+        p.style.animationDelay = (Math.random() * 30) + 's'; p.style.animationDuration = (14 + Math.random() * 25) + 's';
+        p.style.width = (2 + Math.random() * 8) + 'px'; p.style.height = p.style.width;
         ashContainer.appendChild(p);
       }
-      const canvas = document.getElementById('petals-canvas'); const ctx = canvas.getContext('2d'); let width, height; let petals = []; const PETAL_COUNT = 38; const petalColors = ['#6e2a2a', '#5a3e2e', '#7a4a3a', '#4f2a2f', '#3e2a2a', '#8b5a4b', '#6d4c41', '#4a2c2c'];
+
+      const canvas = document.getElementById('petals-canvas'); const ctx = canvas.getContext('2d'); let width, height; let petals = []; const PETAL_COUNT = 45; const petalColors = ['#6e2a2a', '#5a3e2e', '#7a4a3a', '#4f2a2f', '#3e2a2a', '#8b5a4b', '#6d4c41', '#4a2c2c'];
       function resizeCanvas() { width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; }
       window.addEventListener('resize', resizeCanvas); resizeCanvas();
-      function initPetals() { petals = []; for (let i = 0; i < PETAL_COUNT; i++) { petals.push({ x: Math.random() * width, y: Math.random() * height * 0.8 - 100, size: 8 + Math.random() * 18, speedY: 0.4 + Math.random() * 1.2, speedX: (Math.random() - 0.5) * 0.5, rotation: Math.random() * Math.PI * 2, rotSpeed: (Math.random() - 0.5) * 0.02, color: petalColors[Math.floor(Math.random() * petalColors.length)], opacity: 0.45 + Math.random() * 0.35, curve: 0.3 + Math.random() * 0.7 }); } } initPetals();
+      function initPetals() { petals = []; for (let i = 0; i < PETAL_COUNT; i++) { petals.push({ x: Math.random() * width, y: Math.random() * height * 0.8 - 100, size: 10 + Math.random() * 22, speedY: 0.3 + Math.random() * 1.5, speedX: (Math.random() - 0.5) * 0.6, rotation: Math.random() * Math.PI * 2, rotSpeed: (Math.random() - 0.5) * 0.03, color: petalColors[Math.floor(Math.random() * petalColors.length)], opacity: 0.4 + Math.random() * 0.4 }); } } initPetals();
       function shadeColor(col, percent) { let R = parseInt(col.substring(1,3),16); let G = parseInt(col.substring(3,5),16); let B = parseInt(col.substring(5,7),16); R = Math.max(0, R + percent); G = Math.max(0, G + percent); B = Math.max(0, B + percent); return `#${((1 << 24) + (R << 16) + (G << 8) + B).toString(16).slice(1)}`; }
-      function drawPetal(ctx, x, y, size, rotation, color, opacity) { ctx.save(); ctx.translate(x, y); ctx.rotate(rotation); ctx.globalAlpha = opacity * 0.9; const w = size * 0.8; const h = size * 1.2; const gradient = ctx.createRadialGradient(-w*0.2, -h*0.1, 0, 0, 0, size); gradient.addColorStop(0, color); gradient.addColorStop(0.7, shadeColor(color, -20)); gradient.addColorStop(1, shadeColor(color, -40)); ctx.fillStyle = gradient; ctx.shadowColor = '#1a0f0f'; ctx.shadowBlur = 10; ctx.beginPath(); ctx.moveTo(0, -h * 0.7); ctx.bezierCurveTo(w * 0.7, -h * 0.5, w * 0.9, h * 0.2, 0, h * 0.9); ctx.bezierCurveTo(-w * 0.8, h * 0.3, -w * 0.6, -h * 0.4, 0, -h * 0.7); ctx.closePath(); ctx.fill(); ctx.shadowBlur = 4; ctx.globalAlpha = opacity * 0.25; ctx.strokeStyle = '#2c1a1a'; ctx.lineWidth = 1.2; ctx.stroke(); ctx.restore(); }
-      function updatePetals() { for (let p of petals) { p.y += p.speedY; p.x += p.speedX + Math.sin(p.y * 0.01) * 0.2; p.rotation += p.rotSpeed; if (p.y > height + 50) { p.y = -30 - Math.random() * 50; p.x = Math.random() * width; p.speedY = 0.4 + Math.random() * 1.3; p.color = petalColors[Math.floor(Math.random() * petalColors.length)]; p.opacity = 0.4 + Math.random() * 0.4; } if (p.x < -40) p.x = width + 20; if (p.x > width + 40) p.x = -20; } }
+      function drawPetal(ctx, x, y, size, rotation, color, opacity) { ctx.save(); ctx.translate(x, y); ctx.rotate(rotation); ctx.globalAlpha = opacity * 0.9; const w = size * 0.8; const h = size * 1.2; const gradient = ctx.createRadialGradient(-w*0.2, -h*0.1, 0, 0, 0, size); gradient.addColorStop(0, color); gradient.addColorStop(0.7, shadeColor(color, -20)); gradient.addColorStop(1, shadeColor(color, -40)); ctx.fillStyle = gradient; ctx.shadowColor = '#1a0f0f'; ctx.shadowBlur = 12; ctx.beginPath(); ctx.moveTo(0, -h * 0.7); ctx.bezierCurveTo(w * 0.7, -h * 0.5, w * 0.9, h * 0.2, 0, h * 0.9); ctx.bezierCurveTo(-w * 0.8, h * 0.3, -w * 0.6, -h * 0.4, 0, -h * 0.7); ctx.closePath(); ctx.fill(); ctx.shadowBlur = 5; ctx.globalAlpha = opacity * 0.3; ctx.strokeStyle = '#2c1a1a'; ctx.lineWidth = 1.5; ctx.stroke(); ctx.restore(); }
+      function updatePetals() { for (let p of petals) { p.y += p.speedY; p.x += p.speedX + Math.sin(p.y * 0.01) * 0.3; p.rotation += p.rotSpeed; if (p.y > height + 60) { p.y = -40 - Math.random() * 60; p.x = Math.random() * width; } if (p.x < -50) p.x = width + 30; if (p.x > width + 50) p.x = -30; } }
       function draw() { ctx.clearRect(0, 0, width, height); const sorted = [...petals].sort((a, b) => b.size - a.size); for (let p of sorted) { drawPetal(ctx, p.x, p.y, p.size, p.rotation, p.color, p.opacity); } updatePetals(); requestAnimationFrame(draw); } draw();
       window.addEventListener('resize', () => { resizeCanvas(); petals.forEach(p => { p.x = Math.min(width, Math.max(0, p.x)); p.y = Math.min(height, Math.max(-50, p.y)); }); });
       const vines = [document.getElementById('vine1'), document.getElementById('vine2'), document.getElementById('vine3'), document.getElementById('vine4'), document.getElementById('vine5'), document.getElementById('vine6')];
-      function updateVinesHeight() { const scrollY = window.scrollY; const maxScroll = document.body.scrollHeight - window.innerHeight; const progress = Math.min(scrollY / maxScroll, 1); vines.forEach((vine, index) => { if (!vine) return; let maxHeight = 200 + (index * 35); if (index === 4) maxHeight = 130; if (index === 5) maxHeight = 90; let height = Math.min(progress * maxHeight * 1.6, maxHeight); vine.style.height = height + 'px'; if ((index === 0 || index === 3) && height > 70) { if (!vine.querySelector('.extra-thorn')) { let thorn = document.createElement('div'); thorn.className = 'thorn extra-thorn'; thorn.style.top = '50px'; vine.appendChild(thorn); } } }); }
+      function updateVinesHeight() { const scrollY = window.scrollY; const maxScroll = document.body.scrollHeight - window.innerHeight; const progress = Math.min(scrollY / maxScroll, 1); vines.forEach((vine, index) => { if (!vine) return; let maxHeight = 240 + (index * 40); if (index === 4) maxHeight = 160; if (index === 5) maxHeight = 110; let height = Math.min(progress * maxHeight * 1.8, maxHeight); vine.style.height = height + 'px'; if ((index === 0 || index === 3) && height > 80) { if (!vine.querySelector('.extra-thorn')) { let thorn = document.createElement('div'); thorn.className = 'thorn extra-thorn'; thorn.style.top = '60px'; vine.appendChild(thorn); } } }); }
       window.addEventListener('scroll', updateVinesHeight); window.addEventListener('resize', updateVinesHeight); updateVinesHeight();
 
       // ========== MODAL DE CONSENTIMIENTO ==========
-      const modal = document.getElementById('consent-modal');
-      const acceptCheck = document.getElementById('accept-consent');
-      const confirmBtn = document.getElementById('confirm-consent-btn');
-      const closeBtn = document.getElementById('close-modal-btn');
-      let currentAgendarLink = '';
+      const modal = document.getElementById('consent-modal'); const acceptCheck = document.getElementById('accept-consent'); const confirmBtn = document.getElementById('confirm-consent-btn'); const closeBtn = document.getElementById('close-modal-btn'); let currentAgendarLink = '';
+      document.querySelectorAll('.agendar-btn').forEach(btn => { btn.addEventListener('click', (e) => { e.preventDefault(); currentAgendarLink = btn.getAttribute('data-agendar'); modal.style.display = 'flex'; acceptCheck.checked = false; confirmBtn.disabled = true; confirmBtn.classList.add('opacity-50', 'cursor-not-allowed'); }); });
+      acceptCheck.addEventListener('change', () => { if (acceptCheck.checked) { confirmBtn.disabled = false; confirmBtn.classList.remove('opacity-50', 'cursor-not-allowed'); } else { confirmBtn.disabled = true; confirmBtn.classList.add('opacity-50', 'cursor-not-allowed'); } });
+      confirmBtn.addEventListener('click', () => { if (acceptCheck.checked) { window.open(currentAgendarLink, '_blank'); modal.style.display = 'none'; } });
+      closeBtn.addEventListener('click', () => { modal.style.display = 'none'; }); modal.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
 
-      document.querySelectorAll('.agendar-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          currentAgendarLink = btn.getAttribute('data-agendar');
-          modal.style.display = 'flex';
-          acceptCheck.checked = false;
-          confirmBtn.disabled = true;
-          confirmBtn.classList.add('opacity-50', 'cursor-not-allowed');
-        });
-      });
-
-      acceptCheck.addEventListener('change', () => {
-        if (acceptCheck.checked) {
-          confirmBtn.disabled = false;
-          confirmBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-        } else {
-          confirmBtn.disabled = true;
-          confirmBtn.classList.add('opacity-50', 'cursor-not-allowed');
-        }
-      });
-
-      confirmBtn.addEventListener('click', () => {
-        if (acceptCheck.checked) {
-          window.open(currentAgendarLink, '_blank');
-          modal.style.display = 'none';
-        }
-      });
-
-      closeBtn.addEventListener('click', () => { modal.style.display = 'none'; });
-      modal.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
-
-      // ========== TIRADA DE 3 CARTAS RIDER WAITE ==========
-      // Baraja simulada (Rider Waite)
-      const arcanosMayores = [
-        { nombre: "El Loco", simbolo: "🃏", tipo: "mayor" }, { nombre: "El Mago", simbolo: "🜁", tipo: "mayor" }, { nombre: "La Sacerdotisa", simbolo: "☾", tipo: "mayor" },
-        { nombre: "La Emperatriz", simbolo: "♀", tipo: "mayor" }, { nombre: "El Emperador", simbolo: "♂", tipo: "mayor" }, { nombre: "El Sumo Sacerdote", simbolo: "⛪", tipo: "mayor" },
-        { nombre: "Los Enamorados", simbolo: "⚭", tipo: "mayor" }, { nombre: "El Carro", simbolo: "🜂", tipo: "mayor" }, { nombre: "La Fuerza", simbolo: "🦁", tipo: "mayor" },
-        { nombre: "El Ermitaño", simbolo: "🜄", tipo: "mayor" }, { nombre: "La Rueda", simbolo: "☸", tipo: "mayor" }, { nombre: "La Justicia", simbolo: "⚖", tipo: "mayor" },
-        { nombre: "El Colgado", simbolo: "🜍", tipo: "mayor" }, { nombre: "La Muerte", simbolo: "💀", tipo: "mayor" }, { nombre: "La Templanza", simbolo: "🜃", tipo: "mayor" },
-        { nombre: "El Diablo", simbolo: "😈", tipo: "mayor" }, { nombre: "La Torre", simbolo: "🏰", tipo: "mayor" }, { nombre: "La Estrella", simbolo: "⭐", tipo: "mayor" },
-        { nombre: "La Luna", simbolo: "🌙", tipo: "mayor" }, { nombre: "El Sol", simbolo: "☀", tipo: "mayor" }, { nombre: "El Juicio", simbolo: "📯", tipo: "mayor" },
-        { nombre: "El Mundo", simbolo: "🌍", tipo: "mayor" }
-      ];
-      const palos = ["Bastos", "Copas", "Espadas", "Oros"];
-      const figuras = ["As", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Sota", "Caballo", "Reina", "Rey"];
-      const arcanosMenores = [];
-      palos.forEach(palo => { figuras.forEach(fig => { arcanosMenores.push({ nombre: `${fig} de ${palo}`, simbolo: palo === "Bastos" ? "🔥" : (palo === "Copas" ? "💧" : (palo === "Espadas" ? "💨" : "🌿")), tipo: "menor" }); }); });
+      // ========== TIRADA DE 3 CARTAS (CON PREGUNTA OBLIGATORIA) ==========
+      const arcanosMayores = [ { nombre: "El Loco", simbolo: "🃏" }, { nombre: "El Mago", simbolo: "🜁" }, { nombre: "La Sacerdotisa", simbolo: "☾" }, { nombre: "La Emperatriz", simbolo: "♀" }, { nombre: "El Emperador", simbolo: "♂" }, { nombre: "El Sumo Sacerdote", simbolo: "⛪" }, { nombre: "Los Enamorados", simbolo: "⚭" }, { nombre: "El Carro", simbolo: "🜂" }, { nombre: "La Fuerza", simbolo: "🦁" }, { nombre: "El Ermitaño", simbolo: "🜄" }, { nombre: "La Rueda", simbolo: "☸" }, { nombre: "La Justicia", simbolo: "⚖" }, { nombre: "El Colgado", simbolo: "🜍" }, { nombre: "La Muerte", simbolo: "💀" }, { nombre: "La Templanza", simbolo: "🜃" }, { nombre: "El Diablo", simbolo: "😈" }, { nombre: "La Torre", simbolo: "🏰" }, { nombre: "La Estrella", simbolo: "⭐" }, { nombre: "La Luna", simbolo: "🌙" }, { nombre: "El Sol", simbolo: "☀" }, { nombre: "El Juicio", simbolo: "📯" }, { nombre: "El Mundo", simbolo: "🌍" } ];
+      const palos = ["Bastos", "Copas", "Espadas", "Oros"]; const figuras = ["As", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Sota", "Caballo", "Reina", "Rey"]; const arcanosMenores = [];
+      palos.forEach(palo => { figuras.forEach(fig => { arcanosMenores.push({ nombre: `${fig} de ${palo}`, simbolo: palo === "Bastos" ? "🔥" : (palo === "Copas" ? "💧" : (palo === "Espadas" ? "💨" : "🌿")) }); }); });
       const barajaCompleta = [...arcanosMayores, ...arcanosMenores];
 
       function generarMensaje(carta, posicion, pregunta) {
-        const esMayor = carta.tipo === "mayor";
+        const esMayor = arcanosMayores.some(m => m.nombre === carta.nombre);
         const base = esMayor ? `La energía de ${carta.nombre} en tu ${posicion}` : `La influencia de ${carta.nombre} en tu ${posicion}`;
-        if (posicion === "Pasado") return `${base} señala que vienes de un ciclo donde la ${esMayor ? 'conciencia' : 'acción'} fue clave. ${pregunta ? 'Respecto a tu pregunta:' : ''} Es momento de soltar lo aprendido.`;
-        if (posicion === "Presente") return `${base} indica que ahora debes enfocarte en la ${esMayor ? 'introspección' : 'práctica'}. ${pregunta ? 'La respuesta inmediata está en tu entorno.' : 'Confía en el proceso.'}`;
-        return `${base} sugiere que el desenlace dependerá de cómo integres esta energía. ${esMayor ? 'Un llamado a la sabiduría interior.' : 'Pequeñas acciones diarias marcarán la diferencia.'}`;
+        if (posicion === "Pasado") return `${base} señala que vienes de un ciclo de ${esMayor ? 'conciencia' : 'acción'}. Respecto a tu pregunta: es momento de soltar.`;
+        if (posicion === "Presente") return `${base} indica que ahora debes enfocarte en la ${esMayor ? 'introspección' : 'práctica'}. La respuesta está en tu entorno inmediato.`;
+        return `${base} sugiere que el desenlace dependerá de integrar esta energía. ${esMayor ? 'Sabiduría interior.' : 'Pequeñas acciones.'}`;
       }
 
-      const drawBtn = document.getElementById('draw-three-cards-btn');
-      const displayDiv = document.getElementById('reading-display');
-      const limitMsg = document.getElementById('reading-limit-message');
-
+      const drawBtn = document.getElementById('draw-three-cards-btn'); const displayDiv = document.getElementById('reading-display'); const limitMsg = document.getElementById('reading-limit-message');
       function getTodayString() { const d = new Date(); return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`; }
       function puedeSacarCarta() { const ultima = localStorage.getItem('ultimaTiradaFecha'); return !ultima || ultima !== getTodayString(); }
 
       function mostrarTirada() {
         limitMsg.textContent = '';
+        const pregunta = document.getElementById('user-question').value.trim();
+        if (!pregunta) {
+          displayDiv.innerHTML = `<p class="text-blood/80 text-xl italic border-t border-blood/20 pt-6">🜍 Debes escribir una pregunta antes de consultar a los arcanos. Concéntrate y formula tu consulta.</p>`;
+          return;
+        }
         if (!puedeSacarCarta()) {
           displayDiv.innerHTML = `<p class="text-blood/80 text-xl italic border-t border-blood/20 pt-6">🌙 Ya has realizado tu tirada hoy. Vuelve mañana para consultar de nuevo a los arcanos.</p>`;
           return;
         }
 
-        const pregunta = document.getElementById('user-question').value.trim() || "sin pregunta específica";
-        const indices = [];
-        while(indices.length < 3) { const r = Math.floor(Math.random() * barajaCompleta.length); if (!indices.includes(r)) indices.push(r); }
-        const cartas = indices.map(i => barajaCompleta[i]);
-        const posiciones = ["Pasado", "Presente", "Futuro"];
-
+        const indices = []; while(indices.length < 3) { const r = Math.floor(Math.random() * barajaCompleta.length); if (!indices.includes(r)) indices.push(r); }
+        const cartas = indices.map(i => barajaCompleta[i]); const posiciones = ["Pasado", "Presente", "Futuro"];
         localStorage.setItem('ultimaTiradaFecha', getTodayString());
 
         let html = `<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">`;
         cartas.forEach((carta, idx) => {
-          const pos = posiciones[idx];
-          const mensaje = generarMensaje(carta, pos, pregunta);
-          html += `
-            <div class="flex flex-col items-center">
-              <div class="tarot-card-visual">
-                <div class="corner-runes"><span>ᚨ</span><span>ᚱ</span><span>ᚦ</span><span>ᚢ</span></div>
-                <div class="card-symbol">${carta.simbolo}</div>
-                <div class="card-name">${carta.nombre}</div>
-                <div class="card-pos">${pos}</div>
-              </div>
-              <p class="text-base italic mt-3 text-whisper leading-relaxed max-w-[200px]">“${mensaje}”</p>
-            </div>
-          `;
+          const pos = posiciones[idx]; const mensaje = generarMensaje(carta, pos, pregunta);
+          html += `<div class="flex flex-col items-center"><div class="tarot-card-visual"><div class="corner-runes"><span>ᚨ</span><span>ᚱ</span><span>ᚦ</span><span>ᚢ</span></div><div class="card-symbol">${carta.simbolo}</div><div class="card-name">${carta.nombre}</div><div class="card-pos">${pos}</div></div><p class="text-base italic mt-3 text-whisper leading-relaxed max-w-[200px]">“${mensaje}”</p></div>`;
         });
         html += `</div><p class="text-blood/40 text-sm mt-8 tracking-widest">ᛉ · TIRADA DEL DÍA · ᛦ</p>`;
         displayDiv.innerHTML = html;
       }
-
       drawBtn.addEventListener('click', mostrarTirada);
+
+      // ========== JUEGO DE INTUICIÓN ==========
+      const doors = document.querySelectorAll('.intuition-door'); const resultDiv = document.getElementById('oracle-result');
+      const mensajesOráculo = [
+        "El viento trae consigo ecos de decisiones pasadas. Escucha el silencio entre el ruido; ahí está tu respuesta.",
+        "Las aguas profundas reflejan una verdad que has estado evitando. No temas mirar dentro de ti.",
+        "El fuego purifica, pero también consume. Algo debe terminar para que algo nuevo nazca. Confía en la chispa."
+      ];
+      doors.forEach((door, index) => {
+        door.addEventListener('click', () => {
+          resultDiv.innerHTML = `“${mensajesOráculo[index]}”`;
+          resultDiv.classList.add('border-blood/60');
+        });
+      });
     })();
   </script>
  
-  <div style="position:fixed; bottom:15px; left:15px; opacity:0.06; z-index:1; pointer-events:none; width:150px; height:150px;">
-    <svg viewBox="0 0 200 200" fill="none"><path d="M100 20 L130 70 L180 60 L150 100 L190 140 L140 150 L130 190 L90 160 L60 190 L70 140 L20 130 L50 90 L30 50 L80 60 L100 20Z" stroke="#6e2a2a" stroke-width="4" fill="none"/><circle cx="100" cy="100" r="18" fill="#2a3a32" opacity="0.4"/></svg>
-  </div>
+  <div style="position:fixed; bottom:15px; left:15px; opacity:0.06; z-index:1; pointer-events:none; width:150px; height:150px;"><svg viewBox="0 0 200 200" fill="none"><path d="M100 20 L130 70 L180 60 L150 100 L190 140 L140 150 L130 190 L90 160 L60 190 L70 140 L20 130 L50 90 L30 50 L80 60 L100 20Z" stroke="#6e2a2a" stroke-width="4" fill="none"/><circle cx="100" cy="100" r="18" fill="#2a3a32" opacity="0.4"/></svg></div>
 
   <!-- Tidio Chatbot Script -->
   <script src="//code.tidio.co/9ho1j2cjluwndv4mbcrptbdnbry569vo.js" async></script>
